@@ -1,0 +1,3775 @@
+{
+  "project_version": "2.0.0",
+  "dataset": {
+    "train_vehicles": 23550,
+    "validation_vehicles": 5046,
+    "test_vehicles": 5045,
+    "simulated_validation_vehicles": 18622,
+    "labels": {
+      "readouts": 1122452,
+      "dropped_after_repair": 0,
+      "dropped_censored_unknown_class": 203148,
+      "labelled_readouts": 919304,
+      "labelled_vehicles": 23549,
+      "class_counts": {
+        "0": 893558,
+        "1": 12511,
+        "2": 6176,
+        "3": 3198,
+        "4": 3861
+      },
+      "rows_used_for_training": 919304
+    },
+    "simulated_class_counts": [
+      17974,
+      287,
+      180,
+      79,
+      102
+    ],
+    "validation_class_counts": [
+      4910,
+      16,
+      14,
+      30,
+      76
+    ],
+    "test_class_counts": [
+      4903,
+      26,
+      15,
+      41,
+      60
+    ],
+    "n_features": 308
+  },
+  "settings": {
+    "seed": 42,
+    "change_window_readouts": 5,
+    "max_rows_per_vehicle": null,
+    "selection_folds": 5,
+    "selection_row_fraction": 0.4,
+    "boosting_params": {
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 15,
+      "max_iter": 300
+    },
+    "capacities": [
+      0.02,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "capacity_tolerance": 0.05,
+    "prior_weight_grid": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "bootstrap_samples": 1000,
+    "cost_matrix": [
+      [
+        0,
+        7,
+        8,
+        9,
+        10
+      ],
+      [
+        200,
+        0,
+        7,
+        8,
+        9
+      ],
+      [
+        300,
+        200,
+        0,
+        7,
+        8
+      ],
+      [
+        400,
+        300,
+        200,
+        0,
+        7
+      ],
+      [
+        500,
+        400,
+        300,
+        200,
+        0
+      ]
+    ],
+    "class_rule": "time left t: class 4 if t <= 6, 3 if t <= 12, 2 if t <= 24, 1 if t <= 48, else 0"
+  },
+  "tuning": {
+    "score": "multiclass log loss (negated; higher is better)",
+    "tuning_vehicles": 7065,
+    "tuning_rows": 276264,
+    "best_params": {
+      "learning_rate": 0.05,
+      "max_iter": 300,
+      "max_leaf_nodes": 15
+    },
+    "results": [
+      {
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "cv_neg_log_loss": -0.17196933848948248
+      },
+      {
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 31,
+        "cv_neg_log_loss": -0.19997793596841448
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 300,
+        "max_leaf_nodes": 15,
+        "cv_neg_log_loss": -0.27906882963536445
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 300,
+        "max_leaf_nodes": 31,
+        "cv_neg_log_loss": -0.35918627558480826
+      }
+    ]
+  },
+  "selection": {
+    "baseline": {
+      "candidate": "horizons LR \u00b7 unweighted \u00b7 base+intensity+rate10",
+      "target": "horizons",
+      "learner": "logistic_regression",
+      "weighted": false,
+      "features": [
+        "intensity",
+        "rate10"
+      ],
+      "calibration": "prior_shift_isotonic",
+      "sim_cost": 106255.0,
+      "val_cost": 46300.0
+    },
+    "candidate": "5-class GB \u00b7 unweighted \u00b7 base",
+    "target": "five_class",
+    "learner": "gradient_boosting",
+    "weighted": false,
+    "features": [],
+    "calibration": "prior_shift_isotonic",
+    "sim_cost": 96397.0,
+    "val_cost": 44394.0,
+    "official_validation_agrees": false,
+    "official_validation_best": {
+      "candidate": "horizons GB \u00b7 unweighted \u00b7 base+intensity+rate10+fleet",
+      "calibration": "none",
+      "val_cost": 39919.0
+    },
+    "steps": [
+      {
+        "step": "vehicle weights",
+        "kept": false,
+        "sim_cost_without": 102454.0,
+        "sim_cost_with": 105720.0
+      },
+      {
+        "step": "features: intensity",
+        "kept": true,
+        "sim_cost_without": 102454.0,
+        "sim_cost_with": 102195.0
+      },
+      {
+        "step": "features: rate10",
+        "kept": true,
+        "sim_cost_without": 102195.0,
+        "sim_cost_with": 101233.0
+      },
+      {
+        "step": "features: fleet",
+        "kept": false,
+        "sim_cost_without": 101233.0,
+        "sim_cost_with": 101759.0
+      }
+    ],
+    "row_fraction": 0.4,
+    "simulated_set": {
+      "vehicles": 18622,
+      "at_risk": 648,
+      "class_counts": [
+        17974,
+        287,
+        180,
+        79,
+        102
+      ],
+      "folds": 5,
+      "seed": 42
+    },
+    "run_time_seconds": 4362.6
+  },
+  "calibration": {
+    "gradient_boosting": {
+      "kind": "prior_shift_isotonic",
+      "weights": [
+        0.9930127332696247,
+        1.1324595541617717,
+        1.4387921022713677,
+        1.219499030412427,
+        1.3041669723014369
+      ],
+      "isotonic": true
+    },
+    "logistic_regression": {
+      "kind": "prior_shift_isotonic",
+      "weights": [
+        0.9930127332696247,
+        1.1324595541617717,
+        1.4387921022713677,
+        1.219499030412427,
+        1.3041669723014369
+      ],
+      "isotonic": true
+    },
+    "searched_correction": {
+      "kind": "searched_on_validation",
+      "weights": [
+        1.0,
+        0.5,
+        0.5,
+        0.25,
+        2.0
+      ],
+      "isotonic": false
+    }
+  },
+  "final_choice": {
+    "model": "gradient_boosting",
+    "candidate": "5-class GB \u00b7 unweighted \u00b7 base",
+    "target": "five_class",
+    "features": [],
+    "weighted": false,
+    "calibration": "prior_shift_isotonic",
+    "decision": "lowest_expected_cost",
+    "prior_correction": true,
+    "weights": [
+      0.9930127332696247,
+      1.1324595541617717,
+      1.4387921022713677,
+      1.219499030412427,
+      1.3041669723014369
+    ],
+    "recommended_capacity": "capacity_20",
+    "recommended_capacity_reason": "smallest capacity with cost within 5% of the unconstrained cost (103,487 vs 99,302)",
+    "simulated_cost": 99302.0,
+    "validation_cost": 42339.0
+  },
+  "simulated": {
+    "gradient_boosting": {
+      "unconstrained": {
+        "vehicles": 18622,
+        "total_cost": 99302.0,
+        "cost_per_vehicle": 5.332509934486092,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 94698.0,
+        "confusion_matrix": [
+          [
+            12223,
+            82,
+            502,
+            1006,
+            4161
+          ],
+          [
+            82,
+            3,
+            13,
+            23,
+            166
+          ],
+          [
+            32,
+            1,
+            14,
+            12,
+            121
+          ],
+          [
+            11,
+            0,
+            2,
+            5,
+            61
+          ],
+          [
+            15,
+            0,
+            1,
+            10,
+            76
+          ]
+        ],
+        "macro_f1": 0.18049340277808673,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 6259,
+          "caught": 508,
+          "missed": 140,
+          "false_alarms": 5751,
+          "flagged_share": 0.3361078294490388,
+          "healthy_flagged_share": 0.31996216757538665,
+          "precision": 0.08116312509985621,
+          "recall": 0.7839506172839507,
+          "pr_auc": 0.1426962358998874
+        }
+      },
+      "capacity_2": {
+        "vehicles": 18622,
+        "total_cost": 167866.0,
+        "cost_per_vehicle": 9.014391579851788,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 26134.0,
+        "confusion_matrix": [
+          [
+            17690,
+            21,
+            30,
+            37,
+            196
+          ],
+          [
+            261,
+            0,
+            1,
+            2,
+            23
+          ],
+          [
+            156,
+            1,
+            4,
+            1,
+            18
+          ],
+          [
+            62,
+            0,
+            0,
+            2,
+            15
+          ],
+          [
+            81,
+            0,
+            0,
+            1,
+            20
+          ]
+        ],
+        "macro_f1": 0.23072971785291455,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 372,
+          "caught": 88,
+          "missed": 560,
+          "false_alarms": 284,
+          "flagged_share": 0.019976372033079153,
+          "healthy_flagged_share": 0.01580060086792033,
+          "precision": 0.23655913978494625,
+          "recall": 0.13580246913580246,
+          "pr_auc": 0.1426962358998874
+        }
+      },
+      "capacity_5": {
+        "vehicles": 18622,
+        "total_cost": 142045.0,
+        "cost_per_vehicle": 7.627805821071851,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 51955.0,
+        "confusion_matrix": [
+          [
+            17227,
+            30,
+            41,
+            51,
+            625
+          ],
+          [
+            226,
+            1,
+            3,
+            3,
+            54
+          ],
+          [
+            132,
+            1,
+            4,
+            1,
+            42
+          ],
+          [
+            45,
+            0,
+            0,
+            2,
+            32
+          ],
+          [
+            61,
+            0,
+            0,
+            1,
+            40
+          ]
+        ],
+        "macro_f1": 0.22519700184468192,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 931,
+          "caught": 184,
+          "missed": 464,
+          "false_alarms": 747,
+          "flagged_share": 0.04999463000751799,
+          "healthy_flagged_share": 0.04156003115611439,
+          "precision": 0.19763694951664876,
+          "recall": 0.2839506172839506,
+          "pr_auc": 0.1426962358998874
+        }
+      },
+      "capacity_10": {
+        "vehicles": 18622,
+        "total_cost": 124585.0,
+        "cost_per_vehicle": 6.690205133712813,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 69415.0,
+        "confusion_matrix": [
+          [
+            16385,
+            42,
+            59,
+            72,
+            1416
+          ],
+          [
+            185,
+            2,
+            4,
+            3,
+            93
+          ],
+          [
+            107,
+            1,
+            4,
+            2,
+            66
+          ],
+          [
+            37,
+            0,
+            0,
+            2,
+            40
+          ],
+          [
+            46,
+            0,
+            0,
+            1,
+            55
+          ]
+        ],
+        "macro_f1": 0.21502536372208786,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 1862,
+          "caught": 273,
+          "missed": 375,
+          "false_alarms": 1589,
+          "flagged_share": 0.09998926001503598,
+          "healthy_flagged_share": 0.08840547457438522,
+          "precision": 0.14661654135338345,
+          "recall": 0.4212962962962963,
+          "pr_auc": 0.1426962358998874
+        }
+      },
+      "capacity_20": {
+        "vehicles": 18622,
+        "total_cost": 103487.0,
+        "cost_per_vehicle": 5.5572441198582325,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 90513.0,
+        "confusion_matrix": [
+          [
+            14654,
+            52,
+            98,
+            154,
+            3016
+          ],
+          [
+            134,
+            3,
+            6,
+            6,
+            138
+          ],
+          [
+            61,
+            1,
+            7,
+            5,
+            106
+          ],
+          [
+            22,
+            0,
+            1,
+            2,
+            54
+          ],
+          [
+            27,
+            0,
+            0,
+            2,
+            73
+          ]
+        ],
+        "macro_f1": 0.20299844198389533,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 3724,
+          "caught": 404,
+          "missed": 244,
+          "false_alarms": 3320,
+          "flagged_share": 0.19997852003007197,
+          "healthy_flagged_share": 0.1847112495827306,
+          "precision": 0.10848549946294307,
+          "recall": 0.6234567901234568,
+          "pr_auc": 0.1426962358998874
+        }
+      }
+    },
+    "logistic_regression": {
+      "unconstrained": {
+        "vehicles": 18622,
+        "total_cost": 106501.0,
+        "cost_per_vehicle": 5.71909569326603,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 87499.0,
+        "confusion_matrix": [
+          [
+            12292,
+            4,
+            649,
+            1120,
+            3909
+          ],
+          [
+            80,
+            0,
+            15,
+            29,
+            163
+          ],
+          [
+            43,
+            0,
+            10,
+            22,
+            105
+          ],
+          [
+            13,
+            0,
+            5,
+            2,
+            59
+          ],
+          [
+            24,
+            0,
+            2,
+            6,
+            70
+          ]
+        ],
+        "macro_f1": 0.1732324106536614,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 6170,
+          "caught": 488,
+          "missed": 160,
+          "false_alarms": 5682,
+          "flagged_share": 0.3313285361400494,
+          "healthy_flagged_share": 0.31612328919550464,
+          "precision": 0.07909238249594813,
+          "recall": 0.7530864197530864,
+          "pr_auc": 0.12199298873387997
+        }
+      },
+      "capacity_2": {
+        "vehicles": 18622,
+        "total_cost": 169658.0,
+        "cost_per_vehicle": 9.110621845129417,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 24342.0,
+        "confusion_matrix": [
+          [
+            17680,
+            0,
+            4,
+            5,
+            285
+          ],
+          [
+            269,
+            0,
+            0,
+            0,
+            18
+          ],
+          [
+            156,
+            0,
+            0,
+            0,
+            24
+          ],
+          [
+            68,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            77,
+            0,
+            0,
+            0,
+            25
+          ]
+        ],
+        "macro_f1": 0.2167350583228846,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 372,
+          "caught": 78,
+          "missed": 570,
+          "false_alarms": 294,
+          "flagged_share": 0.019976372033079153,
+          "healthy_flagged_share": 0.01635696005341048,
+          "precision": 0.20967741935483872,
+          "recall": 0.12037037037037036,
+          "pr_auc": 0.12199298873387997
+        }
+      },
+      "capacity_5": {
+        "vehicles": 18622,
+        "total_cost": 152891.0,
+        "cost_per_vehicle": 8.210235205670712,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 41109.0,
+        "confusion_matrix": [
+          [
+            17188,
+            0,
+            5,
+            10,
+            771
+          ],
+          [
+            243,
+            0,
+            0,
+            0,
+            44
+          ],
+          [
+            145,
+            0,
+            0,
+            0,
+            35
+          ],
+          [
+            54,
+            0,
+            0,
+            0,
+            25
+          ],
+          [
+            61,
+            0,
+            0,
+            0,
+            41
+          ]
+        ],
+        "macro_f1": 0.20888164448864774,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 931,
+          "caught": 145,
+          "missed": 503,
+          "false_alarms": 786,
+          "flagged_share": 0.04999463000751799,
+          "healthy_flagged_share": 0.043729831979525985,
+          "precision": 0.15574650912996776,
+          "recall": 0.22376543209876543,
+          "pr_auc": 0.12199298873387997
+        }
+      },
+      "capacity_10": {
+        "vehicles": 18622,
+        "total_cost": 131196.0,
+        "cost_per_vehicle": 7.045215336698528,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 62804.0,
+        "confusion_matrix": [
+          [
+            16364,
+            1,
+            8,
+            32,
+            1569
+          ],
+          [
+            191,
+            0,
+            0,
+            0,
+            96
+          ],
+          [
+            116,
+            0,
+            0,
+            2,
+            62
+          ],
+          [
+            40,
+            0,
+            0,
+            0,
+            39
+          ],
+          [
+            49,
+            0,
+            0,
+            0,
+            53
+          ]
+        ],
+        "macro_f1": 0.1994852767700696,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 1862,
+          "caught": 252,
+          "missed": 396,
+          "false_alarms": 1610,
+          "flagged_share": 0.09998926001503598,
+          "healthy_flagged_share": 0.08957382886391455,
+          "precision": 0.13533834586466165,
+          "recall": 0.3888888888888889,
+          "pr_auc": 0.12199298873387997
+        }
+      },
+      "capacity_20": {
+        "vehicles": 18622,
+        "total_cost": 112807.0,
+        "cost_per_vehicle": 6.057727419181613,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 81193.0,
+        "confusion_matrix": [
+          [
+            14628,
+            3,
+            53,
+            260,
+            3030
+          ],
+          [
+            135,
+            0,
+            1,
+            9,
+            142
+          ],
+          [
+            78,
+            0,
+            0,
+            8,
+            94
+          ],
+          [
+            27,
+            0,
+            0,
+            1,
+            51
+          ],
+          [
+            30,
+            0,
+            0,
+            5,
+            67
+          ]
+        ],
+        "macro_f1": 0.18679238007414076,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 3724,
+          "caught": 378,
+          "missed": 270,
+          "false_alarms": 3346,
+          "flagged_share": 0.19997852003007197,
+          "healthy_flagged_share": 0.186157783465005,
+          "precision": 0.10150375939849623,
+          "recall": 0.5833333333333334,
+          "pr_auc": 0.12199298873387997
+        }
+      }
+    },
+    "searched_correction": {
+      "unconstrained": {
+        "vehicles": 18622,
+        "total_cost": 109749.0,
+        "cost_per_vehicle": 5.893513049081731,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 84251.0,
+        "confusion_matrix": [
+          [
+            15458,
+            43,
+            51,
+            31,
+            2391
+          ],
+          [
+            161,
+            4,
+            1,
+            1,
+            120
+          ],
+          [
+            76,
+            1,
+            4,
+            0,
+            99
+          ],
+          [
+            26,
+            0,
+            0,
+            1,
+            52
+          ],
+          [
+            34,
+            0,
+            0,
+            0,
+            68
+          ]
+        ],
+        "macro_f1": 0.20805172046391246,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 2867,
+          "caught": 351,
+          "missed": 297,
+          "false_alarms": 2516,
+          "flagged_share": 0.15395768445924177,
+          "healthy_flagged_share": 0.13997997106932236,
+          "precision": 0.12242762469480294,
+          "recall": 0.5416666666666666,
+          "pr_auc": 0.15233948671063804
+        }
+      },
+      "capacity_2": {
+        "vehicles": 18622,
+        "total_cost": 164016.0,
+        "cost_per_vehicle": 8.807646869294382,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 29984.0,
+        "confusion_matrix": [
+          [
+            17700,
+            18,
+            16,
+            16,
+            224
+          ],
+          [
+            257,
+            0,
+            0,
+            1,
+            29
+          ],
+          [
+            156,
+            0,
+            2,
+            0,
+            22
+          ],
+          [
+            59,
+            0,
+            0,
+            1,
+            19
+          ],
+          [
+            78,
+            0,
+            0,
+            0,
+            24
+          ]
+        ],
+        "macro_f1": 0.22647178827308875,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 372,
+          "caught": 98,
+          "missed": 550,
+          "false_alarms": 274,
+          "flagged_share": 0.019976372033079153,
+          "healthy_flagged_share": 0.015244241682430177,
+          "precision": 0.26344086021505375,
+          "recall": 0.15123456790123457,
+          "pr_auc": 0.15233948671063804
+        }
+      },
+      "capacity_5": {
+        "vehicles": 18622,
+        "total_cost": 143247.0,
+        "cost_per_vehicle": 7.692353130705617,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 50753.0,
+        "confusion_matrix": [
+          [
+            17223,
+            29,
+            27,
+            19,
+            676
+          ],
+          [
+            228,
+            1,
+            0,
+            1,
+            57
+          ],
+          [
+            132,
+            1,
+            3,
+            0,
+            44
+          ],
+          [
+            46,
+            0,
+            0,
+            1,
+            32
+          ],
+          [
+            62,
+            0,
+            0,
+            0,
+            40
+          ]
+        ],
+        "macro_f1": 0.22096070927263586,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 931,
+          "caught": 180,
+          "missed": 468,
+          "false_alarms": 751,
+          "flagged_share": 0.04999463000751799,
+          "healthy_flagged_share": 0.04178257483031045,
+          "precision": 0.1933404940923738,
+          "recall": 0.2777777777777778,
+          "pr_auc": 0.15233948671063804
+        }
+      },
+      "capacity_10": {
+        "vehicles": 18622,
+        "total_cost": 122164.0,
+        "cost_per_vehicle": 6.560197615723338,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 71836.0,
+        "confusion_matrix": [
+          [
+            16391,
+            38,
+            40,
+            25,
+            1480
+          ],
+          [
+            186,
+            4,
+            1,
+            1,
+            95
+          ],
+          [
+            104,
+            1,
+            4,
+            0,
+            71
+          ],
+          [
+            33,
+            0,
+            0,
+            1,
+            45
+          ],
+          [
+            46,
+            0,
+            0,
+            0,
+            56
+          ]
+        ],
+        "macro_f1": 0.21660812994515685,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 1862,
+          "caught": 279,
+          "missed": 369,
+          "false_alarms": 1583,
+          "flagged_share": 0.09998926001503598,
+          "healthy_flagged_share": 0.08807165906309113,
+          "precision": 0.1498388829215897,
+          "recall": 0.4305555555555556,
+          "pr_auc": 0.15233948671063804
+        }
+      },
+      "capacity_20": {
+        "vehicles": 18622,
+        "total_cost": 103055.0,
+        "cost_per_vehicle": 5.534045752335946,
+        "always_class_0_cost": 194000.0,
+        "cost_saving_vs_always_class_0": 90945.0,
+        "confusion_matrix": [
+          [
+            14656,
+            64,
+            100,
+            33,
+            3121
+          ],
+          [
+            131,
+            5,
+            3,
+            1,
+            147
+          ],
+          [
+            65,
+            1,
+            7,
+            0,
+            107
+          ],
+          [
+            21,
+            1,
+            0,
+            1,
+            56
+          ],
+          [
+            25,
+            0,
+            2,
+            0,
+            75
+          ]
+        ],
+        "macro_f1": 0.20533948984644054,
+        "at_risk": {
+          "true_at_risk": 648,
+          "alarms": 3724,
+          "caught": 406,
+          "missed": 242,
+          "false_alarms": 3318,
+          "flagged_share": 0.19997852003007197,
+          "healthy_flagged_share": 0.18459997774563258,
+          "precision": 0.10902255639097744,
+          "recall": 0.6265432098765432,
+          "pr_auc": 0.15233948671063804
+        }
+      }
+    }
+  },
+  "validation_by_model": {
+    "gradient_boosting": {
+      "unconstrained": {
+        "vehicles": 5046,
+        "total_cost": 42339.0,
+        "cost_per_vehicle": 8.390606420927467,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 15061.0,
+        "confusion_matrix": [
+          [
+            1053,
+            12,
+            177,
+            630,
+            3038
+          ],
+          [
+            1,
+            0,
+            0,
+            3,
+            12
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            12
+          ],
+          [
+            3,
+            0,
+            0,
+            5,
+            22
+          ],
+          [
+            2,
+            0,
+            3,
+            4,
+            67
+          ]
+        ],
+        "macro_f1": 0.08182945919812025,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 3986,
+          "caught": 129,
+          "missed": 7,
+          "false_alarms": 3857,
+          "flagged_share": 0.7899326198969481,
+          "healthy_flagged_share": 0.7855397148676171,
+          "precision": 0.03236327145007526,
+          "recall": 0.9485294117647058,
+          "pr_auc": 0.0579516090514629
+        }
+      },
+      "capacity_2": {
+        "vehicles": 5046,
+        "total_cost": 54299.0,
+        "cost_per_vehicle": 10.760800634165676,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 3101.0,
+        "confusion_matrix": [
+          [
+            4818,
+            2,
+            8,
+            22,
+            60
+          ],
+          [
+            15,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            14,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            70,
+            0,
+            0,
+            0,
+            6
+          ]
+        ],
+        "macro_f1": 0.21210727969348658,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 101,
+          "caught": 9,
+          "missed": 127,
+          "false_alarms": 92,
+          "flagged_share": 0.02001585414189457,
+          "healthy_flagged_share": 0.018737270875763747,
+          "precision": 0.0891089108910891,
+          "recall": 0.0661764705882353,
+          "pr_auc": 0.0579516090514629
+        }
+      },
+      "capacity_5": {
+        "vehicles": 5046,
+        "total_cost": 51506.0,
+        "cost_per_vehicle": 10.207292905271503,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 5894.0,
+        "confusion_matrix": [
+          [
+            4676,
+            5,
+            16,
+            25,
+            188
+          ],
+          [
+            15,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            13,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            27,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            63,
+            0,
+            0,
+            0,
+            13
+          ]
+        ],
+        "macro_f1": 0.21118497599878389,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 252,
+          "caught": 18,
+          "missed": 118,
+          "false_alarms": 234,
+          "flagged_share": 0.04994054696789536,
+          "healthy_flagged_share": 0.04765784114052953,
+          "precision": 0.07142857142857142,
+          "recall": 0.1323529411764706,
+          "pr_auc": 0.0579516090514629
+        }
+      },
+      "capacity_10": {
+        "vehicles": 5046,
+        "total_cost": 47521.0,
+        "cost_per_vehicle": 9.417558462148236,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 9879.0,
+        "confusion_matrix": [
+          [
+            4438,
+            5,
+            21,
+            32,
+            414
+          ],
+          [
+            14,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            12,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            21,
+            0,
+            0,
+            1,
+            8
+          ],
+          [
+            56,
+            0,
+            0,
+            0,
+            20
+          ]
+        ],
+        "macro_f1": 0.20950685229962374,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 505,
+          "caught": 33,
+          "missed": 103,
+          "false_alarms": 472,
+          "flagged_share": 0.10007927070947285,
+          "healthy_flagged_share": 0.09613034623217923,
+          "precision": 0.06534653465346535,
+          "recall": 0.2426470588235294,
+          "pr_auc": 0.0579516090514629
+        }
+      },
+      "capacity_20": {
+        "vehicles": 5046,
+        "total_cost": 40343.0,
+        "cost_per_vehicle": 7.995045580657947,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 17057.0,
+        "confusion_matrix": [
+          [
+            3962,
+            6,
+            25,
+            39,
+            878
+          ],
+          [
+            10,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            10,
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            17,
+            0,
+            0,
+            1,
+            12
+          ],
+          [
+            38,
+            0,
+            0,
+            0,
+            38
+          ]
+        ],
+        "macro_f1": 0.19783642333426962,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 1009,
+          "caught": 61,
+          "missed": 75,
+          "false_alarms": 948,
+          "flagged_share": 0.19996036464526357,
+          "healthy_flagged_share": 0.19307535641547863,
+          "precision": 0.06045589692765114,
+          "recall": 0.4485294117647059,
+          "pr_auc": 0.0579516090514629
+        }
+      }
+    },
+    "logistic_regression": {
+      "unconstrained": {
+        "vehicles": 5046,
+        "total_cost": 45121.0,
+        "cost_per_vehicle": 8.941934205311137,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 12279.0,
+        "confusion_matrix": [
+          [
+            1381,
+            2,
+            988,
+            315,
+            2224
+          ],
+          [
+            3,
+            0,
+            1,
+            1,
+            11
+          ],
+          [
+            2,
+            0,
+            1,
+            0,
+            11
+          ],
+          [
+            6,
+            0,
+            5,
+            1,
+            18
+          ],
+          [
+            3,
+            0,
+            15,
+            6,
+            52
+          ]
+        ],
+        "macro_f1": 0.09783242720098359,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 3651,
+          "caught": 122,
+          "missed": 14,
+          "false_alarms": 3529,
+          "flagged_share": 0.7235434007134364,
+          "healthy_flagged_share": 0.7187372708757638,
+          "precision": 0.033415502602026845,
+          "recall": 0.8970588235294118,
+          "pr_auc": 0.06563618614442793
+        }
+      },
+      "capacity_2": {
+        "vehicles": 5046,
+        "total_cost": 54528.0,
+        "cost_per_vehicle": 10.806183115338882,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 2872.0,
+        "confusion_matrix": [
+          [
+            4817,
+            0,
+            7,
+            2,
+            84
+          ],
+          [
+            16,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            14,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            70,
+            0,
+            0,
+            0,
+            6
+          ]
+        ],
+        "macro_f1": 0.20980068130753066,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 101,
+          "caught": 8,
+          "missed": 128,
+          "false_alarms": 93,
+          "flagged_share": 0.02001585414189457,
+          "healthy_flagged_share": 0.018940936863543787,
+          "precision": 0.07920792079207921,
+          "recall": 0.058823529411764705,
+          "pr_auc": 0.06563618614442793
+        }
+      },
+      "capacity_5": {
+        "vehicles": 5046,
+        "total_cost": 49112.0,
+        "cost_per_vehicle": 9.732857709076496,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 8288.0,
+        "confusion_matrix": [
+          [
+            4683,
+            0,
+            8,
+            5,
+            214
+          ],
+          [
+            13,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            13,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            24,
+            0,
+            1,
+            1,
+            4
+          ],
+          [
+            61,
+            0,
+            0,
+            0,
+            15
+          ]
+        ],
+        "macro_f1": 0.22331424067923492,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 252,
+          "caught": 25,
+          "missed": 111,
+          "false_alarms": 227,
+          "flagged_share": 0.04994054696789536,
+          "healthy_flagged_share": 0.046232179226069245,
+          "precision": 0.0992063492063492,
+          "recall": 0.18382352941176472,
+          "pr_auc": 0.06563618614442793
+        }
+      },
+      "capacity_10": {
+        "vehicles": 5046,
+        "total_cost": 45010.0,
+        "cost_per_vehicle": 8.919936583432422,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 12390.0,
+        "confusion_matrix": [
+          [
+            4446,
+            0,
+            13,
+            12,
+            439
+          ],
+          [
+            11,
+            0,
+            0,
+            1,
+            4
+          ],
+          [
+            13,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            20,
+            0,
+            1,
+            1,
+            8
+          ],
+          [
+            51,
+            0,
+            1,
+            1,
+            23
+          ]
+        ],
+        "macro_f1": 0.21375636755091892,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 505,
+          "caught": 41,
+          "missed": 95,
+          "false_alarms": 464,
+          "flagged_share": 0.10007927070947285,
+          "healthy_flagged_share": 0.0945010183299389,
+          "precision": 0.08118811881188119,
+          "recall": 0.3014705882352941,
+          "pr_auc": 0.06563618614442793
+        }
+      },
+      "capacity_20": {
+        "vehicles": 5046,
+        "total_cost": 43589.0,
+        "cost_per_vehicle": 8.638327388030122,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 13811.0,
+        "confusion_matrix": [
+          [
+            3958,
+            0,
+            26,
+            41,
+            885
+          ],
+          [
+            10,
+            0,
+            0,
+            1,
+            5
+          ],
+          [
+            10,
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            17,
+            0,
+            1,
+            1,
+            11
+          ],
+          [
+            42,
+            0,
+            2,
+            2,
+            30
+          ]
+        ],
+        "macro_f1": 0.19415593819499974,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 1009,
+          "caught": 57,
+          "missed": 79,
+          "false_alarms": 952,
+          "flagged_share": 0.19996036464526357,
+          "healthy_flagged_share": 0.19389002036659878,
+          "precision": 0.05649157581764123,
+          "recall": 0.41911764705882354,
+          "pr_auc": 0.06563618614442793
+        }
+      }
+    },
+    "searched_correction": {
+      "unconstrained": {
+        "vehicles": 5046,
+        "total_cost": 37501.0,
+        "cost_per_vehicle": 7.431827189853349,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 19899.0,
+        "confusion_matrix": [
+          [
+            2651,
+            7,
+            31,
+            20,
+            2201
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            13
+          ],
+          [
+            6,
+            0,
+            0,
+            0,
+            8
+          ],
+          [
+            9,
+            0,
+            1,
+            1,
+            19
+          ],
+          [
+            17,
+            0,
+            0,
+            0,
+            59
+          ]
+        ],
+        "macro_f1": 0.15737558655038442,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 2360,
+          "caught": 101,
+          "missed": 35,
+          "false_alarms": 2259,
+          "flagged_share": 0.46769718588981374,
+          "healthy_flagged_share": 0.460081466395112,
+          "precision": 0.042796610169491524,
+          "recall": 0.7426470588235294,
+          "pr_auc": 0.05641719537362994
+        }
+      },
+      "capacity_2": {
+        "vehicles": 5046,
+        "total_cost": 54321.0,
+        "cost_per_vehicle": 10.765160523186683,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 3079.0,
+        "confusion_matrix": [
+          [
+            4818,
+            2,
+            2,
+            12,
+            76
+          ],
+          [
+            15,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            14,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            70,
+            0,
+            0,
+            0,
+            6
+          ]
+        ],
+        "macro_f1": 0.2104623878536922,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 101,
+          "caught": 9,
+          "missed": 127,
+          "false_alarms": 92,
+          "flagged_share": 0.02001585414189457,
+          "healthy_flagged_share": 0.018737270875763747,
+          "precision": 0.0891089108910891,
+          "recall": 0.0661764705882353,
+          "pr_auc": 0.05641719537362994
+        }
+      },
+      "capacity_5": {
+        "vehicles": 5046,
+        "total_cost": 50830.0,
+        "cost_per_vehicle": 10.073325406262386,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 6570.0,
+        "confusion_matrix": [
+          [
+            4678,
+            4,
+            6,
+            13,
+            209
+          ],
+          [
+            14,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            13,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            27,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            62,
+            0,
+            0,
+            0,
+            14
+          ]
+        ],
+        "macro_f1": 0.21118835565526467,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 252,
+          "caught": 20,
+          "missed": 116,
+          "false_alarms": 232,
+          "flagged_share": 0.04994054696789536,
+          "healthy_flagged_share": 0.04725050916496945,
+          "precision": 0.07936507936507936,
+          "recall": 0.14705882352941177,
+          "pr_auc": 0.05641719537362994
+        }
+      },
+      "capacity_10": {
+        "vehicles": 5046,
+        "total_cost": 47462.0,
+        "cost_per_vehicle": 9.405866032500992,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 9938.0,
+        "confusion_matrix": [
+          [
+            4438,
+            5,
+            10,
+            13,
+            444
+          ],
+          [
+            14,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            12,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            22,
+            0,
+            0,
+            0,
+            8
+          ],
+          [
+            55,
+            0,
+            0,
+            0,
+            21
+          ]
+        ],
+        "macro_f1": 0.2030218488700546,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 505,
+          "caught": 33,
+          "missed": 103,
+          "false_alarms": 472,
+          "flagged_share": 0.10007927070947285,
+          "healthy_flagged_share": 0.09613034623217923,
+          "precision": 0.06534653465346535,
+          "recall": 0.2426470588235294,
+          "pr_auc": 0.05641719537362994
+        }
+      },
+      "capacity_20": {
+        "vehicles": 5046,
+        "total_cost": 42020.0,
+        "cost_per_vehicle": 8.32738803012287,
+        "always_class_0_cost": 57400.0,
+        "cost_saving_vs_always_class_0": 15380.0,
+        "confusion_matrix": [
+          [
+            3959,
+            5,
+            16,
+            14,
+            916
+          ],
+          [
+            10,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            9,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            18,
+            0,
+            0,
+            1,
+            11
+          ],
+          [
+            41,
+            0,
+            0,
+            0,
+            35
+          ]
+        ],
+        "macro_f1": 0.19923280912332103,
+        "at_risk": {
+          "true_at_risk": 136,
+          "alarms": 1009,
+          "caught": 58,
+          "missed": 78,
+          "false_alarms": 951,
+          "flagged_share": 0.19996036464526357,
+          "healthy_flagged_share": 0.19368635437881873,
+          "precision": 0.057482656095143705,
+          "recall": 0.4264705882352941,
+          "pr_auc": 0.05641719537362994
+        }
+      }
+    }
+  },
+  "validation": {
+    "vehicles": 5046,
+    "total_cost": 42339.0,
+    "cost_per_vehicle": 8.390606420927467,
+    "always_class_0_cost": 57400.0,
+    "cost_saving_vs_always_class_0": 15061.0,
+    "confusion_matrix": [
+      [
+        1053,
+        12,
+        177,
+        630,
+        3038
+      ],
+      [
+        1,
+        0,
+        0,
+        3,
+        12
+      ],
+      [
+        1,
+        0,
+        0,
+        1,
+        12
+      ],
+      [
+        3,
+        0,
+        0,
+        5,
+        22
+      ],
+      [
+        2,
+        0,
+        3,
+        4,
+        67
+      ]
+    ],
+    "macro_f1": 0.08182945919812025,
+    "at_risk": {
+      "true_at_risk": 136,
+      "alarms": 3986,
+      "caught": 129,
+      "missed": 7,
+      "false_alarms": 3857,
+      "flagged_share": 0.7899326198969481,
+      "healthy_flagged_share": 0.7855397148676171,
+      "precision": 0.03236327145007526,
+      "recall": 0.9485294117647058,
+      "pr_auc": 0.0579516090514629
+    }
+  },
+  "capacity": {
+    "rules": [
+      "unconstrained",
+      "capacity_2",
+      "capacity_5",
+      "capacity_10",
+      "capacity_20"
+    ],
+    "recommended": "capacity_20",
+    "reason": "smallest capacity with cost within 5% of the unconstrained cost (103,487 vs 99,302)",
+    "simulated_costs": {
+      "unconstrained": 99302.0,
+      "capacity_2": 167866.0,
+      "capacity_5": 142045.0,
+      "capacity_10": 124585.0,
+      "capacity_20": 103487.0
+    }
+  },
+  "test": {
+    "final": {
+      "choice": {
+        "baseline": {
+          "candidate": "horizons LR \u00b7 unweighted \u00b7 base+intensity+rate10",
+          "target": "horizons",
+          "learner": "logistic_regression",
+          "weighted": false,
+          "features": [
+            "intensity",
+            "rate10"
+          ],
+          "calibration": "prior_shift_isotonic",
+          "sim_cost": 106255.0,
+          "val_cost": 46300.0
+        },
+        "candidate": "5-class GB \u00b7 unweighted \u00b7 base",
+        "target": "five_class",
+        "learner": "gradient_boosting",
+        "weighted": false,
+        "features": [],
+        "calibration": "prior_shift_isotonic",
+        "sim_cost": 96397.0,
+        "val_cost": 44394.0,
+        "official_validation_agrees": false,
+        "official_validation_best": {
+          "candidate": "horizons GB \u00b7 unweighted \u00b7 base+intensity+rate10+fleet",
+          "calibration": "none",
+          "val_cost": 39919.0
+        },
+        "steps": [
+          {
+            "step": "vehicle weights",
+            "kept": false,
+            "sim_cost_without": 102454.0,
+            "sim_cost_with": 105720.0
+          },
+          {
+            "step": "features: intensity",
+            "kept": true,
+            "sim_cost_without": 102454.0,
+            "sim_cost_with": 102195.0
+          },
+          {
+            "step": "features: rate10",
+            "kept": true,
+            "sim_cost_without": 102195.0,
+            "sim_cost_with": 101233.0
+          },
+          {
+            "step": "features: fleet",
+            "kept": false,
+            "sim_cost_without": 101233.0,
+            "sim_cost_with": 101759.0
+          }
+        ],
+        "row_fraction": 0.4,
+        "simulated_set": {
+          "vehicles": 18622,
+          "at_risk": 648,
+          "class_counts": [
+            17974,
+            287,
+            180,
+            79,
+            102
+          ],
+          "folds": 5,
+          "seed": 42
+        },
+        "run_time_seconds": 4362.6
+      },
+      "vehicles": 5045,
+      "total_cost": 43536.0,
+      "cost_per_vehicle": 8.629534192269574,
+      "always_class_0_cost": 56100.0,
+      "cost_saving_vs_always_class_0": 12564.0,
+      "confusion_matrix": [
+        [
+          1141,
+          8,
+          182,
+          452,
+          3120
+        ],
+        [
+          0,
+          0,
+          1,
+          3,
+          22
+        ],
+        [
+          1,
+          0,
+          0,
+          2,
+          12
+        ],
+        [
+          4,
+          0,
+          2,
+          4,
+          31
+        ],
+        [
+          5,
+          0,
+          2,
+          4,
+          49
+        ]
+      ],
+      "macro_f1": 0.08450044095224642,
+      "at_risk": {
+        "true_at_risk": 142,
+        "alarms": 3894,
+        "caught": 132,
+        "missed": 10,
+        "false_alarms": 3762,
+        "flagged_share": 0.7718533201189296,
+        "healthy_flagged_share": 0.7672853355088721,
+        "precision": 0.03389830508474576,
+        "recall": 0.9295774647887324,
+        "pr_auc": 0.06480227708914414
+      }
+    },
+    "by_model": {
+      "gradient_boosting": {
+        "choice": {
+          "baseline": {
+            "candidate": "horizons LR \u00b7 unweighted \u00b7 base+intensity+rate10",
+            "target": "horizons",
+            "learner": "logistic_regression",
+            "weighted": false,
+            "features": [
+              "intensity",
+              "rate10"
+            ],
+            "calibration": "prior_shift_isotonic",
+            "sim_cost": 106255.0,
+            "val_cost": 46300.0
+          },
+          "candidate": "5-class GB \u00b7 unweighted \u00b7 base",
+          "target": "five_class",
+          "learner": "gradient_boosting",
+          "weighted": false,
+          "features": [],
+          "calibration": "prior_shift_isotonic",
+          "sim_cost": 96397.0,
+          "val_cost": 44394.0,
+          "official_validation_agrees": false,
+          "official_validation_best": {
+            "candidate": "horizons GB \u00b7 unweighted \u00b7 base+intensity+rate10+fleet",
+            "calibration": "none",
+            "val_cost": 39919.0
+          },
+          "steps": [
+            {
+              "step": "vehicle weights",
+              "kept": false,
+              "sim_cost_without": 102454.0,
+              "sim_cost_with": 105720.0
+            },
+            {
+              "step": "features: intensity",
+              "kept": true,
+              "sim_cost_without": 102454.0,
+              "sim_cost_with": 102195.0
+            },
+            {
+              "step": "features: rate10",
+              "kept": true,
+              "sim_cost_without": 102195.0,
+              "sim_cost_with": 101233.0
+            },
+            {
+              "step": "features: fleet",
+              "kept": false,
+              "sim_cost_without": 101233.0,
+              "sim_cost_with": 101759.0
+            }
+          ],
+          "row_fraction": 0.4,
+          "simulated_set": {
+            "vehicles": 18622,
+            "at_risk": 648,
+            "class_counts": [
+              17974,
+              287,
+              180,
+              79,
+              102
+            ],
+            "folds": 5,
+            "seed": 42
+          },
+          "run_time_seconds": 4362.6
+        },
+        "vehicles": 5045,
+        "total_cost": 43536.0,
+        "cost_per_vehicle": 8.629534192269574,
+        "always_class_0_cost": 56100.0,
+        "cost_saving_vs_always_class_0": 12564.0,
+        "confusion_matrix": [
+          [
+            1141,
+            8,
+            182,
+            452,
+            3120
+          ],
+          [
+            0,
+            0,
+            1,
+            3,
+            22
+          ],
+          [
+            1,
+            0,
+            0,
+            2,
+            12
+          ],
+          [
+            4,
+            0,
+            2,
+            4,
+            31
+          ],
+          [
+            5,
+            0,
+            2,
+            4,
+            49
+          ]
+        ],
+        "macro_f1": 0.08450044095224642,
+        "at_risk": {
+          "true_at_risk": 142,
+          "alarms": 3894,
+          "caught": 132,
+          "missed": 10,
+          "false_alarms": 3762,
+          "flagged_share": 0.7718533201189296,
+          "healthy_flagged_share": 0.7672853355088721,
+          "precision": 0.03389830508474576,
+          "recall": 0.9295774647887324,
+          "pr_auc": 0.06480227708914414
+        }
+      },
+      "logistic_regression": {
+        "choice": {
+          "candidate": "horizons LR \u00b7 unweighted \u00b7 base+intensity+rate10",
+          "target": "horizons",
+          "learner": "logistic_regression",
+          "weighted": false,
+          "features": [
+            "intensity",
+            "rate10"
+          ],
+          "calibration": "prior_shift_isotonic",
+          "sim_cost": 106255.0,
+          "val_cost": 46300.0
+        },
+        "vehicles": 5045,
+        "total_cost": 43756.0,
+        "cost_per_vehicle": 8.673141724479683,
+        "always_class_0_cost": 56100.0,
+        "cost_saving_vs_always_class_0": 12344.0,
+        "confusion_matrix": [
+          [
+            1518,
+            0,
+            765,
+            523,
+            2097
+          ],
+          [
+            3,
+            0,
+            7,
+            3,
+            13
+          ],
+          [
+            2,
+            0,
+            2,
+            1,
+            10
+          ],
+          [
+            5,
+            0,
+            4,
+            6,
+            26
+          ],
+          [
+            8,
+            0,
+            7,
+            7,
+            38
+          ]
+        ],
+        "macro_f1": 0.1062047846867332,
+        "at_risk": {
+          "true_at_risk": 142,
+          "alarms": 3509,
+          "caught": 124,
+          "missed": 18,
+          "false_alarms": 3385,
+          "flagged_share": 0.6955401387512389,
+          "healthy_flagged_share": 0.6903936365490516,
+          "precision": 0.0353377030493018,
+          "recall": 0.8732394366197183,
+          "pr_auc": 0.058908215009298784
+        }
+      },
+      "searched_correction": {
+        "choice": {
+          "target": "five_class",
+          "learner": "gradient_boosting",
+          "weighted": false,
+          "features": [],
+          "calibration": "searched_on_validation"
+        },
+        "vehicles": 5045,
+        "total_cost": 42594.0,
+        "cost_per_vehicle": 8.442814667988108,
+        "always_class_0_cost": 56100.0,
+        "cost_saving_vs_always_class_0": 13506.0,
+        "confusion_matrix": [
+          [
+            2544,
+            8,
+            26,
+            33,
+            2292
+          ],
+          [
+            10,
+            0,
+            0,
+            0,
+            16
+          ],
+          [
+            5,
+            0,
+            0,
+            0,
+            10
+          ],
+          [
+            12,
+            0,
+            1,
+            1,
+            27
+          ],
+          [
+            20,
+            0,
+            0,
+            1,
+            39
+          ]
+        ],
+        "macro_f1": 0.14743476752286486,
+        "at_risk": {
+          "true_at_risk": 142,
+          "alarms": 2454,
+          "caught": 95,
+          "missed": 47,
+          "false_alarms": 2359,
+          "flagged_share": 0.4864222001982161,
+          "healthy_flagged_share": 0.48113399959208647,
+          "precision": 0.038712306438467806,
+          "recall": 0.6690140845070423,
+          "pr_auc": 0.0659592413519855
+        }
+      },
+      "always_class_0": {
+        "vehicles": 5045,
+        "total_cost": 56100.0,
+        "cost_per_vehicle": 11.1199207135778,
+        "always_class_0_cost": 56100.0,
+        "cost_saving_vs_always_class_0": 0.0,
+        "confusion_matrix": [
+          [
+            4903,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            15,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            41,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            60,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.19714515480498593,
+        "at_risk": {
+          "true_at_risk": 142,
+          "alarms": 0,
+          "caught": 0,
+          "missed": 142,
+          "false_alarms": 0,
+          "flagged_share": 0.0,
+          "healthy_flagged_share": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "pr_auc": null
+        }
+      }
+    },
+    "by_rule": {
+      "gradient_boosting": {
+        "unconstrained": {
+          "vehicles": 5045,
+          "total_cost": 43536.0,
+          "cost_per_vehicle": 8.629534192269574,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 12564.0,
+          "confusion_matrix": [
+            [
+              1141,
+              8,
+              182,
+              452,
+              3120
+            ],
+            [
+              0,
+              0,
+              1,
+              3,
+              22
+            ],
+            [
+              1,
+              0,
+              0,
+              2,
+              12
+            ],
+            [
+              4,
+              0,
+              2,
+              4,
+              31
+            ],
+            [
+              5,
+              0,
+              2,
+              4,
+              49
+            ]
+          ],
+          "macro_f1": 0.08450044095224642,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 3894,
+            "caught": 132,
+            "missed": 10,
+            "false_alarms": 3762,
+            "flagged_share": 0.7718533201189296,
+            "healthy_flagged_share": 0.7672853355088721,
+            "precision": 0.03389830508474576,
+            "recall": 0.9295774647887324,
+            "pr_auc": 0.06480227708914414
+          }
+        },
+        "capacity_2": {
+          "vehicles": 5045,
+          "total_cost": 52280.0,
+          "cost_per_vehicle": 10.362735381565907,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 3820.0,
+          "confusion_matrix": [
+            [
+              4814,
+              1,
+              12,
+              29,
+              47
+            ],
+            [
+              24,
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              14,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              38,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              54,
+              0,
+              0,
+              1,
+              5
+            ]
+          ],
+          "macro_f1": 0.21264596184876475,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 101,
+            "caught": 12,
+            "missed": 130,
+            "false_alarms": 89,
+            "flagged_share": 0.02001982160555005,
+            "healthy_flagged_share": 0.018152151743830308,
+            "precision": 0.1188118811881188,
+            "recall": 0.08450704225352113,
+            "pr_auc": 0.06480227708914414
+          }
+        },
+        "capacity_5": {
+          "vehicles": 5045,
+          "total_cost": 50213.0,
+          "cost_per_vehicle": 9.953022794846383,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 5887.0,
+          "confusion_matrix": [
+            [
+              4673,
+              3,
+              20,
+              40,
+              167
+            ],
+            [
+              21,
+              0,
+              0,
+              1,
+              4
+            ],
+            [
+              13,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              34,
+              0,
+              0,
+              1,
+              6
+            ],
+            [
+              52,
+              0,
+              0,
+              1,
+              7
+            ]
+          ],
+          "macro_f1": 0.20892454663584825,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 252,
+            "caught": 22,
+            "missed": 120,
+            "false_alarms": 230,
+            "flagged_share": 0.04995044598612488,
+            "healthy_flagged_share": 0.04691005506832552,
+            "precision": 0.0873015873015873,
+            "recall": 0.15492957746478872,
+            "pr_auc": 0.06480227708914414
+          }
+        },
+        "capacity_10": {
+          "vehicles": 5045,
+          "total_cost": 46026.0,
+          "cost_per_vehicle": 9.123092170465808,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 10074.0,
+          "confusion_matrix": [
+            [
+              4438,
+              4,
+              26,
+              47,
+              388
+            ],
+            [
+              18,
+              0,
+              0,
+              1,
+              7
+            ],
+            [
+              11,
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              28,
+              0,
+              0,
+              1,
+              12
+            ],
+            [
+              46,
+              0,
+              0,
+              1,
+              13
+            ]
+          ],
+          "macro_f1": 0.20311060469313907,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 504,
+            "caught": 39,
+            "missed": 103,
+            "false_alarms": 465,
+            "flagged_share": 0.09990089197224976,
+            "healthy_flagged_share": 0.0948398939424842,
+            "precision": 0.07738095238095238,
+            "recall": 0.2746478873239437,
+            "pr_auc": 0.06480227708914414
+          }
+        },
+        "capacity_20": {
+          "vehicles": 5045,
+          "total_cost": 44467.0,
+          "cost_per_vehicle": 8.814073339940535,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 11633.0,
+          "confusion_matrix": [
+            [
+              3950,
+              4,
+              29,
+              51,
+              869
+            ],
+            [
+              15,
+              0,
+              0,
+              1,
+              10
+            ],
+            [
+              9,
+              0,
+              0,
+              0,
+              6
+            ],
+            [
+              23,
+              0,
+              1,
+              1,
+              16
+            ],
+            [
+              39,
+              0,
+              0,
+              1,
+              20
+            ]
+          ],
+          "macro_f1": 0.18911902210198744,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 1009,
+            "caught": 56,
+            "missed": 86,
+            "false_alarms": 953,
+            "flagged_share": 0.2,
+            "healthy_flagged_share": 0.19437079339180094,
+            "precision": 0.05550049554013875,
+            "recall": 0.39436619718309857,
+            "pr_auc": 0.06480227708914414
+          }
+        }
+      },
+      "logistic_regression": {
+        "unconstrained": {
+          "vehicles": 5045,
+          "total_cost": 43756.0,
+          "cost_per_vehicle": 8.673141724479683,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 12344.0,
+          "confusion_matrix": [
+            [
+              1518,
+              0,
+              765,
+              523,
+              2097
+            ],
+            [
+              3,
+              0,
+              7,
+              3,
+              13
+            ],
+            [
+              2,
+              0,
+              2,
+              1,
+              10
+            ],
+            [
+              5,
+              0,
+              4,
+              6,
+              26
+            ],
+            [
+              8,
+              0,
+              7,
+              7,
+              38
+            ]
+          ],
+          "macro_f1": 0.1062047846867332,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 3509,
+            "caught": 124,
+            "missed": 18,
+            "false_alarms": 3385,
+            "flagged_share": 0.6955401387512389,
+            "healthy_flagged_share": 0.6903936365490516,
+            "precision": 0.0353377030493018,
+            "recall": 0.8732394366197183,
+            "pr_auc": 0.058908215009298784
+          }
+        },
+        "capacity_2": {
+          "vehicles": 5045,
+          "total_cost": 53254.0,
+          "cost_per_vehicle": 10.55579781962339,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 2846.0,
+          "confusion_matrix": [
+            [
+              4812,
+              0,
+              1,
+              2,
+              88
+            ],
+            [
+              24,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              13,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              39,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              56,
+              0,
+              0,
+              0,
+              4
+            ]
+          ],
+          "macro_f1": 0.20559728401505054,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 101,
+            "caught": 10,
+            "missed": 132,
+            "false_alarms": 91,
+            "flagged_share": 0.02001982160555005,
+            "healthy_flagged_share": 0.018560065266163574,
+            "precision": 0.09900990099009901,
+            "recall": 0.07042253521126761,
+            "pr_auc": 0.058908215009298784
+          }
+        },
+        "capacity_5": {
+          "vehicles": 5045,
+          "total_cost": 50702.0,
+          "cost_per_vehicle": 10.049950445986125,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 5398.0,
+          "confusion_matrix": [
+            [
+              4670,
+              0,
+              1,
+              3,
+              229
+            ],
+            [
+              24,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              12,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              36,
+              0,
+              0,
+              0,
+              5
+            ],
+            [
+              51,
+              0,
+              0,
+              0,
+              9
+            ]
+          ],
+          "macro_f1": 0.20434507736487934,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 252,
+            "caught": 19,
+            "missed": 123,
+            "false_alarms": 233,
+            "flagged_share": 0.04995044598612488,
+            "healthy_flagged_share": 0.047521925351825416,
+            "precision": 0.07539682539682539,
+            "recall": 0.13380281690140844,
+            "pr_auc": 0.058908215009298784
+          }
+        },
+        "capacity_10": {
+          "vehicles": 5045,
+          "total_cost": 46314.0,
+          "cost_per_vehicle": 9.18017839444995,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 9786.0,
+          "confusion_matrix": [
+            [
+              4437,
+              0,
+              2,
+              14,
+              450
+            ],
+            [
+              20,
+              0,
+              0,
+              0,
+              6
+            ],
+            [
+              9,
+              0,
+              0,
+              0,
+              6
+            ],
+            [
+              30,
+              0,
+              0,
+              1,
+              10
+            ],
+            [
+              45,
+              0,
+              1,
+              0,
+              14
+            ]
+          ],
+          "macro_f1": 0.20532811110955965,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 504,
+            "caught": 38,
+            "missed": 104,
+            "false_alarms": 466,
+            "flagged_share": 0.09990089197224976,
+            "healthy_flagged_share": 0.09504385070365083,
+            "precision": 0.07539682539682539,
+            "recall": 0.2676056338028169,
+            "pr_auc": 0.058908215009298784
+          }
+        },
+        "capacity_20": {
+          "vehicles": 5045,
+          "total_cost": 44002.0,
+          "cost_per_vehicle": 8.721902874132805,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 12098.0,
+          "confusion_matrix": [
+            [
+              3951,
+              0,
+              12,
+              42,
+              898
+            ],
+            [
+              17,
+              0,
+              0,
+              1,
+              8
+            ],
+            [
+              8,
+              0,
+              0,
+              0,
+              7
+            ],
+            [
+              23,
+              0,
+              0,
+              2,
+              16
+            ],
+            [
+              37,
+              0,
+              2,
+              1,
+              20
+            ]
+          ],
+          "macro_f1": 0.19392234410495385,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 1009,
+            "caught": 57,
+            "missed": 85,
+            "false_alarms": 952,
+            "flagged_share": 0.2,
+            "healthy_flagged_share": 0.1941668366306343,
+            "precision": 0.05649157581764123,
+            "recall": 0.4014084507042254,
+            "pr_auc": 0.058908215009298784
+          }
+        }
+      },
+      "searched_correction": {
+        "unconstrained": {
+          "vehicles": 5045,
+          "total_cost": 42594.0,
+          "cost_per_vehicle": 8.442814667988108,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 13506.0,
+          "confusion_matrix": [
+            [
+              2544,
+              8,
+              26,
+              33,
+              2292
+            ],
+            [
+              10,
+              0,
+              0,
+              0,
+              16
+            ],
+            [
+              5,
+              0,
+              0,
+              0,
+              10
+            ],
+            [
+              12,
+              0,
+              1,
+              1,
+              27
+            ],
+            [
+              20,
+              0,
+              0,
+              1,
+              39
+            ]
+          ],
+          "macro_f1": 0.14743476752286486,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 2454,
+            "caught": 95,
+            "missed": 47,
+            "false_alarms": 2359,
+            "flagged_share": 0.4864222001982161,
+            "healthy_flagged_share": 0.48113399959208647,
+            "precision": 0.038712306438467806,
+            "recall": 0.6690140845070423,
+            "pr_auc": 0.0659592413519855
+          }
+        },
+        "capacity_2": {
+          "vehicles": 5045,
+          "total_cost": 52521.0,
+          "cost_per_vehicle": 10.410505450941526,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 3579.0,
+          "confusion_matrix": [
+            [
+              4813,
+              1,
+              3,
+              8,
+              78
+            ],
+            [
+              25,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              14,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              38,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              54,
+              0,
+              0,
+              1,
+              5
+            ]
+          ],
+          "macro_f1": 0.2090248367591721,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 101,
+            "caught": 11,
+            "missed": 131,
+            "false_alarms": 90,
+            "flagged_share": 0.02001982160555005,
+            "healthy_flagged_share": 0.01835610850499694,
+            "precision": 0.10891089108910891,
+            "recall": 0.07746478873239436,
+            "pr_auc": 0.0659592413519855
+          }
+        },
+        "capacity_5": {
+          "vehicles": 5045,
+          "total_cost": 48829.0,
+          "cost_per_vehicle": 9.678691774033696,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 7271.0,
+          "confusion_matrix": [
+            [
+              4676,
+              2,
+              9,
+              27,
+              189
+            ],
+            [
+              21,
+              0,
+              0,
+              0,
+              5
+            ],
+            [
+              13,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              33,
+              0,
+              0,
+              1,
+              7
+            ],
+            [
+              50,
+              0,
+              0,
+              1,
+              9
+            ]
+          ],
+          "macro_f1": 0.2118538702609757,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 252,
+            "caught": 25,
+            "missed": 117,
+            "false_alarms": 227,
+            "flagged_share": 0.04995044598612488,
+            "healthy_flagged_share": 0.04629818478482562,
+            "precision": 0.0992063492063492,
+            "recall": 0.176056338028169,
+            "pr_auc": 0.0659592413519855
+          }
+        },
+        "capacity_10": {
+          "vehicles": 5045,
+          "total_cost": 46481.0,
+          "cost_per_vehicle": 9.213280475718534,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 9619.0,
+          "confusion_matrix": [
+            [
+              4437,
+              2,
+              12,
+              30,
+              422
+            ],
+            [
+              18,
+              0,
+              0,
+              0,
+              8
+            ],
+            [
+              11,
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              29,
+              0,
+              0,
+              1,
+              11
+            ],
+            [
+              46,
+              0,
+              0,
+              1,
+              13
+            ]
+          ],
+          "macro_f1": 0.20344690580369681,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 504,
+            "caught": 38,
+            "missed": 104,
+            "false_alarms": 466,
+            "flagged_share": 0.09990089197224976,
+            "healthy_flagged_share": 0.09504385070365083,
+            "precision": 0.07539682539682539,
+            "recall": 0.2676056338028169,
+            "pr_auc": 0.0659592413519855
+          }
+        },
+        "capacity_20": {
+          "vehicles": 5045,
+          "total_cost": 45030.0,
+          "cost_per_vehicle": 8.925668979187314,
+          "always_class_0_cost": 56100.0,
+          "cost_saving_vs_always_class_0": 11070.0,
+          "confusion_matrix": [
+            [
+              3948,
+              5,
+              13,
+              30,
+              907
+            ],
+            [
+              16,
+              0,
+              0,
+              0,
+              10
+            ],
+            [
+              8,
+              0,
+              0,
+              0,
+              7
+            ],
+            [
+              25,
+              0,
+              0,
+              1,
+              15
+            ],
+            [
+              39,
+              0,
+              0,
+              1,
+              20
+            ]
+          ],
+          "macro_f1": 0.18999434258806874,
+          "at_risk": {
+            "true_at_risk": 142,
+            "alarms": 1009,
+            "caught": 54,
+            "missed": 88,
+            "false_alarms": 955,
+            "flagged_share": 0.2,
+            "healthy_flagged_share": 0.1947787069141342,
+            "precision": 0.053518334985133795,
+            "recall": 0.38028169014084506,
+            "pr_auc": 0.0659592413519855
+          }
+        }
+      }
+    }
+  },
+  "bootstrap_test": {
+    "samples": 1000,
+    "seed": 42,
+    "always_class_0_cost_95": [
+      47800.0,
+      65302.5
+    ],
+    "models": {
+      "gradient_boosting": {
+        "total_cost_95": [
+          40765.45,
+          46402.25
+        ],
+        "saving_vs_always_class_0_95": [
+          4222.05,
+          21242.725
+        ],
+        "share_of_samples_with_saving_above_0": 0.998
+      },
+      "logistic_regression": {
+        "total_cost_95": [
+          40234.25,
+          47713.25
+        ],
+        "saving_vs_always_class_0_95": [
+          4563.900000000001,
+          21012.175
+        ],
+        "share_of_samples_with_saving_above_0": 1.0
+      },
+      "searched_correction": {
+        "total_cost_95": [
+          37506.0,
+          47894.3
+        ],
+        "saving_vs_always_class_0_95": [
+          6168.55,
+          21328.649999999998
+        ],
+        "share_of_samples_with_saving_above_0": 1.0
+      }
+    },
+    "differences": {
+      "logistic_regression_minus_gradient_boosting": [
+        -2524.425,
+        3142.299999999999
+      ],
+      "searched_correction_minus_gradient_boosting": [
+        -4850.15,
+        3609.6999999999994
+      ],
+      "searched_correction_minus_logistic_regression": [
+        -5140.7,
+        3341.6749999999975
+      ]
+    },
+    "by_rule": {
+      "unconstrained": {
+        "models": {
+          "gradient_boosting": {
+            "total_cost_95": [
+              40765.45,
+              46402.25
+            ],
+            "saving_vs_always_class_0_95": [
+              4222.05,
+              21242.725
+            ],
+            "share_of_samples_with_saving_above_0": 0.998
+          },
+          "logistic_regression": {
+            "total_cost_95": [
+              40234.25,
+              47713.25
+            ],
+            "saving_vs_always_class_0_95": [
+              4563.900000000001,
+              21012.175
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "searched_correction": {
+            "total_cost_95": [
+              37506.0,
+              47894.3
+            ],
+            "saving_vs_always_class_0_95": [
+              6168.55,
+              21328.649999999998
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          }
+        },
+        "searched_correction_minus_gradient_boosting": [
+          -4850.15,
+          3609.6999999999994
+        ]
+      },
+      "capacity_2": {
+        "models": {
+          "gradient_boosting": {
+            "total_cost_95": [
+              44122.2,
+              61305.924999999996
+            ],
+            "saving_vs_always_class_0_95": [
+              1311.975,
+              6751.049999999998
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "logistic_regression": {
+            "total_cost_95": [
+              45074.475,
+              61868.6
+            ],
+            "saving_vs_always_class_0_95": [
+              623.875,
+              5193.699999999997
+            ],
+            "share_of_samples_with_saving_above_0": 0.997
+          },
+          "searched_correction": {
+            "total_cost_95": [
+              44299.85,
+              61470.9
+            ],
+            "saving_vs_always_class_0_95": [
+              1075.525,
+              6427.9
+            ],
+            "share_of_samples_with_saving_above_0": 0.998
+          }
+        },
+        "searched_correction_minus_gradient_boosting": [
+          -66.1,
+          720.05
+        ]
+      },
+      "capacity_5": {
+        "models": {
+          "gradient_boosting": {
+            "total_cost_95": [
+              42454.75,
+              58894.4
+            ],
+            "saving_vs_always_class_0_95": [
+              2564.175,
+              9796.574999999999
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "logistic_regression": {
+            "total_cost_95": [
+              42668.625,
+              59361.725
+            ],
+            "saving_vs_always_class_0_95": [
+              2112.25,
+              9271.0
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "searched_correction": {
+            "total_cost_95": [
+              41128.975,
+              57371.475
+            ],
+            "saving_vs_always_class_0_95": [
+              3457.3,
+              11263.849999999997
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          }
+        },
+        "searched_correction_minus_gradient_boosting": [
+          -3216.175,
+          168.02499999999998
+        ]
+      },
+      "capacity_10": {
+        "models": {
+          "gradient_boosting": {
+            "total_cost_95": [
+              38652.375,
+              54455.9
+            ],
+            "saving_vs_always_class_0_95": [
+              5695.8,
+              14956.9
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "logistic_regression": {
+            "total_cost_95": [
+              38879.075,
+              54601.175
+            ],
+            "saving_vs_always_class_0_95": [
+              5239.15,
+              14976.425
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "searched_correction": {
+            "total_cost_95": [
+              39141.9,
+              54884.375
+            ],
+            "saving_vs_always_class_0_95": [
+              5135.175,
+              14534.449999999999
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          }
+        },
+        "searched_correction_minus_gradient_boosting": [
+          -750.075,
+          1788.05
+        ]
+      },
+      "capacity_20": {
+        "models": {
+          "gradient_boosting": {
+            "total_cost_95": [
+              37564.65,
+              52627.45
+            ],
+            "saving_vs_always_class_0_95": [
+              6239.05,
+              17521.575
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "logistic_regression": {
+            "total_cost_95": [
+              36962.4,
+              51954.025
+            ],
+            "saving_vs_always_class_0_95": [
+              6589.3,
+              18302.125
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          },
+          "searched_correction": {
+            "total_cost_95": [
+              38051.15,
+              52876.799999999996
+            ],
+            "saving_vs_always_class_0_95": [
+              5464.85,
+              16769.025
+            ],
+            "share_of_samples_with_saving_above_0": 1.0
+          }
+        },
+        "searched_correction_minus_gradient_boosting": [
+          -1956.2,
+          3017.075
+        ]
+      }
+    }
+  },
+  "shap": {
+    "method": "shap.TreeExplainer per class, combined through the softmax",
+    "output": "log-odds of being at risk (classes 1-4), after the prior shift",
+    "feature_perturbation": "tree_path_dependent",
+    "quadrature_points": 128,
+    "shap_version": "0.54.1",
+    "explained_vehicles": "all test vehicles",
+    "flagged_by": "recommended capacity",
+    "explained_rows": 5045,
+    "additivity_max_error": 2.3447910280083306e-13,
+    "top_features": [
+      {
+        "feature": "time_step",
+        "readable_name": "Time step",
+        "mean_abs_shap": 3.197864620583393
+      },
+      {
+        "feature": "167_bin5_share",
+        "readable_name": "Histogram 167, bin 5: share of total",
+        "mean_abs_shap": 0.9876510991025136
+      },
+      {
+        "feature": "459_total",
+        "readable_name": "Histogram 459: total count",
+        "mean_abs_shap": 0.7461149160255466
+      },
+      {
+        "feature": "158_bin2_share_change",
+        "readable_name": "Histogram 158, bin 2: change in share of total (last 5 readouts)",
+        "mean_abs_shap": 0.5552171613914085
+      },
+      {
+        "feature": "291_bin2_share",
+        "readable_name": "Histogram 291, bin 2: share of total",
+        "mean_abs_shap": 0.5547371801514273
+      },
+      {
+        "feature": "459_bin13_share",
+        "readable_name": "Histogram 459, bin 13: share of total",
+        "mean_abs_shap": 0.5124822458461386
+      },
+      {
+        "feature": "459_bin4_share_change",
+        "readable_name": "Histogram 459, bin 4: change in share of total (last 5 readouts)",
+        "mean_abs_shap": 0.4772766612252574
+      },
+      {
+        "feature": "666_value",
+        "readable_name": "Counter 666: value",
+        "mean_abs_shap": 0.28294499881879925
+      },
+      {
+        "feature": "291_bin5_share",
+        "readable_name": "Histogram 291, bin 5: share of total",
+        "mean_abs_shap": 0.22292809885813458
+      },
+      {
+        "feature": "397_bin16_share",
+        "readable_name": "Histogram 397, bin 16: share of total",
+        "mean_abs_shap": 0.21686765378717118
+      }
+    ],
+    "flagged_rows": 1009,
+    "top_features_flagged": [
+      {
+        "feature": "time_step",
+        "readable_name": "Time step",
+        "mean_abs_shap": 3.811225455825558
+      },
+      {
+        "feature": "167_bin5_share",
+        "readable_name": "Histogram 167, bin 5: share of total",
+        "mean_abs_shap": 1.3634956298574428
+      },
+      {
+        "feature": "459_total",
+        "readable_name": "Histogram 459: total count",
+        "mean_abs_shap": 0.9734599238895333
+      },
+      {
+        "feature": "158_bin2_share_change",
+        "readable_name": "Histogram 158, bin 2: change in share of total (last 5 readouts)",
+        "mean_abs_shap": 0.772347170258447
+      },
+      {
+        "feature": "291_bin2_share",
+        "readable_name": "Histogram 291, bin 2: share of total",
+        "mean_abs_shap": 0.7180997543258653
+      },
+      {
+        "feature": "459_bin13_share",
+        "readable_name": "Histogram 459, bin 13: share of total",
+        "mean_abs_shap": 0.6727962186356626
+      },
+      {
+        "feature": "459_bin4_share_change",
+        "readable_name": "Histogram 459, bin 4: change in share of total (last 5 readouts)",
+        "mean_abs_shap": 0.5896353927495026
+      },
+      {
+        "feature": "666_value",
+        "readable_name": "Counter 666: value",
+        "mean_abs_shap": 0.30848672822868073
+      },
+      {
+        "feature": "397_bin16_share",
+        "readable_name": "Histogram 397, bin 16: share of total",
+        "mean_abs_shap": 0.22992782538353232
+      },
+      {
+        "feature": "291_total",
+        "readable_name": "Histogram 291: total count",
+        "mean_abs_shap": 0.18400680676406084
+      }
+    ]
+  },
+  "timings_seconds": {
+    "data": 22.9,
+    "tuning": 718.1,
+    "fit gradient_boosting": 535.1,
+    "fit logistic_regression": 2476.3,
+    "test scoring and bootstrap": 1.0,
+    "SHAP": 13.8
+  },
+  "run_time_seconds": 3770.5
+}

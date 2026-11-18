@@ -1,0 +1,309 @@
+feature,readable_name
+time_step,Time step
+n_readouts,Number of readouts so far
+171_value,Counter 171: value
+171_rate,Counter 171: rate of change (last 5 readouts)
+666_value,Counter 666: value
+666_rate,Counter 666: rate of change (last 5 readouts)
+427_value,Counter 427: value
+427_rate,Counter 427: rate of change (last 5 readouts)
+837_value,Counter 837: value
+837_rate,Counter 837: rate of change (last 5 readouts)
+309_value,Counter 309: value
+309_rate,Counter 309: rate of change (last 5 readouts)
+835_value,Counter 835: value
+835_rate,Counter 835: rate of change (last 5 readouts)
+370_value,Counter 370: value
+370_rate,Counter 370: rate of change (last 5 readouts)
+100_value,Counter 100: value
+100_rate,Counter 100: rate of change (last 5 readouts)
+167_bin0_share,"Histogram 167, bin 0: share of total"
+167_bin1_share,"Histogram 167, bin 1: share of total"
+167_bin2_share,"Histogram 167, bin 2: share of total"
+167_bin3_share,"Histogram 167, bin 3: share of total"
+167_bin4_share,"Histogram 167, bin 4: share of total"
+167_bin5_share,"Histogram 167, bin 5: share of total"
+167_bin6_share,"Histogram 167, bin 6: share of total"
+167_bin7_share,"Histogram 167, bin 7: share of total"
+167_bin8_share,"Histogram 167, bin 8: share of total"
+167_bin9_share,"Histogram 167, bin 9: share of total"
+167_total,Histogram 167: total count
+167_bin0_share_change,"Histogram 167, bin 0: change in share of total (last 5 readouts)"
+167_bin1_share_change,"Histogram 167, bin 1: change in share of total (last 5 readouts)"
+167_bin2_share_change,"Histogram 167, bin 2: change in share of total (last 5 readouts)"
+167_bin3_share_change,"Histogram 167, bin 3: change in share of total (last 5 readouts)"
+167_bin4_share_change,"Histogram 167, bin 4: change in share of total (last 5 readouts)"
+167_bin5_share_change,"Histogram 167, bin 5: change in share of total (last 5 readouts)"
+167_bin6_share_change,"Histogram 167, bin 6: change in share of total (last 5 readouts)"
+167_bin7_share_change,"Histogram 167, bin 7: change in share of total (last 5 readouts)"
+167_bin8_share_change,"Histogram 167, bin 8: change in share of total (last 5 readouts)"
+167_bin9_share_change,"Histogram 167, bin 9: change in share of total (last 5 readouts)"
+272_bin0_share,"Histogram 272, bin 0: share of total"
+272_bin1_share,"Histogram 272, bin 1: share of total"
+272_bin2_share,"Histogram 272, bin 2: share of total"
+272_bin3_share,"Histogram 272, bin 3: share of total"
+272_bin4_share,"Histogram 272, bin 4: share of total"
+272_bin5_share,"Histogram 272, bin 5: share of total"
+272_bin6_share,"Histogram 272, bin 6: share of total"
+272_bin7_share,"Histogram 272, bin 7: share of total"
+272_bin8_share,"Histogram 272, bin 8: share of total"
+272_bin9_share,"Histogram 272, bin 9: share of total"
+272_total,Histogram 272: total count
+272_bin0_share_change,"Histogram 272, bin 0: change in share of total (last 5 readouts)"
+272_bin1_share_change,"Histogram 272, bin 1: change in share of total (last 5 readouts)"
+272_bin2_share_change,"Histogram 272, bin 2: change in share of total (last 5 readouts)"
+272_bin3_share_change,"Histogram 272, bin 3: change in share of total (last 5 readouts)"
+272_bin4_share_change,"Histogram 272, bin 4: change in share of total (last 5 readouts)"
+272_bin5_share_change,"Histogram 272, bin 5: change in share of total (last 5 readouts)"
+272_bin6_share_change,"Histogram 272, bin 6: change in share of total (last 5 readouts)"
+272_bin7_share_change,"Histogram 272, bin 7: change in share of total (last 5 readouts)"
+272_bin8_share_change,"Histogram 272, bin 8: change in share of total (last 5 readouts)"
+272_bin9_share_change,"Histogram 272, bin 9: change in share of total (last 5 readouts)"
+291_bin0_share,"Histogram 291, bin 0: share of total"
+291_bin1_share,"Histogram 291, bin 1: share of total"
+291_bin2_share,"Histogram 291, bin 2: share of total"
+291_bin3_share,"Histogram 291, bin 3: share of total"
+291_bin4_share,"Histogram 291, bin 4: share of total"
+291_bin5_share,"Histogram 291, bin 5: share of total"
+291_bin6_share,"Histogram 291, bin 6: share of total"
+291_bin7_share,"Histogram 291, bin 7: share of total"
+291_bin8_share,"Histogram 291, bin 8: share of total"
+291_bin9_share,"Histogram 291, bin 9: share of total"
+291_bin10_share,"Histogram 291, bin 10: share of total"
+291_total,Histogram 291: total count
+291_bin0_share_change,"Histogram 291, bin 0: change in share of total (last 5 readouts)"
+291_bin1_share_change,"Histogram 291, bin 1: change in share of total (last 5 readouts)"
+291_bin2_share_change,"Histogram 291, bin 2: change in share of total (last 5 readouts)"
+291_bin3_share_change,"Histogram 291, bin 3: change in share of total (last 5 readouts)"
+291_bin4_share_change,"Histogram 291, bin 4: change in share of total (last 5 readouts)"
+291_bin5_share_change,"Histogram 291, bin 5: change in share of total (last 5 readouts)"
+291_bin6_share_change,"Histogram 291, bin 6: change in share of total (last 5 readouts)"
+291_bin7_share_change,"Histogram 291, bin 7: change in share of total (last 5 readouts)"
+291_bin8_share_change,"Histogram 291, bin 8: change in share of total (last 5 readouts)"
+291_bin9_share_change,"Histogram 291, bin 9: change in share of total (last 5 readouts)"
+291_bin10_share_change,"Histogram 291, bin 10: change in share of total (last 5 readouts)"
+158_bin0_share,"Histogram 158, bin 0: share of total"
+158_bin1_share,"Histogram 158, bin 1: share of total"
+158_bin2_share,"Histogram 158, bin 2: share of total"
+158_bin3_share,"Histogram 158, bin 3: share of total"
+158_bin4_share,"Histogram 158, bin 4: share of total"
+158_bin5_share,"Histogram 158, bin 5: share of total"
+158_bin6_share,"Histogram 158, bin 6: share of total"
+158_bin7_share,"Histogram 158, bin 7: share of total"
+158_bin8_share,"Histogram 158, bin 8: share of total"
+158_bin9_share,"Histogram 158, bin 9: share of total"
+158_total,Histogram 158: total count
+158_bin0_share_change,"Histogram 158, bin 0: change in share of total (last 5 readouts)"
+158_bin1_share_change,"Histogram 158, bin 1: change in share of total (last 5 readouts)"
+158_bin2_share_change,"Histogram 158, bin 2: change in share of total (last 5 readouts)"
+158_bin3_share_change,"Histogram 158, bin 3: change in share of total (last 5 readouts)"
+158_bin4_share_change,"Histogram 158, bin 4: change in share of total (last 5 readouts)"
+158_bin5_share_change,"Histogram 158, bin 5: change in share of total (last 5 readouts)"
+158_bin6_share_change,"Histogram 158, bin 6: change in share of total (last 5 readouts)"
+158_bin7_share_change,"Histogram 158, bin 7: change in share of total (last 5 readouts)"
+158_bin8_share_change,"Histogram 158, bin 8: change in share of total (last 5 readouts)"
+158_bin9_share_change,"Histogram 158, bin 9: change in share of total (last 5 readouts)"
+459_bin0_share,"Histogram 459, bin 0: share of total"
+459_bin1_share,"Histogram 459, bin 1: share of total"
+459_bin2_share,"Histogram 459, bin 2: share of total"
+459_bin3_share,"Histogram 459, bin 3: share of total"
+459_bin4_share,"Histogram 459, bin 4: share of total"
+459_bin5_share,"Histogram 459, bin 5: share of total"
+459_bin6_share,"Histogram 459, bin 6: share of total"
+459_bin7_share,"Histogram 459, bin 7: share of total"
+459_bin8_share,"Histogram 459, bin 8: share of total"
+459_bin9_share,"Histogram 459, bin 9: share of total"
+459_bin10_share,"Histogram 459, bin 10: share of total"
+459_bin11_share,"Histogram 459, bin 11: share of total"
+459_bin12_share,"Histogram 459, bin 12: share of total"
+459_bin13_share,"Histogram 459, bin 13: share of total"
+459_bin14_share,"Histogram 459, bin 14: share of total"
+459_bin15_share,"Histogram 459, bin 15: share of total"
+459_bin16_share,"Histogram 459, bin 16: share of total"
+459_bin17_share,"Histogram 459, bin 17: share of total"
+459_bin18_share,"Histogram 459, bin 18: share of total"
+459_bin19_share,"Histogram 459, bin 19: share of total"
+459_total,Histogram 459: total count
+459_bin0_share_change,"Histogram 459, bin 0: change in share of total (last 5 readouts)"
+459_bin1_share_change,"Histogram 459, bin 1: change in share of total (last 5 readouts)"
+459_bin2_share_change,"Histogram 459, bin 2: change in share of total (last 5 readouts)"
+459_bin3_share_change,"Histogram 459, bin 3: change in share of total (last 5 readouts)"
+459_bin4_share_change,"Histogram 459, bin 4: change in share of total (last 5 readouts)"
+459_bin5_share_change,"Histogram 459, bin 5: change in share of total (last 5 readouts)"
+459_bin6_share_change,"Histogram 459, bin 6: change in share of total (last 5 readouts)"
+459_bin7_share_change,"Histogram 459, bin 7: change in share of total (last 5 readouts)"
+459_bin8_share_change,"Histogram 459, bin 8: change in share of total (last 5 readouts)"
+459_bin9_share_change,"Histogram 459, bin 9: change in share of total (last 5 readouts)"
+459_bin10_share_change,"Histogram 459, bin 10: change in share of total (last 5 readouts)"
+459_bin11_share_change,"Histogram 459, bin 11: change in share of total (last 5 readouts)"
+459_bin12_share_change,"Histogram 459, bin 12: change in share of total (last 5 readouts)"
+459_bin13_share_change,"Histogram 459, bin 13: change in share of total (last 5 readouts)"
+459_bin14_share_change,"Histogram 459, bin 14: change in share of total (last 5 readouts)"
+459_bin15_share_change,"Histogram 459, bin 15: change in share of total (last 5 readouts)"
+459_bin16_share_change,"Histogram 459, bin 16: change in share of total (last 5 readouts)"
+459_bin17_share_change,"Histogram 459, bin 17: change in share of total (last 5 readouts)"
+459_bin18_share_change,"Histogram 459, bin 18: change in share of total (last 5 readouts)"
+459_bin19_share_change,"Histogram 459, bin 19: change in share of total (last 5 readouts)"
+397_bin0_share,"Histogram 397, bin 0: share of total"
+397_bin1_share,"Histogram 397, bin 1: share of total"
+397_bin2_share,"Histogram 397, bin 2: share of total"
+397_bin3_share,"Histogram 397, bin 3: share of total"
+397_bin4_share,"Histogram 397, bin 4: share of total"
+397_bin5_share,"Histogram 397, bin 5: share of total"
+397_bin6_share,"Histogram 397, bin 6: share of total"
+397_bin7_share,"Histogram 397, bin 7: share of total"
+397_bin8_share,"Histogram 397, bin 8: share of total"
+397_bin9_share,"Histogram 397, bin 9: share of total"
+397_bin10_share,"Histogram 397, bin 10: share of total"
+397_bin11_share,"Histogram 397, bin 11: share of total"
+397_bin12_share,"Histogram 397, bin 12: share of total"
+397_bin13_share,"Histogram 397, bin 13: share of total"
+397_bin14_share,"Histogram 397, bin 14: share of total"
+397_bin15_share,"Histogram 397, bin 15: share of total"
+397_bin16_share,"Histogram 397, bin 16: share of total"
+397_bin17_share,"Histogram 397, bin 17: share of total"
+397_bin18_share,"Histogram 397, bin 18: share of total"
+397_bin19_share,"Histogram 397, bin 19: share of total"
+397_bin20_share,"Histogram 397, bin 20: share of total"
+397_bin21_share,"Histogram 397, bin 21: share of total"
+397_bin22_share,"Histogram 397, bin 22: share of total"
+397_bin23_share,"Histogram 397, bin 23: share of total"
+397_bin24_share,"Histogram 397, bin 24: share of total"
+397_bin25_share,"Histogram 397, bin 25: share of total"
+397_bin26_share,"Histogram 397, bin 26: share of total"
+397_bin27_share,"Histogram 397, bin 27: share of total"
+397_bin28_share,"Histogram 397, bin 28: share of total"
+397_bin29_share,"Histogram 397, bin 29: share of total"
+397_bin30_share,"Histogram 397, bin 30: share of total"
+397_bin31_share,"Histogram 397, bin 31: share of total"
+397_bin32_share,"Histogram 397, bin 32: share of total"
+397_bin33_share,"Histogram 397, bin 33: share of total"
+397_bin34_share,"Histogram 397, bin 34: share of total"
+397_bin35_share,"Histogram 397, bin 35: share of total"
+397_total,Histogram 397: total count
+397_bin0_share_change,"Histogram 397, bin 0: change in share of total (last 5 readouts)"
+397_bin1_share_change,"Histogram 397, bin 1: change in share of total (last 5 readouts)"
+397_bin2_share_change,"Histogram 397, bin 2: change in share of total (last 5 readouts)"
+397_bin3_share_change,"Histogram 397, bin 3: change in share of total (last 5 readouts)"
+397_bin4_share_change,"Histogram 397, bin 4: change in share of total (last 5 readouts)"
+397_bin5_share_change,"Histogram 397, bin 5: change in share of total (last 5 readouts)"
+397_bin6_share_change,"Histogram 397, bin 6: change in share of total (last 5 readouts)"
+397_bin7_share_change,"Histogram 397, bin 7: change in share of total (last 5 readouts)"
+397_bin8_share_change,"Histogram 397, bin 8: change in share of total (last 5 readouts)"
+397_bin9_share_change,"Histogram 397, bin 9: change in share of total (last 5 readouts)"
+397_bin10_share_change,"Histogram 397, bin 10: change in share of total (last 5 readouts)"
+397_bin11_share_change,"Histogram 397, bin 11: change in share of total (last 5 readouts)"
+397_bin12_share_change,"Histogram 397, bin 12: change in share of total (last 5 readouts)"
+397_bin13_share_change,"Histogram 397, bin 13: change in share of total (last 5 readouts)"
+397_bin14_share_change,"Histogram 397, bin 14: change in share of total (last 5 readouts)"
+397_bin15_share_change,"Histogram 397, bin 15: change in share of total (last 5 readouts)"
+397_bin16_share_change,"Histogram 397, bin 16: change in share of total (last 5 readouts)"
+397_bin17_share_change,"Histogram 397, bin 17: change in share of total (last 5 readouts)"
+397_bin18_share_change,"Histogram 397, bin 18: change in share of total (last 5 readouts)"
+397_bin19_share_change,"Histogram 397, bin 19: change in share of total (last 5 readouts)"
+397_bin20_share_change,"Histogram 397, bin 20: change in share of total (last 5 readouts)"
+397_bin21_share_change,"Histogram 397, bin 21: change in share of total (last 5 readouts)"
+397_bin22_share_change,"Histogram 397, bin 22: change in share of total (last 5 readouts)"
+397_bin23_share_change,"Histogram 397, bin 23: change in share of total (last 5 readouts)"
+397_bin24_share_change,"Histogram 397, bin 24: change in share of total (last 5 readouts)"
+397_bin25_share_change,"Histogram 397, bin 25: change in share of total (last 5 readouts)"
+397_bin26_share_change,"Histogram 397, bin 26: change in share of total (last 5 readouts)"
+397_bin27_share_change,"Histogram 397, bin 27: change in share of total (last 5 readouts)"
+397_bin28_share_change,"Histogram 397, bin 28: change in share of total (last 5 readouts)"
+397_bin29_share_change,"Histogram 397, bin 29: change in share of total (last 5 readouts)"
+397_bin30_share_change,"Histogram 397, bin 30: change in share of total (last 5 readouts)"
+397_bin31_share_change,"Histogram 397, bin 31: change in share of total (last 5 readouts)"
+397_bin32_share_change,"Histogram 397, bin 32: change in share of total (last 5 readouts)"
+397_bin33_share_change,"Histogram 397, bin 33: change in share of total (last 5 readouts)"
+397_bin34_share_change,"Histogram 397, bin 34: change in share of total (last 5 readouts)"
+397_bin35_share_change,"Histogram 397, bin 35: change in share of total (last 5 readouts)"
+Spec_0=Cat0,Specification 0 is Cat0
+Spec_0=Cat1,Specification 0 is Cat1
+Spec_0=Cat2,Specification 0 is Cat2
+Spec_1=Cat0,Specification 1 is Cat0
+Spec_1=Cat1,Specification 1 is Cat1
+Spec_1=Cat10,Specification 1 is Cat10
+Spec_1=Cat11,Specification 1 is Cat11
+Spec_1=Cat12,Specification 1 is Cat12
+Spec_1=Cat13,Specification 1 is Cat13
+Spec_1=Cat14,Specification 1 is Cat14
+Spec_1=Cat15,Specification 1 is Cat15
+Spec_1=Cat16,Specification 1 is Cat16
+Spec_1=Cat17,Specification 1 is Cat17
+Spec_1=Cat18,Specification 1 is Cat18
+Spec_1=Cat19,Specification 1 is Cat19
+Spec_1=Cat2,Specification 1 is Cat2
+Spec_1=Cat20,Specification 1 is Cat20
+Spec_1=Cat21,Specification 1 is Cat21
+Spec_1=Cat22,Specification 1 is Cat22
+Spec_1=Cat23,Specification 1 is Cat23
+Spec_1=Cat24,Specification 1 is Cat24
+Spec_1=Cat25,Specification 1 is Cat25
+Spec_1=Cat26,Specification 1 is Cat26
+Spec_1=Cat27,Specification 1 is Cat27
+Spec_1=Cat28,Specification 1 is Cat28
+Spec_1=Cat3,Specification 1 is Cat3
+Spec_1=Cat4,Specification 1 is Cat4
+Spec_1=Cat5,Specification 1 is Cat5
+Spec_1=Cat6,Specification 1 is Cat6
+Spec_1=Cat7,Specification 1 is Cat7
+Spec_1=Cat8,Specification 1 is Cat8
+Spec_1=Cat9,Specification 1 is Cat9
+Spec_2=Cat0,Specification 2 is Cat0
+Spec_2=Cat1,Specification 2 is Cat1
+Spec_2=Cat10,Specification 2 is Cat10
+Spec_2=Cat11,Specification 2 is Cat11
+Spec_2=Cat12,Specification 2 is Cat12
+Spec_2=Cat13,Specification 2 is Cat13
+Spec_2=Cat14,Specification 2 is Cat14
+Spec_2=Cat15,Specification 2 is Cat15
+Spec_2=Cat16,Specification 2 is Cat16
+Spec_2=Cat17,Specification 2 is Cat17
+Spec_2=Cat18,Specification 2 is Cat18
+Spec_2=Cat19,Specification 2 is Cat19
+Spec_2=Cat2,Specification 2 is Cat2
+Spec_2=Cat20,Specification 2 is Cat20
+Spec_2=Cat3,Specification 2 is Cat3
+Spec_2=Cat4,Specification 2 is Cat4
+Spec_2=Cat5,Specification 2 is Cat5
+Spec_2=Cat6,Specification 2 is Cat6
+Spec_2=Cat7,Specification 2 is Cat7
+Spec_2=Cat8,Specification 2 is Cat8
+Spec_2=Cat9,Specification 2 is Cat9
+Spec_3=Cat0,Specification 3 is Cat0
+Spec_3=Cat1,Specification 3 is Cat1
+Spec_3=Cat2,Specification 3 is Cat2
+Spec_3=Cat3,Specification 3 is Cat3
+Spec_4=Cat0,Specification 4 is Cat0
+Spec_4=Cat1,Specification 4 is Cat1
+Spec_5=Cat0,Specification 5 is Cat0
+Spec_5=Cat1,Specification 5 is Cat1
+Spec_5=Cat2,Specification 5 is Cat2
+Spec_5=Cat3,Specification 5 is Cat3
+Spec_5=Cat4,Specification 5 is Cat4
+Spec_6=Cat0,Specification 6 is Cat0
+Spec_6=Cat1,Specification 6 is Cat1
+Spec_6=Cat10,Specification 6 is Cat10
+Spec_6=Cat11,Specification 6 is Cat11
+Spec_6=Cat12,Specification 6 is Cat12
+Spec_6=Cat13,Specification 6 is Cat13
+Spec_6=Cat15,Specification 6 is Cat15
+Spec_6=Cat17,Specification 6 is Cat17
+Spec_6=Cat18,Specification 6 is Cat18
+Spec_6=Cat2,Specification 6 is Cat2
+Spec_6=Cat3,Specification 6 is Cat3
+Spec_6=Cat4,Specification 6 is Cat4
+Spec_6=Cat5,Specification 6 is Cat5
+Spec_6=Cat6,Specification 6 is Cat6
+Spec_6=Cat7,Specification 6 is Cat7
+Spec_6=Cat8,Specification 6 is Cat8
+Spec_6=Cat9,Specification 6 is Cat9
+Spec_7=Cat0,Specification 7 is Cat0
+Spec_7=Cat1,Specification 7 is Cat1
+Spec_7=Cat2,Specification 7 is Cat2
+Spec_7=Cat3,Specification 7 is Cat3
+Spec_7=Cat4,Specification 7 is Cat4
+Spec_7=Cat5,Specification 7 is Cat5
+Spec_7=Cat6,Specification 7 is Cat6
+Spec_7=Cat7,Specification 7 is Cat7
+Spec_7=Cat8,Specification 7 is Cat8

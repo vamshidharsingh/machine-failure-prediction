@@ -1,0 +1,21 @@
+rank,feature,readable_name,mean_abs_shap
+1,time_step,Time step,3.197864620583393
+2,167_bin5_share,"Histogram 167, bin 5: share of total",0.9876510991025136
+3,459_total,Histogram 459: total count,0.7461149160255466
+4,158_bin2_share_change,"Histogram 158, bin 2: change in share of total (last 5 readouts)",0.5552171613914085
+5,291_bin2_share,"Histogram 291, bin 2: share of total",0.5547371801514273
+6,459_bin13_share,"Histogram 459, bin 13: share of total",0.5124822458461386
+7,459_bin4_share_change,"Histogram 459, bin 4: change in share of total (last 5 readouts)",0.4772766612252574
+8,666_value,Counter 666: value,0.28294499881879925
+9,291_bin5_share,"Histogram 291, bin 5: share of total",0.22292809885813458
+10,397_bin16_share,"Histogram 397, bin 16: share of total",0.21686765378717118
+11,459_bin14_share,"Histogram 459, bin 14: share of total",0.1878907439375854
+12,291_total,Histogram 291: total count,0.17084466579955288
+13,459_bin16_share,"Histogram 459, bin 16: share of total",0.1628170140495241
+14,309_value,Counter 309: value,0.12946791670001703
+15,666_rate,Counter 666: rate of change (last 5 readouts),0.12291215698338835
+16,167_bin7_share_change,"Histogram 167, bin 7: change in share of total (last 5 readouts)",0.10502900279306758
+17,397_bin12_share,"Histogram 397, bin 12: share of total",0.1038241891362649
+18,837_value,Counter 837: value,0.10297005500522227
+19,459_bin10_share,"Histogram 459, bin 10: share of total",0.09249434113091543
+20,100_value,Counter 100: value,0.09147609084834266

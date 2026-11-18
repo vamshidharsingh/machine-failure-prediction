@@ -1,0 +1,1001 @@
+unit,direction,rank,feature,readable_name,shap_value,feature_value
+1,up,1,s17_mean,Sensor 17: average (last 10 cycles),0.48753780558603077,0.6305160996318974
+1,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.42007592796475934,-0.749329795818391
+1,up,3,s14,Sensor 14: current value (regime-normalised),0.33011903706129003,0.8986770802593148
+1,up,4,s11_mean,Sensor 11: average (last 10 cycles),0.30534324577350225,0.3976658806773645
+1,up,5,s9_mean,Sensor 9: average (last 10 cycles),0.1811357476900132,0.8275278441415812
+1,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.18785363397550411,0.025448309967342736
+1,down,2,s4_mean,Sensor 4: average (last 10 cycles),-0.15959473274465646,0.08766741665835537
+1,down,3,s11_std,Sensor 11: variability (last 10 cycles),-0.06985266713727956,0.24339077796900097
+1,down,4,s20_mean,Sensor 20: average (last 10 cycles),-0.04116538836188042,1.2700828755442077
+1,down,5,s7_std,Sensor 7: variability (last 10 cycles),-0.03406308847398434,0.1100192258491987
+2,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.3094102513575259,0.7909604332582966
+2,up,2,s17_mean,Sensor 17: average (last 10 cycles),0.589847749728792,0.6305160996318974
+2,up,3,cycle,Cycle number,0.555678396700519,124.0
+2,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.16661160441247228,0.8558582577113854
+2,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.1326660818663665,0.5753218269416056
+2,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.571008077174427,-1.1009208021361114
+2,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.2821315911598111,0.3997231877902404
+2,down,3,s9_mean,Sensor 9: average (last 10 cycles),-0.12997351195330809,-0.8413243844113755
+2,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.10691070513924465,0.7801073885592849
+2,down,5,s7_std,Sensor 7: variability (last 10 cycles),-0.09604273938176827,0.07614004671687612
+3,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.986177611369864,1.1962523552037132
+3,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.4994260204485623,0.9330752715858587
+3,up,3,s14_mean,Sensor 14: average (last 10 cycles),0.5892606099232747,1.5220002526356056
+3,up,4,cycle,Cycle number,0.4858026317522289,234.0
+3,up,5,s14,Sensor 14: current value (regime-normalised),0.42601860735370056,1.7789358140935245
+3,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.2806514481666627,0.8347541428674896
+3,down,2,s8_std,Sensor 8: variability (last 10 cycles),-0.14639847647179655,0.14305902087595618
+3,down,3,s6_mean,Sensor 6: average (last 10 cycles),-0.13476434377122878,0.2527152560153815
+3,down,4,s13_std,Sensor 13: variability (last 10 cycles),-0.1036164833996412,0.0868249244858081
+3,down,5,s11_std,Sensor 11: variability (last 10 cycles),-0.10003910871056462,0.20506962370904253
+4,up,1,s17_std,Sensor 17: variability (last 10 cycles),0.02759347927544204,0.3578030245084121
+4,up,2,s13_std,Sensor 13: variability (last 10 cycles),0.021043683444056858,0.2293601767556748
+4,up,3,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.015009694227552897,0.04048232977913839
+4,up,4,s4_std,Sensor 4: variability (last 10 cycles),0.01217716538056613,0.2837216761060826
+4,up,5,s3_std,Sensor 3: variability (last 10 cycles),0.007960477035826027,0.4112560653310939
+4,down,1,cycle,Cycle number,-0.575032354012399,68.0
+4,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.2672487355754905,0.3476479718459895
+4,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.18085019242572492,0.1630092781545523
+4,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.15907787779027757,-0.14431986762377425
+4,down,5,s13_mean,Sensor 13: average (last 10 cycles),-0.12398299611833746,0.14965798766983435
+5,up,1,cycle,Cycle number,0.3935720992073786,138.0
+5,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.10678256846991044,-1.0657650753447518
+5,up,3,s7_std,Sensor 7: variability (last 10 cycles),0.05769231369191539,0.16337787738005435
+5,up,4,s2_mean,Sensor 2: average (last 10 cycles),0.0492011634814231,-0.9080348331706262
+5,up,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.027139919273194556,0.026988219852758937
+5,down,1,s11_mean,Sensor 11: average (last 10 cycles),-1.0829785591778163,-0.8912826529912248
+5,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8951375512828901,-1.06669266708355
+5,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.10908078843295206,-1.0981973494798534
+5,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.09688105827655749,-0.6312987202460834
+5,down,5,s9_mean,Sensor 9: average (last 10 cycles),-0.08218371486846913,-0.7175391530799465
+6,up,1,s3_std,Sensor 3: variability (last 10 cycles),0.03155519711444022,0.371444948255818
+6,up,2,s17_std,Sensor 17: variability (last 10 cycles),0.00947895347824347,0.4657551593675415
+6,up,3,s4,Sensor 4: current value (regime-normalised),0.003985705801320876,0.9851939197482088
+6,up,4,s21_std,Sensor 21: variability (last 10 cycles),0.0035328182398190046,0.3339610390495273
+6,up,5,s4_trend,Sensor 4: trend per cycle (last 10 cycles),0.0016370037739502135,0.09516449602605365
+6,down,1,cycle,Cycle number,-0.45216676240145787,64.0
+6,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.30862550460036353,0.06477984406008164
+6,down,3,s11_mean,Sensor 11: average (last 10 cycles),-0.20744017468054804,0.04733627921872437
+6,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.13944365549421814,0.06222172514761113
+6,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.13208554235499184,0.13875559881384544
+7,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.760701165752327,0.956210245267085
+7,up,2,cycle,Cycle number,0.8991746679524149,158.0
+7,up,3,s17_mean,Sensor 17: average (last 10 cycles),0.7018691734419267,0.5739424740747159
+7,up,4,s14_mean,Sensor 14: average (last 10 cycles),0.317311139741677,-1.3860674954288617
+7,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.17034438399566096,0.9688364636697238
+7,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.25780179114145985,0.8237075833667042
+7,down,2,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.11768015767908858,-0.026988219852758923
+7,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.1011738856576299,0.5465531478979802
+7,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.09278359284012402,0.7801073885592849
+7,down,5,s4_std,Sensor 4: variability (last 10 cycles),-0.0743341904825432,0.3335868088053572
+8,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.0343309561914227,0.8002369763034423
+8,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.4478909262749236,1.0553601324723625
+8,up,3,cycle,Cycle number,0.8777736105994469,192.0
+8,up,4,s8_mean,Sensor 8: average (last 10 cycles),0.15283226431143962,0.502560788920588
+8,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.1465644226775539,0.8935515260661875
+8,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.4357114697895281,-0.7976213763336053
+8,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.3360366790642895,0.7962365340818345
+8,down,3,s21_mean,Sensor 21: average (last 10 cycles),-0.10204249889237564,-0.913880348616941
+8,down,4,s9_std,Sensor 9: variability (last 10 cycles),-0.09070194550663548,0.1793597486734249
+8,down,5,s14,Sensor 14: current value (regime-normalised),-0.08556185439891735,-0.8005377169663042
+9,up,1,s17_mean,Sensor 17: average (last 10 cycles),0.41277293861480313,0.6305160996318973
+9,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.3395026169093578,0.5364757227647539
+9,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.11901845977325394,0.6530664419804145
+9,up,4,s13_mean,Sensor 13: average (last 10 cycles),0.05050159381055014,0.22252618127255963
+9,up,5,cycle,Cycle number,0.04564151705108388,238.0
+9,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.27384026190550226,-0.565087848741297
+9,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.2345914912532023,0.7626608071781116
+9,down,3,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.12436237414797163,-0.047229384742174724
+9,down,4,s20_mean,Sensor 20: average (last 10 cycles),-0.08103812802409618,-0.8667207815782986
+9,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.07806653311542062,0.7801073885592849
+10,up,1,cycle,Cycle number,0.35436156445469186,131.0
+10,up,2,s3_std,Sensor 3: variability (last 10 cycles),0.03207570838387657,0.27192671603657254
+10,up,3,s11_std,Sensor 11: variability (last 10 cycles),0.016350925806905062,0.3904467595712367
+10,up,4,s14_std,Sensor 14: variability (last 10 cycles),0.002356318122606351,0.19616223124818902
+10,up,5,s6_std,Sensor 6: variability (last 10 cycles),0.0018536163835497677,0.2223680478522862
+10,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8685477784434686,-0.13113351775076976
+10,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.2809979042460373,0.23450072073162637
+10,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.12335287780946837,-0.07224957630785361
+10,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.11484983336003857,-0.21292275162268148
+10,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.0978150909831094,0.03852976200775915
+11,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.42811201108472663,0.5860506663673913
+11,up,2,s17_mean,Sensor 17: average (last 10 cycles),0.3381719503290003,0.6305160996318974
+11,up,3,s2_std,Sensor 2: variability (last 10 cycles),0.05679087578071717,0.33927200976671557
+11,up,4,s13_mean,Sensor 13: average (last 10 cycles),0.04700153929720639,0.2589602780732319
+11,up,5,s11,Sensor 11: current value (regime-normalised),0.006561946864429114,1.0157001775902434
+11,down,1,cycle,Cycle number,-0.7995062785098412,103.0
+11,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.2652453188800774,0.7273408866689988
+11,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.2253507805147706,0.2175800566706602
+11,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.10334125807487932,0.7801073885592849
+11,down,5,s14_mean,Sensor 14: average (last 10 cycles),-0.09585081741421525,0.07061489203512297
+12,up,1,cycle,Cycle number,0.5660402889603172,146.0
+12,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.2786395080841827,0.4505458205201796
+12,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.15625057606332424,0.5302331227325517
+12,up,4,s13_mean,Sensor 13: average (last 10 cycles),0.08407781539767964,0.331828471675681
+12,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.05048251289175821,0.3327850335375701
+12,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.3167840222359874,-0.8571385321033235
+12,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.2653731163636341,0.06477984406008165
+12,down,3,s9_mean,Sensor 9: average (last 10 cycles),-0.1589886845027683,-0.7243090439751226
+12,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.14198949752041945,0.11018704929579057
+12,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.10470981251166761,0.7801073885592849
+13,up,1,s9_std,Sensor 9: variability (last 10 cycles),0.033209071014046715,0.30632173315911765
+13,up,2,s4,Sensor 4: current value (regime-normalised),0.006231129027888377,0.3623913994922917
+13,up,3,s17_std,Sensor 17: variability (last 10 cycles),0.004630237489548061,0.35780302450841234
+13,up,4,s4_std,Sensor 4: variability (last 10 cycles),0.002715633209614152,0.33719129539657056
+13,up,5,s8_std,Sensor 8: variability (last 10 cycles),0.0018904049570912464,0.19480685828057137
+13,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7299696622751787,-0.015458649344618675
+13,down,2,cycle,Cycle number,-0.39362238634270674,65.0
+13,down,3,s17_mean,Sensor 17: average (last 10 cycles),-0.3052127760962583,0.1213534696172632
+13,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.10490585517521797,-0.07346409541478896
+13,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.1046482961293771,-0.04083104703741321
+14,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.039982448063682,1.08310510408935
+14,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.7942037289008088,1.4056897339310073
+14,up,3,cycle,Cycle number,1.0090545408298308,169.0
+14,up,4,s21_mean,Sensor 21: average (last 10 cycles),0.5203135284795327,-1.4571967416999314
+14,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.39711212830489356,1.2320797475168812
+14,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.390593033265866,-0.09115273734697665
+14,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.25271979389036603,0.8488530411777118
+14,down,3,s9_mean,Sensor 9: average (last 10 cycles),-0.1450193910990843,0.1614101122662329
+14,down,4,s17_std,Sensor 17: variability (last 10 cycles),-0.12294804249666783,0.7180864933659974
+14,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.09669032031742662,0.7801073885592849
+15,up,1,s6_mean,Sensor 6: average (last 10 cycles),0.13024844505236535,-1.276721928362313
+15,up,2,s17_std,Sensor 17: variability (last 10 cycles),0.028631025616200276,0.2732765739489914
+15,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.02633059498085489,-0.5887643930166059
+15,up,4,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.01887477198025384,0.02698821985306575
+15,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.011124091386675404,0.3873728806899684
+15,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7699101690234987,-0.5574780327334607
+15,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7534780651430192,-0.5009564115117342
+15,down,3,cycle,Cycle number,-0.26599277677418165,112.0
+15,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.1006947535177166,-0.8486699449531695
+15,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.08800113593817419,-0.39482534667619057
+16,up,1,cycle,Cycle number,0.3558326059869616,126.0
+16,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.14764634637065488,-1.4349395681255217
+16,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.04917038886647093,-1.3280274955160842
+16,up,4,s7_std,Sensor 7: variability (last 10 cycles),0.04785970714729374,0.17442285760726736
+16,up,5,s3_std,Sensor 3: variability (last 10 cycles),0.026636201570033387,0.37281906926415015
+16,down,1,s11_mean,Sensor 11: average (last 10 cycles),-1.0412679955569677,-1.13915737100441
+16,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8582572292545468,-0.8969717904120053
+16,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.10483171493982237,-0.7778553680170568
+16,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.09796289372864539,-0.594918201235161
+16,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.07831175418213102,-0.696211794262042
+17,up,1,cycle,Cycle number,0.13362624464070796,230.0
+17,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.06275582522197468,-0.8020690090728001
+17,up,3,s9_std,Sensor 9: variability (last 10 cycles),0.046365618962422514,0.28705660341873607
+17,up,4,s2_mean,Sensor 2: average (last 10 cycles),0.03699735526281993,-0.30560191930856345
+17,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.008265416027720322,0.46192171838124163
+17,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8776849872112736,-0.6863728861003173
+17,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.835307315073069,-0.3312355348401894
+17,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.09660040358189242,-0.6342958311293537
+17,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.09305079621710344,-0.0431469962391122
+17,down,5,s13_mean,Sensor 13: average (last 10 cycles),-0.08034727368596752,-0.19039358247492816
+18,up,1,cycle,Cycle number,0.08047014264463068,244.0
+18,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.052500730479700795,-1.0657650753447518
+18,up,3,s9_std,Sensor 9: variability (last 10 cycles),0.04804244045909511,0.28604927865440166
+18,up,4,s2_mean,Sensor 2: average (last 10 cycles),0.02436739807011553,-0.8548230931449415
+18,up,5,s3_std,Sensor 3: variability (last 10 cycles),0.010531532309369592,0.38507670719254544
+18,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8491790215577399,-0.930942607873332
+18,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8411432798117436,-0.8969717904120051
+18,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.09762946324650626,-0.5777051290441045
+18,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.0880625246707726,-0.3584448276652682
+18,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.07894398821165509,-0.5552228111598216
+19,up,1,cycle,Cycle number,0.17442503660207875,115.0
+19,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.03120716444178967,-0.48424133225188787
+19,up,3,s8_trend,Sensor 8: trend per cycle (last 10 cycles),0.006406530772676978,0.06737133150119755
+19,up,4,s4_trend,Sensor 4: trend per cycle (last 10 cycles),0.0013127484066817016,0.05554084465577699
+19,up,5,s20_std,Sensor 20: variability (last 10 cycles),0.0007305336361156543,0.34679282610721246
+19,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8217886203395485,-0.45502314928800347
+19,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6926445698382021,-0.10494103261146308
+19,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.08903154028585097,-0.5244671974594238
+19,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.08685961203647606,-0.2311130111281427
+19,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08478378088151522,-0.6252812543095818
+20,up,1,cycle,Cycle number,0.30121240108622255,207.0
+20,up,2,s9_mean,Sensor 9: average (last 10 cycles),0.1758312737490323,0.6776019392076129
+20,up,3,s12,Sensor 12: current value (regime-normalised),0.16203165307912787,1.490671924427534
+20,up,4,s8_mean,Sensor 8: average (last 10 cycles),0.08891805572964388,0.6844633839738213
+20,up,5,s15_mean,Sensor 15: average (last 10 cycles),0.0850323469119919,-1.0621812337091217
+20,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.3306602551883856,0.1213534696172632
+20,down,2,s4_mean,Sensor 4: average (last 10 cycles),-0.1868755862596859,-0.010070923388334846
+20,down,3,s11_mean,Sensor 11: average (last 10 cycles),-0.13759303811240609,0.03411629425802353
+20,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.11263241933778406,0.1157103290461849
+20,down,5,s2_std,Sensor 2: variability (last 10 cycles),-0.05554840431315537,0.8707547985284257
+21,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.0365889377489053,1.0265314785321684
+21,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.702906964713831,1.1412900347169415
+21,up,3,s12_std,Sensor 12: variability (last 10 cycles),0.6439784212550725,0.29984472744869056
+21,up,4,s6_mean,Sensor 6: average (last 10 cycles),0.47516601561932437,-1.1712435018535325
+21,up,5,s14,Sensor 14: current value (regime-normalised),0.460240295429963,1.6491884145155098
+21,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.204453818780751,0.9936211104249366
+21,down,2,s9_std,Sensor 9: variability (last 10 cycles),-0.0474018225651082,0.22903688748624793
+21,down,3,s20_mean,Sensor 20: average (last 10 cycles),-0.034543559264109736,1.5844357413033812
+21,down,4,s4_std,Sensor 4: variability (last 10 cycles),-0.031190446471160177,0.4961079830091813
+21,down,5,s21_mean,Sensor 21: average (last 10 cycles),-0.025422829444361344,1.478122992358828
+22,up,1,cycle,Cycle number,0.16792461102193784,119.0
+22,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.048919890618082884,-0.5222497179844948
+22,up,3,s7_std,Sensor 7: variability (last 10 cycles),0.048732149263414994,0.1602250818147776
+22,up,4,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.02315731016539266,0.047229384742481534
+22,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.009478631802355676,0.37748722529186424
+22,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9210036496464002,-0.8912826529912179
+22,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7507130383175434,-0.4443827859545525
+22,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.08535613584807998,-0.9104422014483756
+22,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.08379542085732217,-0.18866907228142318
+22,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08158637176907982,-0.512926116229162
+23,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.2166843642860777,0.19606111002664162
+23,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.18695488608556893,-1.8041140609063848
+23,up,3,s9_mean,Sensor 9: average (last 10 cycles),0.12041702677939303,0.6207249726357819
+23,up,4,s15_mean,Sensor 15: average (last 10 cycles),0.06479861254794116,-1.1027926049677954
+23,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.0460342717571616,0.4358631707339888
+23,down,1,cycle,Cycle number,-0.4915449098519176,405.0
+23,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.26011813590039623,0.1779270951744448
+23,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.13667647621780293,0.40263017713255483
+23,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.12228517384829828,0.021424799495730108
+23,down,5,s12_std,Sensor 12: variability (last 10 cycles),-0.0543858512240941,0.11550924354575551
+24,up,1,s11_mean,Sensor 11: average (last 10 cycles),4.315352754937049,1.8617792150752774
+24,up,2,s17_mean,Sensor 17: average (last 10 cycles),4.130779520582723,1.6488413596611657
+24,up,3,s3_mean,Sensor 3: average (last 10 cycles),0.7577666340719635,1.9011831830952914
+24,up,4,s15_mean,Sensor 15: average (last 10 cycles),0.45068691650011466,-2.543762344205926
+24,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.3645691902939392,1.638476171827443
+24,down,1,cycle,Cycle number,-0.16303974470252813,475.0
+24,down,2,s9_std,Sensor 9: variability (last 10 cycles),-0.01970749682944782,0.22262449075219562
+24,down,3,s21_mean,Sensor 21: average (last 10 cycles),-0.010338804465796114,2.1256826434138754
+24,down,4,s2_mean,Sensor 2: average (last 10 cycles),-0.005870003623790378,1.3078540550411577
+24,down,5,s2_std,Sensor 2: variability (last 10 cycles),-0.004302079280111984,0.610639806870336
+25,up,1,s17_mean,Sensor 17: average (last 10 cycles),1.5833005810175145,0.7436633507462606
+25,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.4178752634588274,1.0487501399920096
+25,up,3,cycle,Cycle number,0.9141277705248424,169.0
+25,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.41755676225390614,1.1161551674823005
+25,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.15210713758565114,0.5268144682612947
+25,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.5689543668605718,-0.9002884700363785
+25,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.31618445586044364,0.8984172094641656
+25,down,3,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.21045752819975563,-0.0404823297791384
+25,down,4,s9_mean,Sensor 9: average (last 10 cycles),-0.1223156358109427,-0.6818119186477717
+25,down,5,s9_std,Sensor 9: variability (last 10 cycles),-0.10984320975311096,0.16378179013990185
+26,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.116524870409913,0.9699578529749868
+26,up,2,s11_mean,Sensor 11: average (last 10 cycles),2.0990347749781826,1.4156047226515374
+26,up,3,cycle,Cycle number,1.1252220521786915,130.0
+26,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.4261992640444403,1.4128245572290057
+26,up,5,s14_mean,Sensor 14: average (last 10 cycles),0.2106857253784356,-2.015163831914839
+26,down,1,s6_mean,Sensor 6: average (last 10 cycles),-0.11500630004155825,0.7801073885592849
+26,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.11051818353157218,1.1632439385489413
+26,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.10561944454151494,0.5993126488617356
+26,down,4,s14,Sensor 14: current value (regime-normalised),-0.07703832647352973,-2.095035854957792
+26,down,5,s9_mean,Sensor 9: average (last 10 cycles),-0.07153326734097792,-1.565010896526663
+27,up,1,s17_std,Sensor 17: variability (last 10 cycles),0.02036171928427298,0.29816918709034396
+27,up,2,s2_std,Sensor 2: variability (last 10 cycles),0.015297461080612383,0.393370980689592
+27,up,3,s13_mean,Sensor 13: average (last 10 cycles),0.011629119666827096,0.2650326275402407
+27,up,4,s8_trend,Sensor 8: trend per cycle (last 10 cycles),0.0030190665197001943,0.026948532600479018
+27,up,5,s6,Sensor 6: current value (regime-normalised),0.0019486827198341118,0.2527152560153815
+27,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7512516713116796,-0.3525682658425533
+27,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6897046088918801,-0.04836740705428152
+27,down,3,cycle,Cycle number,-0.3052472290201422,104.0
+27,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08231908663173026,-0.27993092044271595
+27,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.07692676155754889,-0.282153329464255
+28,up,1,s8_std,Sensor 8: variability (last 10 cycles),0.05013219602436997,0.2575665126553223
+28,up,2,s9_std,Sensor 9: variability (last 10 cycles),0.02851576435346151,0.2763891852127094
+28,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.021400837556459024,-1.0410641832347614
+28,up,4,s11_std,Sensor 11: variability (last 10 cycles),0.0028938822579449935,0.35013207744549757
+28,up,5,s13_std,Sensor 13: variability (last 10 cycles),0.002139265599449742,0.1963497327426298
+28,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.720312585738259,-0.825182728187702
+28,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6847064475615162,-0.8403981648548235
+28,down,3,cycle,Cycle number,-0.3009954737492445,70.0
+28,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.0884613509269566,-0.6524820711172508
+28,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08096800962309039,-0.29490191555563133
+29,up,1,s9_std,Sensor 9: variability (last 10 cycles),0.012431933212078103,0.13958153067977608
+29,up,2,s11_std,Sensor 11: variability (last 10 cycles),0.008563534873966772,0.38556715628865207
+29,up,3,s8_trend,Sensor 8: trend per cycle (last 10 cycles),0.0026742636728856422,0.026948532600479018
+29,up,4,s13_std,Sensor 13: variability (last 10 cycles),0.001937405862112637,0.15468276489502406
+29,up,5,s4_trend,Sensor 4: trend per cycle (last 10 cycles),0.001778408728431231,0.08387570646187407
+29,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.6542643600232131,-0.3312355348401894
+29,down,2,cycle,Cycle number,-0.33610450606866893,89.0
+29,down,3,s11_mean,Sensor 11: average (last 10 cycles),-0.15664975450620525,0.027506301777670755
+29,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.12119874399246298,-0.39766398880641457
+29,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.11502514520682709,0.09631165996795313
+30,up,1,s12_std,Sensor 12: variability (last 10 cycles),0.4073827930692185,0.22622835671330008
+30,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.18483574672617445,-1.962331700669575
+30,up,3,s11_std,Sensor 11: variability (last 10 cycles),0.036946178735948146,0.39538892934107556
+30,up,4,s8_std,Sensor 8: variability (last 10 cycles),0.025436636965561643,0.2504909231193645
+30,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.008768770198925014,0.46192171838124485
+30,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9666808140827373,-0.1972334425542856
+30,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.22328628331706163,0.23450072073162637
+30,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.09678688418374254,0.0417408814523967
+30,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.09349782947080111,-0.12745932943835667
+30,down,5,s9,Sensor 9: current value (regime-normalised),-0.04911192548247152,0.39415599632651516
+31,up,1,cycle,Cycle number,0.43548359343409776,152.0
+31,up,2,s14,Sensor 14: current value (regime-normalised),0.3205957439878412,1.333747488935964
+31,up,3,s9_mean,Sensor 9: average (last 10 cycles),0.21250238915187178,1.238563993528742
+31,up,4,s9,Sensor 9: current value (regime-normalised),0.11420710360535623,1.455595824270365
+31,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.06130318232113409,0.2732765739489896
+31,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8538189385131699,-0.2765533523185094
+31,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8442995033372895,-0.16151465816864471
+31,down,3,s6_mean,Sensor 6: average (last 10 cycles),-0.16024628686534304,0.7801073885592849
+31,down,4,s12_std,Sensor 12: variability (last 10 cycles),-0.13375926279787545,0.061930052510882155
+31,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.10893143324086269,-0.34631798799532837
+32,up,1,s17_mean,Sensor 17: average (last 10 cycles),1.5000668300548121,0.7436633507462606
+32,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.2850328808177365,1.0322251587911313
+32,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.15517018569060814,0.5216987978220262
+32,up,4,s8_mean,Sensor 8: average (last 10 cycles),0.14153822938992075,0.3570387128777255
+32,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.11739803524894231,0.32113804257816475
+32,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.31893675599665466,0.9907141210826224
+32,down,2,s8_std,Sensor 8: variability (last 10 cycles),-0.11874270868093723,0.12459143379139406
+32,down,3,s6_mean,Sensor 6: average (last 10 cycles),-0.09921752341881868,0.7801073885592849
+32,down,4,s4_std,Sensor 4: variability (last 10 cycles),-0.0854860502585692,0.6251544163635259
+32,down,5,s2_std,Sensor 2: variability (last 10 cycles),-0.06835793263155161,0.8034401978528659
+33,up,1,cycle,Cycle number,0.46195628536827205,180.0
+33,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.13589651320001106,0.15970615138470257
+33,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.028863642681545645,-0.18587550425081129
+33,up,4,s7_std,Sensor 7: variability (last 10 cycles),0.017335415116354953,0.14885103786585727
+33,up,5,s9_std,Sensor 9: variability (last 10 cycles),0.010965064363756202,0.14671635488949902
+33,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.3147727595423783,0.2345007207316264
+33,down,2,s13_mean,Sensor 13: average (last 10 cycles),-0.18163508406355178,-0.08109129207153062
+33,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.18093072868969076,-0.024956736734202466
+33,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.1568644542052331,0.06673800080635992
+33,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.13219035774189594,0.353502057247451
+34,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.8429819062066097,0.65876058365126
+34,up,2,s3_std,Sensor 3: variability (last 10 cycles),0.1984331971406069,0.34017437665531863
+34,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.15535189281594036,0.8584998344694016
+34,up,4,s8_mean,Sensor 8: average (last 10 cycles),0.09301834940843633,0.45405343023945
+34,up,5,s13_mean,Sensor 13: average (last 10 cycles),0.08347769239508153,0.4775648588805792
+34,down,1,cycle,Cycle number,-0.8688582414459515,105.0
+34,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.23540797023802307,0.4042215974031711
+34,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.19582143786929312,0.6648406158092506
+34,down,4,s14_mean,Sensor 14: average (last 10 cycles),-0.17668499692783146,-1.2156103613043714
+34,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.09138250842349926,0.7801073885592849
+35,up,1,cycle,Cycle number,0.3817622763642844,144.0
+35,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.13457812330716273,-0.32741608978311837
+35,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.03241104314009151,-0.3835191100604717
+35,up,4,s6,Sensor 6: current value (regime-normalised),0.003514951368040681,-0.2746768765287093
+35,up,5,s8_std,Sensor 8: variability (last 10 cycles),0.0017909916067130609,0.18257506535037563
+35,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9332588171893086,-0.32612829592114695
+35,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8479397587592056,-0.3312355348401894
+35,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.11066510836618874,0.005360362441474295
+35,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10652477590417865,-0.6492308997227647
+35,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08150510836142344,-0.053185751742238684
+36,up,1,s6_mean,Sensor 6: average (last 10 cycles),0.09285776945279414,-0.8020690090728001
+36,up,2,s7_std,Sensor 7: variability (last 10 cycles),0.04336986841657374,0.1543319807290894
+36,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.027963791710456886,-0.6343744558957517
+36,up,4,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.019628673394207145,0.04048232977913839
+36,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.012605379716968944,0.46932756823917504
+36,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7990587667565604,-1.0961924198821253
+36,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7490626370192338,-1.0101190415263683
+36,down,3,cycle,Cycle number,-0.2537024679978148,90.0
+36,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10076045621013649,-1.0072661495403632
+36,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08066095791971237,-1.0326958106348594
+37,up,1,s7_std,Sensor 7: variability (last 10 cycles),0.04041488785080788,0.1521401823334061
+37,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.028247840734534835,-0.43102959222622506
+37,up,3,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.018637928393462726,0.06072349466855417
+37,up,4,s8_std,Sensor 8: variability (last 10 cycles),0.0072094930341044545,0.23361440283206328
+37,up,5,s4_std,Sensor 4: variability (last 10 cycles),0.0043376906465787055,0.3836280985865431
+37,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7389086659206632,-0.2203684162355215
+37,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6873736731290806,-0.4443827859545526
+37,down,3,cycle,Cycle number,-0.29030154868910796,47.0
+37,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08292099993162409,-0.0014413414490614452
+37,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.08051604611610928,-0.2332841594409087
+38,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.2518677652708554,0.8568106018606236
+38,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.6479847734816577,0.9991751963893745
+38,up,3,cycle,Cycle number,0.9648325469749508,133.0
+38,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.4255333433817448,1.157506003655897
+38,up,5,s3_std,Sensor 3: variability (last 10 cycles),0.12902795424498395,0.41880237767116235
+38,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.38418768616924076,0.6337358298464986
+38,down,2,s14_mean,Sensor 14: average (last 10 cycles),-0.29734805879456394,-0.14424204029357593
+38,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.1550393568630088,0.6225955409471761
+38,down,4,s14,Sensor 14: current value (regime-normalised),-0.12485637788938048,-0.12799385676841693
+38,down,5,s13_std,Sensor 13: variability (last 10 cycles),-0.11556604431677152,0.13257576715262928
+39,up,1,s17_mean,Sensor 17: average (last 10 cycles),4.03722555252689,1.5922677341039844
+39,up,2,s11_mean,Sensor 11: average (last 10 cycles),3.0432943425514662,1.6833094181057788
+39,up,3,s3_mean,Sensor 3: average (last 10 cycles),0.6510995669087226,1.6026353776396671
+39,up,4,s15_mean,Sensor 15: average (last 10 cycles),0.41140835343588844,-2.2258845828278715
+39,up,5,s14_mean,Sensor 14: average (last 10 cycles),0.3691478140070328,2.0991381121346118
+39,down,1,s21_mean,Sensor 21: average (last 10 cycles),-0.010011125326634904,1.9838958365936405
+39,down,2,s8_trend,Sensor 8: trend per cycle (last 10 cycles),-0.00564311733103446,0.006737133149966577
+39,down,3,s2_std,Sensor 2: variability (last 10 cycles),-0.004499739207485994,0.6403689254335395
+39,down,4,s6_std,Sensor 6: variability (last 10 cycles),-0.0039661349898937924,0.272344126168447
+39,down,5,s11_std,Sensor 11: variability (last 10 cycles),-0.0009862744339239355,0.335890539994274
+40,up,1,s17_mean,Sensor 17: average (last 10 cycles),1.6376456619041595,0.8002369763034421
+40,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.8796119341636089,0.648845594930732
+40,up,3,s6_mean,Sensor 6: average (last 10 cycles),0.5336947738672884,-1.8041140609063848
+40,up,4,s7_std,Sensor 7: variability (last 10 cycles),0.2738583369985849,0.23897252875541472
+40,up,5,s14,Sensor 14: current value (regime-normalised),0.17121871764639598,1.2474476130698755
+40,down,1,cycle,Cycle number,-0.5754589619682886,313.0
+40,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.2661507719495113,0.5376598320830244
+40,down,3,s12_std,Sensor 12: variability (last 10 cycles),-0.07998037314561389,0.1262974274832734
+40,down,4,s9_std,Sensor 9: variability (last 10 cycles),-0.053159253776970866,0.21168946231010471
+40,down,5,s14_mean,Sensor 14: average (last 10 cycles),-0.04614940600619741,1.209356633377244
+41,up,1,s6_mean,Sensor 6: average (last 10 cycles),0.13141916488963049,-1.3294611416167035
+41,up,2,s7_std,Sensor 7: variability (last 10 cycles),0.0444564544618777,0.16009269393661427
+41,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.02803913868466855,-0.6647811644818415
+41,up,4,s12_trend,Sensor 12: trend per cycle (last 10 cycles),0.009305459076566455,0.03968323944559668
+41,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.007741360859418319,0.33371552981238367
+41,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8106002820628815,-0.9078076341920985
+41,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7703481505435222,-0.9535454159691866
+41,down,3,cycle,Cycle number,-0.255686786698615,101.0
+41,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10045215271099228,-0.7772457733805869
+41,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.0817906656816129,-0.5342840028838074
+42,up,1,s17_mean,Sensor 17: average (last 10 cycles),1.0835831747120381,0.687089725189079
+42,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.6073450299429258,0.6885055498128414
+42,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.1697473353646999,0.7195122573551925
+42,up,4,s9_std,Sensor 9: variability (last 10 cycles),0.12157652190009371,0.2713475834257058
+42,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.10590587021215232,0.5025607889203122
+42,down,1,cycle,Cycle number,-1.2017337259692347,87.0
+42,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.30399537786974373,0.38911267669079497
+42,down,3,s14_mean,Sensor 14: average (last 10 cycles),-0.2981970718167852,-1.0037888039199188
+42,down,4,s8_std,Sensor 8: variability (last 10 cycles),-0.10414093123263536,0.1406109253177694
+42,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.08004529550994242,0.7801073885592849
+43,up,1,cycle,Cycle number,0.39938075058867945,133.0
+43,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.13923161105802428,-1.223982715107923
+43,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.04279756985979781,-0.5716606194369207
+43,up,4,s9_std,Sensor 9: variability (last 10 cycles),0.04258354317270609,0.31490680606283367
+43,up,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.02667334142444035,0.02698821985275893
+43,down,1,s11_mean,Sensor 11: average (last 10 cycles),-1.0217096039455038,-1.0003475289170254
+43,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.9222091670724517,-0.5575300370689157
+43,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.11028750331084447,-0.764342686908727
+43,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.11023576549866583,-0.5949182012351609
+43,down,5,s13_mean,Sensor 13: average (last 10 cycles),-0.07638373562160056,-0.5304451526210714
+44,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.2449483709248625,0.7711304558172405
+44,up,2,cycle,Cycle number,0.648385800962897,146.0
+44,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.14257920878034674,0.9808251581868811
+44,up,4,s17_mean,Sensor 17: average (last 10 cycles),0.11395589290172581,0.5173688485175342
+44,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.1045735920605766,0.496497369085618
+44,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.5124424678962339,-0.8793384312054278
+44,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.2575191322648185,0.559462252150374
+44,down,3,s9_mean,Sensor 9: average (last 10 cycles),-0.17117306203671603,-0.7278175275777258
+44,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.1184417157889235,0.7801073885592849
+44,down,5,s8_std,Sensor 8: variability (last 10 cycles),-0.1143615938095704,0.13722930001608077
+45,up,1,s9_std,Sensor 9: variability (last 10 cycles),0.021314679587866217,0.26400322309988533
+45,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.021211824385371506,-0.4709383972454829
+45,up,3,s3_std,Sensor 3: variability (last 10 cycles),0.021155557826102286,0.3436607068792681
+45,up,4,s11_std,Sensor 11: variability (last 10 cycles),0.006126242675292983,0.3900580154142596
+45,up,5,s4,Sensor 4: current value (regime-normalised),0.005363899324977028,0.26079229341465243
+45,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.7009917643463314,-0.6141036626260973
+45,down,2,s11_mean,Sensor 11: average (last 10 cycles),-0.6922210772658031,-0.7954377620261204
+45,down,3,cycle,Cycle number,-0.29655606635286197,88.0
+45,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.0893243746129312,-0.22504959129234559
+45,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.08690439665555673,-0.5974153556231672
+46,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.5870488269590264,0.9699578529749868
+46,up,2,s11_mean,Sensor 11: average (last 10 cycles),2.4826256097465755,1.5213646023371605
+46,up,3,cycle,Cycle number,1.2920390146922627,180.0
+46,up,4,s12_std,Sensor 12: variability (last 10 cycles),0.5545120845475853,0.3661690107008475
+46,up,5,s12,Sensor 12: current value (regime-normalised),0.4275033756515457,3.309995825164018
+46,down,1,s2_std,Sensor 2: variability (last 10 cycles),-0.011270989675881613,0.7096708362420321
+46,down,2,s21_mean,Sensor 21: average (last 10 cycles),-0.010642848827584614,1.915065997038652
+46,down,3,s6_std,Sensor 6: variability (last 10 cycles),-0.007223174264679966,0.27234412616854364
+46,down,4,s12_mean,Sensor 12: average (last 10 cycles),-0.006540288334808571,2.789534877050649
+46,down,5,s17_std,Sensor 17: variability (last 10 cycles),-0.0061838256911919635,0.5993126488617383
+47,up,1,s17_std,Sensor 17: variability (last 10 cycles),0.01158911043768417,0.38184286974276543
+47,up,2,s4_std,Sensor 4: variability (last 10 cycles),0.006200697974369245,0.3881505465115121
+47,up,3,s12_trend,Sensor 12: trend per cycle (last 10 cycles),0.005879181137417907,0.0332389526980197
+47,up,4,s4,Sensor 4: current value (regime-normalised),0.0041543124125712665,0.3298796855474536
+47,up,5,s14_std,Sensor 14: variability (last 10 cycles),0.0017986732700584166,0.2050836887734482
+47,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.6701731778309217,-0.5009564115117342
+47,down,2,s11_mean,Sensor 11: average (last 10 cycles),-0.6650883119240446,-0.055118604226725855
+47,down,3,cycle,Cycle number,-0.25623047537462285,56.0
+47,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08774832467732815,0.03605882106678809
+47,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.08193368156497058,0.0174872021119656
+48,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.9107026225593446,1.0265314785321684
+48,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.5513485310249324,1.0090901851099026
+48,up,3,cycle,Cycle number,1.0138036758099334,179.0
+48,up,4,s21_mean,Sensor 21: average (last 10 cycles),0.702036011898183,-1.3645360679469865
+48,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.3778040633064684,1.1389133672436853
+48,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.35390043302550456,-0.08389164434307426
+48,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.25993632834062413,1.0507434510013993
+48,down,3,s14,Sensor 14: current value (regime-normalised),-0.11119386789581391,0.1654257211762835
+48,down,4,s13_std,Sensor 13: variability (last 10 cycles),-0.09860555969572732,0.12077039917407369
+48,down,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.09137280893088173,-0.013494109926379469
+49,up,1,cycle,Cycle number,0.2932691613521134,211.0
+49,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.12168382709349082,-1.3294611416167035
+49,up,3,s15_std,Sensor 15: variability (last 10 cycles),0.045481860379542334,0.40374787007316904
+49,up,4,s2_mean,Sensor 2: average (last 10 cycles),0.032790210069485196,-0.8776281245844929
+49,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.013910262822312221,0.3550201191991851
+49,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8912812121551074,-1.1821223221266997
+49,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8349896355599694,-1.1232662926407315
+49,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.10313126796166713,-0.6131084607400707
+49,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.09888077875464733,-0.9280188467998052
+49,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08075319261436842,-0.9600210770770123
+50,up,1,s11_mean,Sensor 11: average (last 10 cycles),4.851251444702077,1.7758493128307031
+50,up,2,s17_mean,Sensor 17: average (last 10 cycles),4.275054989134673,1.4225468574324396
+50,up,3,cycle,Cycle number,0.5888167527366737,147.0
+50,up,4,s20_mean,Sensor 20: average (last 10 cycles),0.422081840180375,-1.7381546752651318
+50,up,5,s3_mean,Sensor 3: average (last 10 cycles),0.42063616565246825,1.4421695659439426
+50,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.1213720995946286,-0.5762175568702292
+50,down,2,s11_std,Sensor 11: variability (last 10 cycles),-0.06829929685197914,0.23369852532243693
+50,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.05709705890962708,0.6773101940111346
+50,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.046862603617513696,0.7801073885592849
+50,down,5,s8_std,Sensor 8: variability (last 10 cycles),-0.04521956594176794,0.12846566458283457
+51,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.28187385322501707,0.4472408242800044
+51,up,2,cycle,Cycle number,0.27791675639174174,118.0
+51,up,3,s17_std,Sensor 17: variability (last 10 cycles),0.040668671350068936,0.4462587765539861
+51,up,4,s13_std,Sensor 13: variability (last 10 cycles),0.039910842977653856,0.26235548216610166
+51,up,5,s4_std,Sensor 4: variability (last 10 cycles),0.010702347680512984,0.3588950772723525
+51,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.7343572779448806,-0.21808828372582623
+51,down,2,s13_mean,Sensor 13: average (last 10 cycles),-0.14205991801268386,0.11322389086860978
+51,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.12670609507811098,-0.03370892314873445
+51,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.10411543865949353,0.7801073885592849
+51,down,5,s14_mean,Sensor 14: average (last 10 cycles),-0.10204206039638558,-0.4548025591000007
+52,up,1,s9_mean,Sensor 9: average (last 10 cycles),0.20332208689351772,0.4891321299069924
+52,up,2,s14_mean,Sensor 14: average (last 10 cycles),0.03862417489769955,0.5979368921548815
+52,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.028310641126267595,-0.6248723594626269
+52,up,4,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.01685451869647149,0.02698821985306575
+52,up,5,s2_std,Sensor 2: variability (last 10 cycles),0.011163731851817486,0.40066359534849894
+52,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.6898988240743443,-0.5575300370689158
+52,down,2,s11_mean,Sensor 11: average (last 10 cycles),-0.6830257773499604,-0.4847681154495874
+52,down,3,cycle,Cycle number,-0.21994644113205053,38.0
+52,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.09265557196314972,0.7273681753048946
+52,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.08552272940149051,-0.4078314236822914
+53,up,1,s4_std,Sensor 4: variability (last 10 cycles),0.01276988112172743,0.2704066989368433
+53,up,2,s11_std,Sensor 11: variability (last 10 cycles),0.006073436984919258,0.3556861187094583
+53,up,3,s21_std,Sensor 21: variability (last 10 cycles),0.005767655644776295,0.3220651571486498
+53,up,4,s8_std,Sensor 8: variability (last 10 cycles),0.004355204076011271,0.20221502624892085
+53,up,5,s4,Sensor 4: current value (regime-normalised),0.004044667413364997,0.16224116051933948
+53,down,1,cycle,Cycle number,-0.5883012947929012,108.0
+53,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.28100821865859654,0.06477984406008166
+53,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.1559173878981286,0.24027482236432793
+53,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.1427638411448995,0.09631165996822885
+53,down,5,s13_mean,Sensor 13: average (last 10 cycles),-0.11584064786000381,0.022138648865686488
+54,up,1,s2_mean,Sensor 2: average (last 10 cycles),0.02854711031493592,-0.2504897599962713
+54,up,2,s2_std,Sensor 2: variability (last 10 cycles),0.012291589503605071,0.3775467763075995
+54,up,3,s11_std,Sensor 11: variability (last 10 cycles),0.00944328814439166,0.4212916041547529
+54,up,4,s15_std,Sensor 15: variability (last 10 cycles),0.008788821637204722,0.42662437016799315
+54,up,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.004590884125164474,0.020241164889722607
+54,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.6959503317876203,-0.1542684914320009
+54,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.672311451549077,-0.3878091603973709
+54,down,3,cycle,Cycle number,-0.29561444793960756,50.0
+54,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08694475374116895,-0.36059987469191507
+54,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.07952319757182941,0.017487202112241328
+55,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.6216131328795165,1.091715091114299
+55,up,2,s17_mean,Sensor 17: average (last 10 cycles),1.405256114592419,0.6870897251890791
+55,up,3,cycle,Cycle number,0.847955157399718,203.0
+55,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.43905913698496707,1.0952257516303028
+55,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.12238398346477357,0.5146876285908035
+55,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.6127186257762398,-0.8570194977917869
+55,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.27863053925479186,0.9898420242799324
+55,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.11674291552616994,0.5198757418417917
+55,down,4,s9_std,Sensor 9: variability (last 10 cycles),-0.10675471814301407,0.17634152413201237
+55,down,5,s11_std,Sensor 11: variability (last 10 cycles),-0.07774180565846696,0.28175510241914464
+56,up,1,cycle,Cycle number,0.5787914449799877,162.0
+56,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.2603753966887833,0.42410585059877787
+56,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.1439479301889981,0.5447617949016548
+56,up,4,s13_std,Sensor 13: variability (last 10 cycles),0.07269890255304758,0.2657688844644512
+56,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.05529031059647095,0.4174368619264815
+56,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.24822813582465736,0.2910743462888079
+56,down,2,s8_mean,Sensor 8: average (last 10 cycles),-0.19183466370064478,0.20545321700044467
+56,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.13773382271400397,0.3520485625762921
+56,down,4,s13_mean,Sensor 13: average (last 10 cycles),-0.13484607772058851,0.14965798766928207
+56,down,5,s14_mean,Sensor 14: average (last 10 cycles),-0.1316939492505875,-0.3019625030833542
+57,up,1,s17_mean,Sensor 17: average (last 10 cycles),1.3170719895980767,0.687089725189079
+57,up,2,cycle,Cycle number,0.766650191800089,158.0
+57,up,3,s11_mean,Sensor 11: average (last 10 cycles),0.2546495682284983,0.4802907866817659
+57,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.1441851068631683,0.7105715360203615
+57,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.11030614152546188,0.3812923922178809
+57,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.30399020445921515,-0.611332678774364
+57,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.2433930558068516,0.2144026172177393
+57,down,3,s6_mean,Sensor 6: average (last 10 cycles),-0.10773513148529629,0.7801073885592849
+57,down,4,s21_mean,Sensor 21: average (last 10 cycles),-0.09396747503451572,-0.5655374565557711
+57,down,5,s8_std,Sensor 8: variability (last 10 cycles),-0.08726718763993159,0.12524546155989685
+58,up,1,s17_mean,Sensor 17: average (last 10 cycles),0.4418266456863846,0.5739424740747159
+58,up,2,cycle,Cycle number,0.29432384245879867,119.0
+58,up,3,s11_mean,Sensor 11: average (last 10 cycles),0.22343767031490427,0.4009708769175468
+58,up,4,s13_mean,Sensor 13: average (last 10 cycles),0.06145895631158619,0.24681557914004265
+58,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.05916677000863259,0.3955661270495803
+58,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.2096157081934226,0.43635125350339327
+58,down,2,s14_mean,Sensor 14: average (last 10 cycles),-0.15773856654226234,-0.5310440356410135
+58,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.12965552291288465,0.25396057568130687
+58,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.12429308531775642,0.7801073885592849
+58,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.060571694327585475,0.381492031434889
+59,up,1,s17_mean,Sensor 17: average (last 10 cycles),1.5314316341449203,0.7436633507462606
+59,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.9697275941515408,0.8041804182189995
+59,up,3,cycle,Cycle number,0.8929563009528766,149.0
+59,up,4,s17_std,Sensor 17: variability (last 10 cycles),0.23217689260850072,0.3211380425781639
+59,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.15344330415854632,0.8397039998450392
+59,down,1,s8_mean,Sensor 8: average (last 10 cycles),-0.45315372197364534,0.19332637732967758
+59,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.3708937439087032,0.6277765016947543
+59,down,3,s6_mean,Sensor 6: average (last 10 cycles),-0.12379847358698669,0.7801073885592849
+59,down,4,s7_std,Sensor 7: variability (last 10 cycles),-0.11506395571741986,0.08284060037502071
+59,down,5,s9_std,Sensor 9: variability (last 10 cycles),-0.08554254354050601,0.22204443103403576
+60,up,1,s9_std,Sensor 9: variability (last 10 cycles),0.029715683602676006,0.14051473987862104
+60,up,2,s4_std,Sensor 4: variability (last 10 cycles),0.013539628437052021,0.37825110530663514
+60,up,3,s17_std,Sensor 17: variability (last 10 cycles),0.011741777911338359,0.4174368619264811
+60,up,4,s13_std,Sensor 13: variability (last 10 cycles),0.008095212318742856,0.1378778469605753
+60,up,5,s8_std,Sensor 8: variability (last 10 cycles),0.0045382775194892965,0.2050237028019587
+60,down,1,cycle,Cycle number,-0.5640681719804853,112.0
+60,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.2807112002697494,0.2910743462888079
+60,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.15353360822017081,-0.13530820066260985
+60,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.14197537179922834,0.059931140957306436
+60,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.12283272724347578,0.11956953596673285
+61,up,1,s6_mean,Sensor 6: average (last 10 cycles),0.0535632443244281,-0.16919845001989114
+61,up,2,s13_std,Sensor 13: variability (last 10 cycles),0.04556962163064215,0.273742579604635
+61,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.01960097826848901,-1.3850400741150053
+61,up,4,s17_std,Sensor 17: variability (last 10 cycles),0.011511433339792543,0.37715750371454404
+61,up,5,s4_std,Sensor 4: variability (last 10 cycles),0.0055923111711515885,0.2797658266546325
+61,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.7427885998364754,-0.8969717904120053
+61,down,2,s11_mean,Sensor 11: average (last 10 cycles),-0.7278338767084447,-0.9474675890742106
+61,down,3,cycle,Cycle number,-0.2388935892965121,78.0
+61,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10206290080028946,-1.0147844833901112
+61,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08534603976325603,-1.257987484664171
+62,up,1,cycle,Cycle number,0.22341822235218312,224.0
+62,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.05908517331009059,-0.9075474355815807
+62,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.0319364450092759,-0.4557350429524056
+62,up,4,s3_std,Sensor 3: variability (last 10 cycles),0.029798618416291965,0.34028573306844434
+62,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.00686496520572925,0.3818428697427673
+62,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8729411413043098,-0.1344385139909473
+62,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.83076595986829,-0.1615146581686447
+62,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.10247043867124779,0.12056533930838442
+62,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.0955542836630527,-0.23115057821328025
+62,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08091798076366606,-0.2514424248880374
+63,up,1,cycle,Cycle number,0.32064388796761145,137.0
+63,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.03260067764197128,-0.5260505565577966
+63,up,3,s6_std,Sensor 6: variability (last 10 cycles),0.0019220679297259602,0.0
+63,up,4,s6,Sensor 6: current value (regime-normalised),0.0018862044853718734,0.2527152560153815
+63,up,5,s21_std,Sensor 21: variability (last 10 cycles),0.001393008486612979,0.33539062837160616
+63,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8685036356859246,-0.5409530515325824
+63,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7752225212039361,-0.3312355348401893
+63,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.11197832394864478,0.09024824013325894
+63,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.09363368663402112,-0.8725457348814114
+63,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08336778909544715,-0.153186185117833
+64,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.4482867842741498,0.8702803430225178
+64,up,2,s17_mean,Sensor 17: average (last 10 cycles),1.283494691027447,0.6870897251890791
+64,up,3,s12,Sensor 12: current value (regime-normalised),0.32427025672397247,2.073710288589751
+64,up,4,s6_mean,Sensor 6: average (last 10 cycles),0.2674044765431228,-1.0657650753447518
+64,up,5,s7,Sensor 7: current value (regime-normalised),0.1819655881570583,2.081450543184122
+64,down,1,cycle,Cycle number,-0.5452599375181396,271.0
+64,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.23938810583865555,0.6059740816274045
+64,down,3,s9_std,Sensor 9: variability (last 10 cycles),-0.07775162199776282,0.1258744239147326
+64,down,4,s20_mean,Sensor 20: average (last 10 cycles),-0.05053005866174407,1.1666249703576386
+64,down,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.04431957090236146,0.0
+65,up,1,s2_mean,Sensor 2: average (last 10 cycles),0.02086446578175103,-0.8206155459855715
+65,up,2,s4_std,Sensor 4: variability (last 10 cycles),0.0022253523804611655,0.30184598745963076
+65,up,3,s6,Sensor 6: current value (regime-normalised),0.0019490128309552271,0.2527152560153815
+65,up,4,s2_std,Sensor 2: variability (last 10 cycles),0.0012328565691569465,0.43271823353502953
+65,up,5,s21_std,Sensor 21: variability (last 10 cycles),0.0009819014291029592,0.32363018189802817
+65,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.689421317131282,-0.752472810903838
+65,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6652040486226769,-0.5575300370689157
+65,down,3,cycle,Cycle number,-0.2710093749969818,79.0
+65,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.08546435608143421,-0.4130156061811004
+65,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08416175050026761,-0.5094377290183855
+66,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.0092363774214361,0.638930606210204
+66,up,2,cycle,Cycle number,0.5069797788952679,122.0
+66,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.17764225041087187,0.7367841053883918
+66,up,4,s9_std,Sensor 9: variability (last 10 cycles),0.11981442803067484,0.2943093659864998
+66,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.09268932133968907,0.35097529304275554
+66,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.20339660532981133,-0.37778735953396997
+66,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.16139720955061737,0.35713579392534645
+66,down,3,s17_mean,Sensor 17: average (last 10 cycles),-0.12891122542116715,0.34764797184598945
+66,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.1079574988879564,0.7801073885592849
+66,down,5,s15_mean,Sensor 15: average (last 10 cycles),-0.060736421503583944,0.940008298705963
+67,up,1,cycle,Cycle number,0.3784720641119768,186.0
+67,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.12479977045041454,-0.6438513693095729
+67,up,3,s7_std,Sensor 7: variability (last 10 cycles),0.05992487942880006,0.15386831956102384
+67,up,4,s2_mean,Sensor 2: average (last 10 cycles),0.03229209213258602,-0.40632414150002294
+67,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.0099328269710501,0.3548662495007505
+67,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9906437729862378,-0.3657882508032635
+67,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.3088835194437682,0.06477984406008164
+67,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.10985747523530623,0.18119953765973779
+67,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10354172727988978,-0.18847895366067124
+67,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.09309797404833961,-0.22469812293874886
+68,up,1,cycle,Cycle number,0.2948177519596186,188.0
+68,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.09328273591851743,-0.5911121560551638
+68,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.03220692975059903,-0.32080527360159766
+68,up,4,s8_std,Sensor 8: variability (last 10 cycles),0.029013009578066747,0.2525211956148462
+68,up,5,s17_std,Sensor 17: variability (last 10 cycles),0.018984930034227677,0.39556612704958044
+68,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9183799786806848,-1.0367024875589554
+68,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8469035115513437,-1.1232662926407313
+68,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.10197780771893893,-0.5100303235431005
+68,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.09375442933397383,-0.8954055337488827
+68,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08264441538717181,-1.0745564571641755
+69,up,1,s2_mean,Sensor 2: average (last 10 cycles),0.020792710587723157,-0.42722875365298807
+69,up,2,s11_std,Sensor 11: variability (last 10 cycles),0.0029779680113944246,0.3105055253978776
+69,up,3,s21_std,Sensor 21: variability (last 10 cycles),0.0008746986029945185,0.36087244414433495
+69,up,4,s15_trend,Sensor 15: trend per cycle (last 10 cycles),0.0006868366882149978,0.06614524993044367
+69,up,5,s6_std,Sensor 6: variability (last 10 cycles),0.0005266775288150906,0.0
+69,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.6779210551441427,-0.5574780327334607
+69,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6586758618912096,-0.3312355348401894
+69,down,3,cycle,Cycle number,-0.2732486731080188,105.0
+69,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08558614332803932,-0.1966456757854269
+69,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.07641420480422964,-0.5199968367920048
+70,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.6020004228628151,0.5959656550879169
+70,up,2,s4_mean,Sensor 4: average (last 10 cycles),0.14415370065674632,0.5784926981194303
+70,up,3,s8_mean,Sensor 8: average (last 10 cycles),0.08832137150429292,0.417672911229079
+70,up,4,s13_mean,Sensor 13: average (last 10 cycles),0.07054900207843662,0.3743349179441905
+70,up,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.04028122045606035,0.04722938474248154
+70,down,1,cycle,Cycle number,-0.6271513296371618,84.0
+70,down,2,s14_mean,Sensor 14: average (last 10 cycles),-0.23078451812200326,-0.9709948510908163
+70,down,3,s17_mean,Sensor 17: average (last 10 cycles),-0.21512379404403442,0.3476479718459895
+70,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.19549793090938072,0.29681576507233165
+70,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.09006118907502247,0.7801073885592849
+71,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.2998547762336714,0.9699578529749868
+71,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.0601262923007564,1.078495106153596
+71,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.25012697760342056,1.1254006861353643
+71,up,4,s12,Sensor 12: current value (regime-normalised),0.2451275827945131,2.6018026289041676
+71,up,5,s14,Sensor 14: current value (regime-normalised),0.2408977777859703,1.650378757630876
+71,down,1,cycle,Cycle number,-1.6482516159800222,367.0
+71,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.33763489083229614,0.6888232778833435
+71,down,3,s6_mean,Sensor 6: average (last 10 cycles),-0.1209954184650586,0.6746289620505042
+71,down,4,s12_std,Sensor 12: variability (last 10 cycles),-0.08225451805092536,0.13102072923711394
+71,down,5,s9_std,Sensor 9: variability (last 10 cycles),-0.07145420159431214,0.17530442130641835
+72,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.4016491538196069,0.2720760235506855
+72,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.2141064126543768,-0.37021617505404514
+72,up,3,s9_mean,Sensor 9: average (last 10 cycles),0.15606593537604718,0.5769430504961803
+72,up,4,s12,Sensor 12: current value (regime-normalised),0.15483674663904262,1.3136236253625975
+72,up,5,s6_mean,Sensor 6: average (last 10 cycles),0.12935211649818767,-0.8020690090728001
+72,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.8385629738290334,0.008206218502900047
+72,down,2,s4_mean,Sensor 4: average (last 10 cycles),-0.1181417914762969,-0.08830223506811528
+72,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.10473863574968657,0.41920001638373805
+72,down,4,s9,Sensor 9: current value (regime-normalised),-0.043863492334285006,0.531530424710333
+72,down,5,s14,Sensor 14: current value (regime-normalised),-0.0430695220646948,0.7123883827000735
+73,up,1,s2_mean,Sensor 2: average (last 10 cycles),0.028481435753932447,-0.41012498007328146
+73,up,2,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.019269313397605684,0.0809646595582768
+73,up,3,s17_std,Sensor 17: variability (last 10 cycles),0.007064479006231583,0.4462587765539861
+73,up,4,s4,Sensor 4: current value (regime-normalised),0.006296557588469144,0.5401898351281605
+73,up,5,s8_std,Sensor 8: variability (last 10 cycles),0.003132652150826012,0.22406412489681973
+73,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7213125469520683,-0.5607830289736384
+73,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6730308556676445,-0.21808828372582623
+73,down,3,cycle,Cycle number,-0.30382106390503005,109.0
+73,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08612964436712321,-0.03341822421450337
+73,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.08205015529107894,-0.19473249211694457
+74,up,1,s7_std,Sensor 7: variability (last 10 cycles),0.04128549355160858,0.17001461386537048
+74,up,2,s9_std,Sensor 9: variability (last 10 cycles),0.022834937426441455,0.2634858809857738
+74,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.02251351060898891,-0.8928314788775701
+74,up,4,s4_std,Sensor 4: variability (last 10 cycles),0.002947177857355891,0.33959793979144515
+74,up,5,s8_trend,Sensor 8: trend per cycle (last 10 cycles),0.0029057367185780477,0.06737133150119755
+74,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7209596841446477,-0.8284877244278819
+74,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6868075339418724,-0.6141036626260974
+74,down,3,cycle,Cycle number,-0.2968269696232365,68.0
+74,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.08573854830095755,-0.8274357317829413
+74,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08157033986745277,-1.2152547413321615
+75,up,1,cycle,Cycle number,0.5507683519224572,191.0
+75,up,2,s15_mean,Sensor 15: average (last 10 cycles),0.1765611061245832,-1.097573472918487
+75,up,3,s6_mean,Sensor 6: average (last 10 cycles),0.11734120422995613,-0.9075474355815807
+75,up,4,s7_std,Sensor 7: variability (last 10 cycles),0.04620892881386803,0.15793854289194803
+75,up,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.03496301995503652,0.04048232977913839
+75,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.26093403021418626,0.06477984406008164
+75,down,2,s4_mean,Sensor 4: average (last 10 cycles),-0.14973317864077082,-0.038417073983998164
+75,down,3,s11_mean,Sensor 11: average (last 10 cycles),-0.12140604242148113,0.030811298017841278
+75,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.11933946653141497,0.12733828641544584
+75,down,5,s13_std,Sensor 13: variability (last 10 cycles),-0.0551796962025175,0.13426469851683187
+76,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.470672724983916,0.8568106018606239
+76,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.5277758936466352,1.187559982079399
+76,up,3,cycle,Cycle number,0.893998002426242,180.0
+76,up,4,s21_mean,Sensor 21: average (last 10 cycles),0.7030043802674714,-1.4057407784736242
+76,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.14546738033001097,0.9557301789857062
+76,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.4796873898897119,-0.6448408374727299
+76,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.34465693343131765,0.5142585678774034
+76,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.19697769768274392,0.8621163866484457
+76,down,4,s14,Sensor 14: current value (regime-normalised),-0.10033723258480559,-0.9356416605636028
+76,down,5,s13_std,Sensor 13: variability (last 10 cycles),-0.0922232904162836,0.14023490397231947
+77,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.19110336350041116,0.12004619650259536
+77,up,2,s12,Sensor 12: current value (regime-normalised),0.16190650913651997,1.2312045895909496
+77,up,3,s9_mean,Sensor 9: average (last 10 cycles),0.12153568558228531,0.4846847563262152
+77,up,4,s6_mean,Sensor 6: average (last 10 cycles),0.11782076220328494,-0.8020690090728001
+77,up,5,s15_mean,Sensor 15: average (last 10 cycles),0.06694304918873598,-1.0939853196345883
+77,down,1,cycle,Cycle number,-0.4744601592232513,381.0
+77,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.17937223868561986,0.3476479718459895
+77,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.1383844035433937,0.27094355992573643
+77,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10460186457481296,0.0660268070638194
+77,down,5,s12_std,Sensor 12: variability (last 10 cycles),-0.05948438387409207,0.11226005904591464
+78,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.8305977003320284,0.9133842274178054
+78,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.8788986933684158,1.1776449933588709
+78,up,3,s14_mean,Sensor 14: average (last 10 cycles),0.6883130828804371,1.5801485138226228
+78,up,4,s14,Sensor 14: current value (regime-normalised),0.4350835810480392,1.8991604687483379
+78,up,5,s12,Sensor 12: current value (regime-normalised),0.3503993256688289,2.5193835931325546
+78,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.23923151783174856,1.014551433689593
+78,down,2,s11_std,Sensor 11: variability (last 10 cycles),-0.1448713858155272,0.2562171557232963
+78,down,3,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.06402417889380801,0.006747054963036304
+78,down,4,s9_std,Sensor 9: variability (last 10 cycles),-0.060935716190530016,0.24019757580685744
+78,down,5,s17_std,Sensor 17: variability (last 10 cycles),-0.025026823886630148,0.5198757418417944
+79,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.3473976170181934,1.0831051040893498
+79,up,2,s11_mean,Sensor 11: average (last 10 cycles),2.405587389042079,1.547804572258567
+79,up,3,cycle,Cycle number,0.9528972236984967,170.0
+79,up,4,s21_mean,Sensor 21: average (last 10 cycles),0.44676802072173405,-1.5266256804386684
+79,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.442327235752484,1.7040075952475184
+79,down,1,s14_mean,Sensor 14: average (last 10 cycles),-0.26157017854873754,-0.7509599262101412
+79,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.21972402269078428,1.033446864414632
+79,down,3,s8_std,Sensor 8: variability (last 10 cycles),-0.18904236846680955,0.12210763437426891
+79,down,4,s15_mean,Sensor 15: average (last 10 cycles),-0.14683235038810472,1.6592699342509796
+79,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.0985102108268033,0.7801073885592849
+80,up,1,s6_mean,Sensor 6: average (last 10 cycles),0.12329883804697449,-1.3822003548711126
+80,up,2,s7_std,Sensor 7: variability (last 10 cycles),0.054469563478002,0.18736797571263492
+80,up,3,s8_std,Sensor 8: variability (last 10 cycles),0.04977179706202746,1.169138180171254
+80,up,4,s13_std,Sensor 13: variability (last 10 cycles),0.037218607403881665,1.1031156313167578
+80,up,5,s12_std,Sensor 12: variability (last 10 cycles),0.028529765387417243,0.18231060732046753
+80,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.8262057779278044,-1.251527243170393
+80,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7885916479795706,-0.8403981648548235
+80,down,3,cycle,Cycle number,-0.2572011934514538,85.0
+80,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.11288982231392321,-1.2216402633641814
+80,down,5,s14_mean,Sensor 14: average (last 10 cycles),-0.08042866586034475,-0.8789813282708071
+81,up,1,s11_mean,Sensor 11: average (last 10 cycles),1.8164561295601747,1.015700177590253
+81,up,2,cycle,Cycle number,1.5829149932686304,155.0
+81,up,3,s17_mean,Sensor 17: average (last 10 cycles),1.1146679419278926,0.6870897251890791
+81,up,4,s12_std,Sensor 12: variability (last 10 cycles),0.6509148783437017,0.30766179526312776
+81,up,5,s12,Sensor 12: current value (regime-normalised),0.592764389295529,2.6933793353170983
+81,down,1,s6_mean,Sensor 6: average (last 10 cycles),-0.2385208457582674,0.1999760427609724
+81,down,2,s3_mean,Sensor 3: average (last 10 cycles),-0.16118654036410307,0.4437640763262933
+81,down,3,s21_mean,Sensor 21: average (last 10 cycles),-0.05551746582679968,1.464343711132635
+81,down,4,s20_mean,Sensor 20: average (last 10 cycles),-0.029255523789665713,1.4491446345209495
+81,down,5,s17_std,Sensor 17: variability (last 10 cycles),-0.024590480680781294,0.5842898923134371
+82,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.9733764456058336,1.5922677341039844
+82,up,2,s11_mean,Sensor 11: average (last 10 cycles),3.900999388817575,1.9179641511582677
+82,up,3,s3_mean,Sensor 3: average (last 10 cycles),0.6213089771792796,1.6870834180338807
+82,up,4,cycle,Cycle number,0.5703551677486763,194.0
+82,up,5,s12_std,Sensor 12: variability (last 10 cycles),0.34787451324006047,0.27458329347273636
+82,down,1,s6_mean,Sensor 6: average (last 10 cycles),-0.14236323118646088,0.35819368252416217
+82,down,2,s21_mean,Sensor 21: average (last 10 cycles),-0.012137648543510883,2.2658052858348134
+82,down,3,s17_std,Sensor 17: variability (last 10 cycles),-0.01167782686027684,0.8925175531079748
+82,down,4,s4_std,Sensor 4: variability (last 10 cycles),-0.008118159038016395,0.48947839555406103
+82,down,5,s2_std,Sensor 2: variability (last 10 cycles),-0.006661805335231173,0.6602601067118579
+83,up,1,cycle,Cycle number,0.6426360847475988,168.0
+83,up,2,s11_mean,Sensor 11: average (last 10 cycles),0.3783273807344221,0.38775089195683415
+83,up,3,s4_mean,Sensor 4: average (last 10 cycles),0.14968055895189483,0.5015821748186535
+83,up,4,s13_mean,Sensor 13: average (last 10 cycles),0.06658329787471483,0.22859853073901615
+83,up,5,s4_std,Sensor 4: variability (last 10 cycles),0.04939261853259491,0.3645670152653375
+83,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.17150988332864076,0.3476479718459895
+83,down,2,s14_mean,Sensor 14: average (last 10 cycles),-0.14316736746312544,-0.8432115176532019
+83,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.14314436883063933,0.0889660270968931
+83,down,4,s9_mean,Sensor 9: average (last 10 cycles),-0.13883378147314596,-0.6904101742372324
+83,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.10714142678448854,0.7801073885592849
+84,up,1,s17_std,Sensor 17: variability (last 10 cycles),0.008210859022225713,0.3578030245084123
+84,up,2,s4_std,Sensor 4: variability (last 10 cycles),0.002644850456240357,0.29285189160094016
+84,up,3,s15_std,Sensor 15: variability (last 10 cycles),0.0022750225498670484,0.405423544528672
+84,up,4,s3_std,Sensor 3: variability (last 10 cycles),0.002007491960560607,0.43720645623457727
+84,up,5,s8_std,Sensor 8: variability (last 10 cycles),0.0018378684537705397,0.1942819129498378
+84,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.6870783457753094,-0.23358840119622232
+84,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6618925641313015,-0.21808828372582623
+84,down,3,cycle,Cycle number,-0.2868945535563122,76.0
+84,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08497931218134927,-0.09620919400848257
+84,down,5,s8_mean,Sensor 8: average (last 10 cycles),-0.08083621083786417,-0.2735569499737593
+85,up,1,cycle,Cycle number,0.247144002731197,118.0
+85,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.10189658386432533,-0.8020690090728001
+85,up,3,s2_std,Sensor 2: variability (last 10 cycles),0.05169484531497176,0.2873483119371792
+85,up,4,s2_mean,Sensor 2: average (last 10 cycles),0.028078091879182702,-0.35501282076096774
+85,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.00626590721126363,0.36751729912780917
+85,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9396285734363052,-0.2368933974363999
+85,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.7988933325923289,-0.2746619092830078
+85,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.11039088613963159,-0.43739676355088986
+85,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.10480448309032295,0.07205798062779774
+85,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.07996761466000928,0.14623371714047795
+86,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.5389624427886264,1.3093996063180764
+86,up,2,s11_mean,Sensor 11: average (last 10 cycles),2.0465844020707182,1.1941699745597494
+86,up,3,cycle,Cycle number,0.9768106881712073,174.0
+86,up,4,s14_mean,Sensor 14: average (last 10 cycles),0.7335047111317055,2.1816884071872225
+86,up,5,s21_mean,Sensor 21: average (last 10 cycles),0.4332418060671948,-1.3416371658126398
+86,down,1,s8_mean,Sensor 8: average (last 10 cycles),-0.12720356680620043,0.2175800566706602
+86,down,2,s12_std,Sensor 12: variability (last 10 cycles),-0.1092798835415671,0.09825039998201701
+86,down,3,s9_std,Sensor 9: variability (last 10 cycles),-0.09772179069350817,0.17709934763861698
+86,down,4,s6_mean,Sensor 6: average (last 10 cycles),-0.06729764616986217,0.7801073885592849
+86,down,5,s20_mean,Sensor 20: average (last 10 cycles),-0.04538996951288703,-1.3959477581095725
+87,up,1,cycle,Cycle number,0.3461074871013268,218.0
+87,up,2,s14,Sensor 14: current value (regime-normalised),0.315626766559526,1.1278181299727181
+87,up,3,s9,Sensor 9: current value (regime-normalised),0.15571375406119148,0.9579841358441312
+87,up,4,s9_mean,Sensor 9: average (last 10 cycles),0.1303438161325922,0.9533885164773611
+87,up,5,s14_mean,Sensor 14: average (last 10 cycles),0.030807456132359134,0.8881425436880495
+87,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.824407863244699,-0.10138855158918816
+87,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.20810599021155915,0.34764797184598956
+87,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.16167693376936612,0.05993086069915504
+87,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.12232073661702612,-0.10378119459046573
+87,down,5,s6_mean,Sensor 6: average (last 10 cycles),-0.11252964456485356,0.7801073885592849
+88,up,1,s2_mean,Sensor 2: average (last 10 cycles),0.020936150107115047,-0.3170044350284039
+88,up,2,s17_std,Sensor 17: variability (last 10 cycles),0.017593759051037154,0.32113804257816453
+88,up,3,s2_std,Sensor 2: variability (last 10 cycles),0.014310922733498965,0.3988164693171032
+88,up,4,s20_std,Sensor 20: variability (last 10 cycles),0.00444922016049255,0.603992533549459
+88,up,5,s4_std,Sensor 4: variability (last 10 cycles),0.0035509253046714442,0.38343226844050393
+88,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.7087392621226357,-0.7458628184234828
+88,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6899890301442377,-0.8403981648548235
+88,down,3,cycle,Cycle number,-0.28433925443480057,41.0
+88,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.08901608063339105,-0.5282205830488376
+88,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08171177795363946,-0.8244100242580806
+89,up,1,cycle,Cycle number,0.25593008117618643,120.0
+89,up,2,s6_mean,Sensor 6: average (last 10 cycles),0.16237510514565165,-1.3294611416167035
+89,up,3,s7_std,Sensor 7: variability (last 10 cycles),0.05351963015049906,0.17609067623350647
+89,up,4,s11_std,Sensor 11: variability (last 10 cycles),0.010319197123615708,0.29716390739748294
+89,up,5,s2_std,Sensor 2: variability (last 10 cycles),0.006368702659726671,0.4189360224096643
+89,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.971476088752731,-0.36578825080326116
+89,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8325569160938098,-0.10494103261146308
+89,down,3,s4_mean,Sensor 4: average (last 10 cycles),-0.10995610744495106,-0.383142840905429
+89,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.09424306485571428,-0.07952751524975889
+89,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.07954780486802009,-0.31277990001086103
+90,up,1,cycle,Cycle number,0.574352997924502,206.0
+90,up,2,s14,Sensor 14: current value (regime-normalised),0.32162615421693486,1.2629220735700166
+90,up,3,s11_mean,Sensor 11: average (last 10 cycles),0.31263695955980947,0.404275873157722
+90,up,4,s9_mean,Sensor 9: average (last 10 cycles),0.2175977313931332,1.4807481926326846
+90,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.1777914630386331,0.6772470292268961
+90,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.24985146851723145,0.29107434628880796
+90,down,2,s13_mean,Sensor 13: average (last 10 cycles),-0.2492631110290417,-0.07501894260424566
+90,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.21985698376617194,-0.07952751525003461
+90,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.13679852769353737,0.4472524635370698
+90,down,5,s12_std,Sensor 12: variability (last 10 cycles),-0.12008645422053577,0.10187595769596267
+91,up,1,s11_std,Sensor 11: variability (last 10 cycles),0.004677596765842014,0.35826999372101465
+91,up,2,s21_trend,Sensor 21: trend per cycle (last 10 cycles),0.0028595092824864705,-0.15961185660827748
+91,up,3,s2,Sensor 2: current value (regime-normalised),0.0014790845097926123,0.8460521683897476
+91,up,4,s15_trend,Sensor 15: trend per cycle (last 10 cycles),0.0006868366882149978,0.07520624307160169
+91,up,5,s14_std,Sensor 14: variability (last 10 cycles),0.0005732892055079002,0.2418039528514851
+91,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.6693807227591639,-0.04836740705428152
+91,down,2,cycle,Cycle number,-0.47839693244459225,56.0
+91,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.13437175071786192,0.07980901066861641
+91,down,4,s8_mean,Sensor 8: average (last 10 cycles),-0.12378890648529671,0.05993114095758219
+91,down,5,s13_mean,Sensor 13: average (last 10 cycles),-0.10317209857977896,0.1375132887358167
+92,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.693632463246287,1.365973231875258
+92,up,2,s11_mean,Sensor 11: average (last 10 cycles),2.2003215644240592,1.349504797848017
+92,up,3,s14_mean,Sensor 14: average (last 10 cycles),0.750594096513742,1.9367157940390303
+92,up,4,s12_std,Sensor 12: variability (last 10 cycles),0.551063106198277,0.24455724762882278
+92,up,5,s9_mean,Sensor 9: average (last 10 cycles),0.3964623472547865,1.9152565914739093
+92,down,1,s9_std,Sensor 9: variability (last 10 cycles),-0.033483739220390954,0.20515075980993622
+92,down,2,s21_mean,Sensor 21: average (last 10 cycles),-0.019235448449843668,2.189852822650832
+92,down,3,s21_std,Sensor 21: variability (last 10 cycles),-0.015753719633452467,0.4361246218771241
+92,down,4,s12_mean,Sensor 12: average (last 10 cycles),-0.00952966844212608,2.847533457778828
+92,down,5,s3_std,Sensor 3: variability (last 10 cycles),-0.008435611321856617,0.8317458209282712
+93,up,1,cycle,Cycle number,0.34326359253108196,158.0
+93,up,2,s2_mean,Sensor 2: average (last 10 cycles),0.03127367860474885,-0.4386312693726989
+93,up,3,s13_std,Sensor 13: variability (last 10 cycles),0.02829548340311702,0.277237465436795
+93,up,4,s17_std,Sensor 17: variability (last 10 cycles),0.01111837389322339,0.4770706993445508
+93,up,5,s11_std,Sensor 11: variability (last 10 cycles),0.007617046552028339,0.3597743066823729
+93,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.9163668577795145,-0.2897733372792126
+93,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8726472830502984,-0.5575300370689157
+93,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.1210615950745016,0.023550621946935503
+93,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.09647264082382921,-0.5795339129535073
+93,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.08126609207952816,-0.23385513936703545
+94,up,1,s11_mean,Sensor 11: average (last 10 cycles),4.359236521932998,1.8948291774770343
+94,up,2,s17_mean,Sensor 17: average (last 10 cycles),4.1149885079634325,2.1580039896758003
+94,up,3,s3_mean,Sensor 3: average (last 10 cycles),0.7147258427023064,1.823711917122628
+94,up,4,s15_mean,Sensor 15: average (last 10 cycles),0.3964892668648749,-2.15705727892765
+94,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.35840367089802155,1.4945102385154274
+94,down,1,s6_mean,Sensor 6: average (last 10 cycles),-0.05668062879600064,0.7801073885592849
+94,down,2,cycle,Cycle number,-0.032582835529089436,333.0
+94,down,3,s9_std,Sensor 9: variability (last 10 cycles),-0.029666557954176213,0.09484412497295175
+94,down,4,s21_mean,Sensor 21: average (last 10 cycles),-0.011680185968753396,2.1720129802903503
+94,down,5,s6,Sensor 6: current value (regime-normalised),-0.0057540507140323716,0.7801073885592849
+95,up,1,cycle,Cycle number,0.27538345371294853,213.0
+95,up,2,s2_std,Sensor 2: variability (last 10 cycles),0.05595354279945601,0.3469906343978557
+95,up,3,s2_mean,Sensor 2: average (last 10 cycles),0.04418194565270714,-0.5526564265706281
+95,up,4,s6_mean,Sensor 6: average (last 10 cycles),0.028227999885709378,-0.16919845001989117
+95,up,5,s13_trend,Sensor 13: trend per cycle (last 10 cycles),0.025412204941822124,0.0404823297791384
+95,down,1,s11_mean,Sensor 11: average (last 10 cycles),-1.0041561325826867,-0.26002837111763333
+95,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.8695369467472529,-0.3312355348401894
+95,down,3,s8_mean,Sensor 8: average (last 10 cycles),-0.12310134811228586,-0.0674006755800948
+95,down,4,s4_mean,Sensor 4: average (last 10 cycles),-0.10904605047458317,-0.6445573408431929
+95,down,5,s3_mean,Sensor 3: average (last 10 cycles),-0.07643765251874819,-0.5893799359320133
+96,up,1,s11_mean,Sensor 11: average (last 10 cycles),0.2474401861570069,0.3547009295550797
+96,up,2,s12,Sensor 12: current value (regime-normalised),0.1639264811975593,1.432673343699376
+96,up,3,s9_mean,Sensor 9: average (last 10 cycles),0.13243482590258748,0.7939254659757579
+96,up,4,s15_mean,Sensor 15: average (last 10 cycles),0.06889413033514674,-1.074250476573149
+96,up,5,s8_mean,Sensor 8: average (last 10 cycles),0.053376115286429396,0.78754152117024
+96,down,1,s17_mean,Sensor 17: average (last 10 cycles),-0.7058561582090543,-0.10494103261146306
+96,down,2,cycle,Cycle number,-0.367115153261127,358.0
+96,down,3,s3_mean,Sensor 3: average (last 10 cycles),-0.1288469532510334,0.5824274679546617
+96,down,4,s12_std,Sensor 12: variability (last 10 cycles),-0.049690050787975906,0.10313697863318284
+96,down,5,s8_std,Sensor 8: variability (last 10 cycles),-0.04660027681957368,0.13841488835020765
+97,up,1,s2_mean,Sensor 2: average (last 10 cycles),0.02083807831816431,-0.8111134495524468
+97,up,2,s17_std,Sensor 17: variability (last 10 cycles),0.007799865407635871,0.41743686192648166
+97,up,3,s11_std,Sensor 11: variability (last 10 cycles),0.007062035667103995,0.4053919159945159
+97,up,4,s8_trend,Sensor 8: trend per cycle (last 10 cycles),0.0029057367185780477,0.04715993205099147
+97,up,5,s14_std,Sensor 14: variability (last 10 cycles),0.0020868901653427964,0.17909669373740053
+97,down,1,s11_mean,Sensor 11: average (last 10 cycles),-0.678375766478817,-0.7590828033841884
+97,down,2,s17_mean,Sensor 17: average (last 10 cycles),-0.6598387503244176,-0.38780916039737096
+97,down,3,cycle,Cycle number,-0.2667064523018319,95.0
+97,down,4,s3_mean,Sensor 3: average (last 10 cycles),-0.08563635351870497,-0.2883611895354248
+97,down,5,s4_mean,Sensor 4: average (last 10 cycles),-0.0802804229110573,-0.8488731431653223
+98,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.709457436156314,1.7619886107755292
+98,up,2,s11_mean,Sensor 11: average (last 10 cycles),2.434436517320576,1.5114496136166324
+98,up,3,cycle,Cycle number,0.897996059204643,182.0
+98,up,4,s4_mean,Sensor 4: average (last 10 cycles),0.4357287344503689,1.777463748941652
+98,up,5,s9_mean,Sensor 9: average (last 10 cycles),0.36308240217382526,2.315470798481221
+98,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.20171128789658443,0.967022157942767
+98,down,2,s13_std,Sensor 13: variability (last 10 cycles),-0.1541480296905835,0.12161554873795317
+98,down,3,s12_std,Sensor 12: variability (last 10 cycles),-0.06572398271384133,0.11694343239850377
+98,down,4,s13_trend,Sensor 13: trend per cycle (last 10 cycles),-0.06182963956966321,-0.013494109926379469
+98,down,5,s17_std,Sensor 17: variability (last 10 cycles),-0.05671594247724951,0.38184286974276466
+99,up,1,s17_mean,Sensor 17: average (last 10 cycles),3.9423658392461447,1.365973231875258
+99,up,2,s11_mean,Sensor 11: average (last 10 cycles),3.8399114264255303,1.9245741436386183
+99,up,3,s12_std,Sensor 12: variability (last 10 cycles),0.4093984340105053,0.2506477815669692
+99,up,4,s15_mean,Sensor 15: average (last 10 cycles),0.3340443402596781,-2.265517366827288
+99,up,5,s4_mean,Sensor 4: average (last 10 cycles),0.2892966993148974,1.5145252624127203
+99,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.09357800581910172,1.2552501512331735
+99,down,2,s2_std,Sensor 2: variability (last 10 cycles),-0.012212809049813436,0.6641384622190869
+99,down,3,s21_mean,Sensor 21: average (last 10 cycles),-0.009006029256717138,1.9298437769044265
+99,down,4,s21_std,Sensor 21: variability (last 10 cycles),-0.0034678894517481754,0.39125908361922157
+99,down,5,s17_std,Sensor 17: variability (last 10 cycles),-0.0029740123212485554,0.5333812569038876
+100,up,1,s17_mean,Sensor 17: average (last 10 cycles),2.492757580664617,0.9133842274178052
+100,up,2,s11_mean,Sensor 11: average (last 10 cycles),1.0220612436381407,0.6852005535726663
+100,up,3,s6_mean,Sensor 6: average (last 10 cycles),0.3915890327555113,-0.8548082223271904
+100,up,4,s12,Sensor 12: current value (regime-normalised),0.2748895267963985,2.003501480339848
+100,up,5,s7_std,Sensor 7: variability (last 10 cycles),0.2659873340754579,0.23112930998122058
+100,down,1,s3_mean,Sensor 3: average (last 10 cycles),-0.25340103983834456,0.5911484359815982
+100,down,2,s11_std,Sensor 11: variability (last 10 cycles),-0.09183911367972175,0.2657732133875301
+100,down,3,s2_mean,Sensor 2: average (last 10 cycles),-0.047141998098935184,0.3766486045919718
+100,down,4,s9_std,Sensor 9: variability (last 10 cycles),-0.04425283119976079,0.19813407926220658
+100,down,5,s20_mean,Sensor 20: average (last 10 cycles),-0.04007306791655513,1.5167901879121655

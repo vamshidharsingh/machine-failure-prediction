@@ -1,0 +1,666 @@
+{
+  "project_version": "2.0.0",
+  "dataset": {
+    "subset": "FD004",
+    "n_regimes": 6,
+    "train_engines": 249,
+    "test_engines": 248,
+    "fit_engines": 149,
+    "validation_engines": 50,
+    "lifecycle_test_engines": 50,
+    "sensors_used": [
+      "s2",
+      "s3",
+      "s4",
+      "s6",
+      "s7",
+      "s8",
+      "s9",
+      "s10",
+      "s11",
+      "s12",
+      "s13",
+      "s14",
+      "s15",
+      "s16",
+      "s17",
+      "s20",
+      "s21"
+    ],
+    "n_features": 69,
+    "test_positive_engines": 53
+  },
+  "settings": {
+    "seed": 42,
+    "failure_window_cycles": 30,
+    "rolling_window_cycles": 10,
+    "rul_cap": 125,
+    "val_fraction": 0.2,
+    "lifecycle_fraction": 0.2,
+    "cost_false_alarm": 1.0,
+    "cost_missed_failure": 10.0,
+    "cost_ratio_main": 10.0,
+    "alert_min_lead": 10,
+    "alert_max_lead": 50,
+    "alert_min_lead_options": [
+      10,
+      20,
+      30
+    ],
+    "confirm_cycles_options": [
+      1,
+      2,
+      3
+    ]
+  },
+  "model_selection": {
+    "validation_pr_auc": {
+      "gradient_boosting": 0.9416021642560939,
+      "logistic_regression": 0.9185338090270976
+    },
+    "chosen_model": "gradient_boosting",
+    "rule": "gradient boosting is the headline model on every subset; logistic regression is the baseline in every comparison",
+    "boosting_params": {
+      "learning_rate": 0.03,
+      "max_iter": 200,
+      "max_leaf_nodes": 15
+    }
+  },
+  "tuning": {
+    "best_params": {
+      "learning_rate": 0.03,
+      "max_iter": 200,
+      "max_leaf_nodes": 15
+    },
+    "results": [
+      {
+        "learning_rate": 0.03,
+        "max_iter": 200,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9408451287527023
+      },
+      {
+        "learning_rate": 0.03,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9376182997344964
+      },
+      {
+        "learning_rate": 0.03,
+        "max_iter": 400,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9394758130657069
+      },
+      {
+        "learning_rate": 0.03,
+        "max_iter": 400,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9365498251671441
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 200,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9371807179698287
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9352686204827855
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 400,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9348640695156605
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 400,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9350173205110551
+      }
+    ]
+  },
+  "alert_threshold": 0.43,
+  "confirm_cycles": 3,
+  "validation_lifecycle": {
+    "cost": 2.0,
+    "good_catches": 48,
+    "early_alarms": 2,
+    "missed": 0
+  },
+  "lifecycle_test": {
+    "cost_ratio": 10.0,
+    "chosen": {
+      "threshold": 0.43,
+      "confirm_cycles": 3,
+      "engines": 50,
+      "good_catches": 46,
+      "early_alarms": 4,
+      "missed": 0,
+      "missed_never_rang": 0,
+      "missed_too_late": 0,
+      "alarms_rang": 50,
+      "precision": 0.92,
+      "cost": 4.0,
+      "median_lead_time": 30.5,
+      "mean_lead_time_good_catches": 30.543478260869566
+    },
+    "fixed_0.5": {
+      "threshold": 0.5,
+      "confirm_cycles": 1,
+      "engines": 50,
+      "good_catches": 44,
+      "early_alarms": 6,
+      "missed": 0,
+      "missed_never_rang": 0,
+      "missed_too_late": 0,
+      "alarms_rang": 50,
+      "precision": 0.88,
+      "cost": 6.0,
+      "median_lead_time": 33.0,
+      "mean_lead_time_good_catches": 32.31818181818182
+    },
+    "fixed_0.5_same_confirm": {
+      "threshold": 0.5,
+      "confirm_cycles": 3,
+      "engines": 50,
+      "good_catches": 46,
+      "early_alarms": 4,
+      "missed": 0,
+      "missed_never_rang": 0,
+      "missed_too_late": 0,
+      "alarms_rang": 50,
+      "precision": 0.92,
+      "cost": 4.0,
+      "median_lead_time": 30.0,
+      "mean_lead_time_good_catches": 29.5
+    },
+    "cost_saving_vs_0.5": 2.0,
+    "cost_saving_vs_0.5_same_confirm": 0.0
+  },
+  "lifecycle_sensitivity": [
+    {
+      "cost_ratio": 5.0,
+      "chosen": {
+        "threshold": 0.43,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.5,
+        "mean_lead_time_good_catches": 30.543478260869566
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 44,
+        "early_alarms": 6,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.88,
+        "cost": 6.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 32.31818181818182
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.0,
+        "mean_lead_time_good_catches": 29.5
+      },
+      "cost_saving_vs_0.5": 2.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    },
+    {
+      "cost_ratio": 10.0,
+      "chosen": {
+        "threshold": 0.43,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.5,
+        "mean_lead_time_good_catches": 30.543478260869566
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 44,
+        "early_alarms": 6,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.88,
+        "cost": 6.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 32.31818181818182
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.0,
+        "mean_lead_time_good_catches": 29.5
+      },
+      "cost_saving_vs_0.5": 2.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    },
+    {
+      "cost_ratio": 20.0,
+      "chosen": {
+        "threshold": 0.43,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.5,
+        "mean_lead_time_good_catches": 30.543478260869566
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 44,
+        "early_alarms": 6,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.88,
+        "cost": 6.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 32.31818181818182
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.0,
+        "mean_lead_time_good_catches": 29.5
+      },
+      "cost_saving_vs_0.5": 2.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    }
+  ],
+  "warning_time": [
+    {
+      "alert_min_lead": 10,
+      "alert_threshold": 0.43,
+      "confirm_cycles": 3,
+      "validation_cost": 2.0,
+      "chosen": {
+        "threshold": 0.43,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.5,
+        "mean_lead_time_good_catches": 30.543478260869566
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 44,
+        "early_alarms": 6,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.88,
+        "cost": 6.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 32.31818181818182
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.0,
+        "mean_lead_time_good_catches": 29.5
+      },
+      "cost_saving_vs_0.5": 2.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    },
+    {
+      "alert_min_lead": 20,
+      "alert_threshold": 0.09,
+      "confirm_cycles": 1,
+      "validation_cost": 9.0,
+      "chosen": {
+        "threshold": 0.09,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 33,
+        "early_alarms": 17,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.66,
+        "cost": 17.0,
+        "median_lead_time": 45.0,
+        "mean_lead_time_good_catches": 38.60606060606061
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 43,
+        "early_alarms": 6,
+        "missed": 1,
+        "missed_never_rang": 0,
+        "missed_too_late": 1,
+        "alarms_rang": 50,
+        "precision": 0.86,
+        "cost": 16.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 32.651162790697676
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 43,
+        "early_alarms": 6,
+        "missed": 1,
+        "missed_never_rang": 0,
+        "missed_too_late": 1,
+        "alarms_rang": 50,
+        "precision": 0.86,
+        "cost": 16.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 32.651162790697676
+      },
+      "cost_saving_vs_0.5": -1.0,
+      "cost_saving_vs_0.5_same_confirm": -1.0
+    },
+    {
+      "alert_min_lead": 30,
+      "alert_threshold": 0.02,
+      "confirm_cycles": 1,
+      "validation_cost": 23.0,
+      "chosen": {
+        "threshold": 0.02,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 16,
+        "early_alarms": 33,
+        "missed": 1,
+        "missed_never_rang": 0,
+        "missed_too_late": 1,
+        "alarms_rang": 50,
+        "precision": 0.32,
+        "cost": 43.0,
+        "median_lead_time": 57.0,
+        "mean_lead_time_good_catches": 42.3125
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 27,
+        "early_alarms": 6,
+        "missed": 17,
+        "missed_never_rang": 0,
+        "missed_too_late": 17,
+        "alarms_rang": 50,
+        "precision": 0.54,
+        "cost": 176.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 37.074074074074076
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 27,
+        "early_alarms": 6,
+        "missed": 17,
+        "missed_never_rang": 0,
+        "missed_too_late": 17,
+        "alarms_rang": 50,
+        "precision": 0.54,
+        "cost": 176.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 37.074074074074076
+      },
+      "cost_saving_vs_0.5": 133.0,
+      "cost_saving_vs_0.5_same_confirm": 133.0
+    }
+  ],
+  "test_last_cycle": {
+    "pr_auc": 0.9608124142640339,
+    "at_0.5": {
+      "threshold": 0.5,
+      "precision": 0.8545454545454545,
+      "recall": 0.8867924528301887,
+      "false_alarms": 8,
+      "true_alerts": 47,
+      "missed_failures": 6
+    },
+    "at_chosen_threshold": {
+      "threshold": 0.43,
+      "precision": 0.8571428571428571,
+      "recall": 0.9056603773584906,
+      "false_alarms": 8,
+      "true_alerts": 48,
+      "missed_failures": 5
+    }
+  },
+  "test_all_cycles_pr_auc": 0.7555026048420456,
+  "baseline_logistic_regression": {
+    "validation_pr_auc": 0.9185338090270976,
+    "alert_threshold": 0.77,
+    "confirm_cycles": 3,
+    "validation_lifecycle": {
+      "cost": 2.0,
+      "good_catches": 48,
+      "early_alarms": 2,
+      "missed": 0
+    },
+    "lifecycle_test": {
+      "cost_ratio": 10.0,
+      "chosen": {
+        "threshold": 0.77,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 46,
+        "early_alarms": 4,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.92,
+        "cost": 4.0,
+        "median_lead_time": 30.0,
+        "mean_lead_time_good_catches": 30.347826086956523
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 50,
+        "good_catches": 28,
+        "early_alarms": 22,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.56,
+        "cost": 22.0,
+        "median_lead_time": 48.5,
+        "mean_lead_time_good_catches": 37.392857142857146
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 3,
+        "engines": 50,
+        "good_catches": 40,
+        "early_alarms": 10,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 50,
+        "precision": 0.8,
+        "cost": 10.0,
+        "median_lead_time": 38.5,
+        "mean_lead_time_good_catches": 36.45
+      },
+      "cost_saving_vs_0.5": 18.0,
+      "cost_saving_vs_0.5_same_confirm": 6.0
+    },
+    "test_last_cycle": {
+      "pr_auc": 0.9404325107789152,
+      "at_0.5": {
+        "threshold": 0.5,
+        "precision": 0.7761194029850746,
+        "recall": 0.9811320754716981,
+        "false_alarms": 15,
+        "true_alerts": 52,
+        "missed_failures": 1
+      },
+      "at_chosen_threshold": {
+        "threshold": 0.77,
+        "precision": 0.819672131147541,
+        "recall": 0.9433962264150944,
+        "false_alarms": 11,
+        "true_alerts": 50,
+        "missed_failures": 3
+      }
+    },
+    "test_all_cycles_pr_auc": 0.6756404725902083
+  },
+  "rul": {
+    "rmse_model": 28.6517997800322,
+    "rmse_ridge": 31.932319391448697,
+    "rmse_naive_mean": 54.848082376745104,
+    "nasa_score_model": 6134.051947216399,
+    "nasa_score_ridge": 8792.609960556696,
+    "nasa_score_naive_mean": 183013.05808094065
+  },
+  "shap": {
+    "method": "shap.TreeExplainer",
+    "output": "log-odds of failure within the window",
+    "feature_perturbation": "tree_path_dependent",
+    "shap_version": "0.54.1",
+    "explained_rows": 248,
+    "additivity_max_error": 1.354472090042691e-14,
+    "top_features": [
+      {
+        "feature": "s11_mean",
+        "readable_name": "Sensor 11: average (last 10 cycles)",
+        "mean_abs_shap": 1.021481749363458
+      },
+      {
+        "feature": "s3_mean",
+        "readable_name": "Sensor 3: average (last 10 cycles)",
+        "mean_abs_shap": 0.7315768321553394
+      },
+      {
+        "feature": "cycle",
+        "readable_name": "Cycle number",
+        "mean_abs_shap": 0.4793913336836729
+      },
+      {
+        "feature": "s17_mean",
+        "readable_name": "Sensor 17: average (last 10 cycles)",
+        "mean_abs_shap": 0.3483044506771108
+      },
+      {
+        "feature": "s15_mean",
+        "readable_name": "Sensor 15: average (last 10 cycles)",
+        "mean_abs_shap": 0.2297522380989077
+      },
+      {
+        "feature": "s4_mean",
+        "readable_name": "Sensor 4: average (last 10 cycles)",
+        "mean_abs_shap": 0.222862727016256
+      },
+      {
+        "feature": "s6_mean",
+        "readable_name": "Sensor 6: average (last 10 cycles)",
+        "mean_abs_shap": 0.1927368123192891
+      },
+      {
+        "feature": "s11",
+        "readable_name": "Sensor 11: current value (regime-normalised)",
+        "mean_abs_shap": 0.1550674403987076
+      },
+      {
+        "feature": "s14",
+        "readable_name": "Sensor 14: current value (regime-normalised)",
+        "mean_abs_shap": 0.08793379099163909
+      },
+      {
+        "feature": "s2_mean",
+        "readable_name": "Sensor 2: average (last 10 cycles)",
+        "mean_abs_shap": 0.06848879968167268
+      }
+    ]
+  }
+}

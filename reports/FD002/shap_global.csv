@@ -1,0 +1,21 @@
+rank,feature,readable_name,mean_abs_shap
+1,s4_mean,Sensor 4: average (last 10 cycles),1.4096957234173697
+2,s11_mean,Sensor 11: average (last 10 cycles),0.8024712116603206
+3,cycle,Cycle number,0.6222977230540354
+4,s15_mean,Sensor 15: average (last 10 cycles),0.40744238500870805
+5,s17_mean,Sensor 17: average (last 10 cycles),0.2634610484619223
+6,s11,Sensor 11: current value (regime-normalised),0.13099748063266978
+7,s2_mean,Sensor 2: average (last 10 cycles),0.12531335285628664
+8,s9_mean,Sensor 9: average (last 10 cycles),0.12303651038461295
+9,s21_mean,Sensor 21: average (last 10 cycles),0.06492821265605453
+10,s14_mean,Sensor 14: average (last 10 cycles),0.06468982269473048
+11,s13_mean,Sensor 13: average (last 10 cycles),0.05588388904010855
+12,s20_mean,Sensor 20: average (last 10 cycles),0.045994595080724544
+13,s15,Sensor 15: current value (regime-normalised),0.044278943760654374
+14,s13_std,Sensor 13: variability (last 10 cycles),0.042823109143118925
+15,s14,Sensor 14: current value (regime-normalised),0.03327012485131729
+16,s8_mean,Sensor 8: average (last 10 cycles),0.0319726997712882
+17,s11_trend,Sensor 11: trend per cycle (last 10 cycles),0.027565936530701576
+18,s9,Sensor 9: current value (regime-normalised),0.02498806649160138
+19,s12_mean,Sensor 12: average (last 10 cycles),0.023091517301002864
+20,s14_trend,Sensor 14: trend per cycle (last 10 cycles),0.023088560137272462

@@ -1,0 +1,28 @@
+# Raw data is downloaded separately (see data/README.md)
+data/*.txt
+data/*.zip
+
+# Trained model files are rebuilt by the pipeline
+models/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# Unzipped NASA CMAPSS raw data (never commit)
+CMAPSSData/
+
+# Scania Component X raw data and its parquet cache (never commit)
+data/scania/
+**/cache/
+*.parquet
+
+# Local notes and result dumps
+project_results*.md
+.ruff_cache/

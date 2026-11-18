@@ -1,0 +1,666 @@
+{
+  "project_version": "2.0.0",
+  "dataset": {
+    "subset": "FD002",
+    "n_regimes": 6,
+    "train_engines": 260,
+    "test_engines": 259,
+    "fit_engines": 156,
+    "validation_engines": 52,
+    "lifecycle_test_engines": 52,
+    "sensors_used": [
+      "s2",
+      "s3",
+      "s4",
+      "s6",
+      "s7",
+      "s8",
+      "s9",
+      "s10",
+      "s11",
+      "s12",
+      "s13",
+      "s14",
+      "s15",
+      "s16",
+      "s17",
+      "s20",
+      "s21"
+    ],
+    "n_features": 69,
+    "test_positive_engines": 61
+  },
+  "settings": {
+    "seed": 42,
+    "failure_window_cycles": 30,
+    "rolling_window_cycles": 10,
+    "rul_cap": 125,
+    "val_fraction": 0.2,
+    "lifecycle_fraction": 0.2,
+    "cost_false_alarm": 1.0,
+    "cost_missed_failure": 10.0,
+    "cost_ratio_main": 10.0,
+    "alert_min_lead": 10,
+    "alert_max_lead": 50,
+    "alert_min_lead_options": [
+      10,
+      20,
+      30
+    ],
+    "confirm_cycles_options": [
+      1,
+      2,
+      3
+    ]
+  },
+  "model_selection": {
+    "validation_pr_auc": {
+      "gradient_boosting": 0.9588185763879541,
+      "logistic_regression": 0.9603093934935215
+    },
+    "chosen_model": "gradient_boosting",
+    "rule": "gradient boosting is the headline model on every subset; logistic regression is the baseline in every comparison",
+    "boosting_params": {
+      "learning_rate": 0.03,
+      "max_iter": 200,
+      "max_leaf_nodes": 15
+    }
+  },
+  "tuning": {
+    "best_params": {
+      "learning_rate": 0.03,
+      "max_iter": 200,
+      "max_leaf_nodes": 15
+    },
+    "results": [
+      {
+        "learning_rate": 0.03,
+        "max_iter": 200,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.948678608836652
+      },
+      {
+        "learning_rate": 0.03,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.947572269429064
+      },
+      {
+        "learning_rate": 0.03,
+        "max_iter": 400,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9484374007666508
+      },
+      {
+        "learning_rate": 0.03,
+        "max_iter": 400,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9469606219984055
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 200,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9459654267452576
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9465931956710137
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 400,
+        "max_leaf_nodes": 15,
+        "cv_pr_auc": 0.9455944253313843
+      },
+      {
+        "learning_rate": 0.1,
+        "max_iter": 400,
+        "max_leaf_nodes": 31,
+        "cv_pr_auc": 0.9465931956710137
+      }
+    ]
+  },
+  "alert_threshold": 0.57,
+  "confirm_cycles": 1,
+  "validation_lifecycle": {
+    "cost": 1.0,
+    "good_catches": 51,
+    "early_alarms": 1,
+    "missed": 0
+  },
+  "lifecycle_test": {
+    "cost_ratio": 10.0,
+    "chosen": {
+      "threshold": 0.57,
+      "confirm_cycles": 1,
+      "engines": 52,
+      "good_catches": 49,
+      "early_alarms": 3,
+      "missed": 0,
+      "missed_never_rang": 0,
+      "missed_too_late": 0,
+      "alarms_rang": 52,
+      "precision": 0.9423076923076923,
+      "cost": 3.0,
+      "median_lead_time": 27.0,
+      "mean_lead_time_good_catches": 28.346938775510203
+    },
+    "fixed_0.5": {
+      "threshold": 0.5,
+      "confirm_cycles": 1,
+      "engines": 52,
+      "good_catches": 49,
+      "early_alarms": 3,
+      "missed": 0,
+      "missed_never_rang": 0,
+      "missed_too_late": 0,
+      "alarms_rang": 52,
+      "precision": 0.9423076923076923,
+      "cost": 3.0,
+      "median_lead_time": 28.5,
+      "mean_lead_time_good_catches": 29.73469387755102
+    },
+    "fixed_0.5_same_confirm": {
+      "threshold": 0.5,
+      "confirm_cycles": 1,
+      "engines": 52,
+      "good_catches": 49,
+      "early_alarms": 3,
+      "missed": 0,
+      "missed_never_rang": 0,
+      "missed_too_late": 0,
+      "alarms_rang": 52,
+      "precision": 0.9423076923076923,
+      "cost": 3.0,
+      "median_lead_time": 28.5,
+      "mean_lead_time_good_catches": 29.73469387755102
+    },
+    "cost_saving_vs_0.5": 0.0,
+    "cost_saving_vs_0.5_same_confirm": 0.0
+  },
+  "lifecycle_sensitivity": [
+    {
+      "cost_ratio": 5.0,
+      "chosen": {
+        "threshold": 0.57,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 27.0,
+        "mean_lead_time_good_catches": 28.346938775510203
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "cost_saving_vs_0.5": 0.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    },
+    {
+      "cost_ratio": 10.0,
+      "chosen": {
+        "threshold": 0.57,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 27.0,
+        "mean_lead_time_good_catches": 28.346938775510203
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "cost_saving_vs_0.5": 0.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    },
+    {
+      "cost_ratio": 20.0,
+      "chosen": {
+        "threshold": 0.57,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 27.0,
+        "mean_lead_time_good_catches": 28.346938775510203
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "cost_saving_vs_0.5": 0.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    }
+  ],
+  "warning_time": [
+    {
+      "alert_min_lead": 10,
+      "alert_threshold": 0.57,
+      "confirm_cycles": 1,
+      "validation_cost": 1.0,
+      "chosen": {
+        "threshold": 0.57,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 27.0,
+        "mean_lead_time_good_catches": 28.346938775510203
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 49,
+        "early_alarms": 3,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9423076923076923,
+        "cost": 3.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 29.73469387755102
+      },
+      "cost_saving_vs_0.5": 0.0,
+      "cost_saving_vs_0.5_same_confirm": 0.0
+    },
+    {
+      "alert_min_lead": 20,
+      "alert_threshold": 0.06,
+      "confirm_cycles": 2,
+      "validation_cost": 10.0,
+      "chosen": {
+        "threshold": 0.06,
+        "confirm_cycles": 2,
+        "engines": 52,
+        "good_catches": 32,
+        "early_alarms": 20,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.6153846153846154,
+        "cost": 20.0,
+        "median_lead_time": 45.0,
+        "mean_lead_time_good_catches": 35.0625
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 43,
+        "early_alarms": 3,
+        "missed": 6,
+        "missed_never_rang": 0,
+        "missed_too_late": 6,
+        "alarms_rang": 52,
+        "precision": 0.8269230769230769,
+        "cost": 63.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 31.372093023255815
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 2,
+        "engines": 52,
+        "good_catches": 43,
+        "early_alarms": 1,
+        "missed": 8,
+        "missed_never_rang": 0,
+        "missed_too_late": 8,
+        "alarms_rang": 52,
+        "precision": 0.8269230769230769,
+        "cost": 81.0,
+        "median_lead_time": 26.0,
+        "mean_lead_time_good_catches": 30.325581395348838
+      },
+      "cost_saving_vs_0.5": 43.0,
+      "cost_saving_vs_0.5_same_confirm": 61.0
+    },
+    {
+      "alert_min_lead": 30,
+      "alert_threshold": 0.01,
+      "confirm_cycles": 1,
+      "validation_cost": 37.0,
+      "chosen": {
+        "threshold": 0.01,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 21,
+        "early_alarms": 30,
+        "missed": 1,
+        "missed_never_rang": 0,
+        "missed_too_late": 1,
+        "alarms_rang": 52,
+        "precision": 0.40384615384615385,
+        "cost": 40.0,
+        "median_lead_time": 58.0,
+        "mean_lead_time_good_catches": 42.76190476190476
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 21,
+        "early_alarms": 3,
+        "missed": 28,
+        "missed_never_rang": 0,
+        "missed_too_late": 28,
+        "alarms_rang": 52,
+        "precision": 0.40384615384615385,
+        "cost": 283.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 38.42857142857143
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 21,
+        "early_alarms": 3,
+        "missed": 28,
+        "missed_never_rang": 0,
+        "missed_too_late": 28,
+        "alarms_rang": 52,
+        "precision": 0.40384615384615385,
+        "cost": 283.0,
+        "median_lead_time": 28.5,
+        "mean_lead_time_good_catches": 38.42857142857143
+      },
+      "cost_saving_vs_0.5": 243.0,
+      "cost_saving_vs_0.5_same_confirm": 243.0
+    }
+  ],
+  "test_last_cycle": {
+    "pr_auc": 0.9843303754124855,
+    "at_0.5": {
+      "threshold": 0.5,
+      "precision": 0.9076923076923077,
+      "recall": 0.9672131147540983,
+      "false_alarms": 6,
+      "true_alerts": 59,
+      "missed_failures": 2
+    },
+    "at_chosen_threshold": {
+      "threshold": 0.57,
+      "precision": 0.9206349206349206,
+      "recall": 0.9508196721311475,
+      "false_alarms": 5,
+      "true_alerts": 58,
+      "missed_failures": 3
+    }
+  },
+  "test_all_cycles_pr_auc": 0.8549225763695537,
+  "baseline_logistic_regression": {
+    "validation_pr_auc": 0.9603093934935215,
+    "alert_threshold": 0.87,
+    "confirm_cycles": 3,
+    "validation_lifecycle": {
+      "cost": 0.0,
+      "good_catches": 52,
+      "early_alarms": 0,
+      "missed": 0
+    },
+    "lifecycle_test": {
+      "cost_ratio": 10.0,
+      "chosen": {
+        "threshold": 0.87,
+        "confirm_cycles": 3,
+        "engines": 52,
+        "good_catches": 51,
+        "early_alarms": 1,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.9807692307692307,
+        "cost": 1.0,
+        "median_lead_time": 25.0,
+        "mean_lead_time_good_catches": 26.03921568627451
+      },
+      "fixed_0.5": {
+        "threshold": 0.5,
+        "confirm_cycles": 1,
+        "engines": 52,
+        "good_catches": 37,
+        "early_alarms": 15,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.7115384615384616,
+        "cost": 15.0,
+        "median_lead_time": 39.0,
+        "mean_lead_time_good_catches": 34.5945945945946
+      },
+      "fixed_0.5_same_confirm": {
+        "threshold": 0.5,
+        "confirm_cycles": 3,
+        "engines": 52,
+        "good_catches": 44,
+        "early_alarms": 8,
+        "missed": 0,
+        "missed_never_rang": 0,
+        "missed_too_late": 0,
+        "alarms_rang": 52,
+        "precision": 0.8461538461538461,
+        "cost": 8.0,
+        "median_lead_time": 33.0,
+        "mean_lead_time_good_catches": 31.318181818181817
+      },
+      "cost_saving_vs_0.5": 14.0,
+      "cost_saving_vs_0.5_same_confirm": 7.0
+    },
+    "test_last_cycle": {
+      "pr_auc": 0.9796507190358864,
+      "at_0.5": {
+        "threshold": 0.5,
+        "precision": 0.759493670886076,
+        "recall": 0.9836065573770492,
+        "false_alarms": 19,
+        "true_alerts": 60,
+        "missed_failures": 1
+      },
+      "at_chosen_threshold": {
+        "threshold": 0.87,
+        "precision": 0.921875,
+        "recall": 0.9672131147540983,
+        "false_alarms": 5,
+        "true_alerts": 59,
+        "missed_failures": 2
+      }
+    },
+    "test_all_cycles_pr_auc": 0.8377553531955798
+  },
+  "rul": {
+    "rmse_model": 27.475246571725183,
+    "rmse_ridge": 30.09198823459556,
+    "rmse_naive_mean": 54.06642835122607,
+    "nasa_score_model": 10274.698486339697,
+    "nasa_score_ridge": 13157.462198001911,
+    "nasa_score_naive_mean": 151908.70283603572
+  },
+  "shap": {
+    "method": "shap.TreeExplainer",
+    "output": "log-odds of failure within the window",
+    "feature_perturbation": "tree_path_dependent",
+    "shap_version": "0.54.1",
+    "explained_rows": 259,
+    "additivity_max_error": 1.1546319456101628e-14,
+    "top_features": [
+      {
+        "feature": "s4_mean",
+        "readable_name": "Sensor 4: average (last 10 cycles)",
+        "mean_abs_shap": 1.4096957234173697
+      },
+      {
+        "feature": "s11_mean",
+        "readable_name": "Sensor 11: average (last 10 cycles)",
+        "mean_abs_shap": 0.8024712116603206
+      },
+      {
+        "feature": "cycle",
+        "readable_name": "Cycle number",
+        "mean_abs_shap": 0.6222977230540354
+      },
+      {
+        "feature": "s15_mean",
+        "readable_name": "Sensor 15: average (last 10 cycles)",
+        "mean_abs_shap": 0.40744238500870805
+      },
+      {
+        "feature": "s17_mean",
+        "readable_name": "Sensor 17: average (last 10 cycles)",
+        "mean_abs_shap": 0.2634610484619223
+      },
+      {
+        "feature": "s11",
+        "readable_name": "Sensor 11: current value (regime-normalised)",
+        "mean_abs_shap": 0.13099748063266978
+      },
+      {
+        "feature": "s2_mean",
+        "readable_name": "Sensor 2: average (last 10 cycles)",
+        "mean_abs_shap": 0.12531335285628664
+      },
+      {
+        "feature": "s9_mean",
+        "readable_name": "Sensor 9: average (last 10 cycles)",
+        "mean_abs_shap": 0.12303651038461295
+      },
+      {
+        "feature": "s21_mean",
+        "readable_name": "Sensor 21: average (last 10 cycles)",
+        "mean_abs_shap": 0.06492821265605453
+      },
+      {
+        "feature": "s14_mean",
+        "readable_name": "Sensor 14: average (last 10 cycles)",
+        "mean_abs_shap": 0.06468982269473048
+      }
+    ]
+  }
+}

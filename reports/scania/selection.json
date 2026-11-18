@@ -1,0 +1,70 @@
+{
+  "baseline": {
+    "candidate": "horizons LR · unweighted · base+intensity+rate10",
+    "target": "horizons",
+    "learner": "logistic_regression",
+    "weighted": false,
+    "features": [
+      "intensity",
+      "rate10"
+    ],
+    "calibration": "prior_shift_isotonic",
+    "sim_cost": 106255.0,
+    "val_cost": 46300.0
+  },
+  "candidate": "5-class GB · unweighted · base",
+  "target": "five_class",
+  "learner": "gradient_boosting",
+  "weighted": false,
+  "features": [],
+  "calibration": "prior_shift_isotonic",
+  "sim_cost": 96397.0,
+  "val_cost": 44394.0,
+  "official_validation_agrees": false,
+  "official_validation_best": {
+    "candidate": "horizons GB · unweighted · base+intensity+rate10+fleet",
+    "calibration": "none",
+    "val_cost": 39919.0
+  },
+  "steps": [
+    {
+      "step": "vehicle weights",
+      "kept": false,
+      "sim_cost_without": 102454.0,
+      "sim_cost_with": 105720.0
+    },
+    {
+      "step": "features: intensity",
+      "kept": true,
+      "sim_cost_without": 102454.0,
+      "sim_cost_with": 102195.0
+    },
+    {
+      "step": "features: rate10",
+      "kept": true,
+      "sim_cost_without": 102195.0,
+      "sim_cost_with": 101233.0
+    },
+    {
+      "step": "features: fleet",
+      "kept": false,
+      "sim_cost_without": 101233.0,
+      "sim_cost_with": 101759.0
+    }
+  ],
+  "row_fraction": 0.4,
+  "simulated_set": {
+    "vehicles": 18622,
+    "at_risk": 648,
+    "class_counts": [
+      17974,
+      287,
+      180,
+      79,
+      102
+    ],
+    "folds": 5,
+    "seed": 42
+  },
+  "run_time_seconds": 4362.6
+}

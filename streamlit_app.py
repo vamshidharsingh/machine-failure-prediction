@@ -234,79 +234,12 @@ def scania_view() -> None:
         delta_color="off",
         help="Healthy (class 0) trucks flagged for a check.",
     )
-    cost_col, capacity_col = st.columns([1, 1], gap="large")
-    with cost_col.container(border=True, key="card-cost"):
-        st.subheader("Cost impact")
-        costs = pd.DataFrame(
-            {
-                "Scenario": ["Never inspecting", "With the model", "Saved"],
-                "Cost": [s["always_class_0_cost"], s["test_cost"], s["saving"]],
-            }
-        )
-        bars = alt.Chart(costs).encode(
-            y=alt.Y("Scenario:N", sort=None, title=None, axis=alt.Axis(labelFontSize=13)),
-            x=alt.X("Cost:Q", title="Official Scania cost (test trucks)"),
-        )
-        st.altair_chart(
-            bars.mark_bar(cornerRadius=4, size=30).encode(
-                color=alt.Color(
-                    "Scenario:N",
-                    scale=alt.Scale(
-                        domain=["Never inspecting", "With the model", "Saved"],
-                        range=["#94a3b8", INK, GREEN],
-                    ),
-                    legend=None,
-                ),
-                tooltip=["Scenario", alt.Tooltip("Cost:Q", format=",.0f")],
-            )
-            + bars.mark_text(align="left", dx=6, fontWeight="bold", color=INK)
-            .encode(text=alt.Text("Cost:Q", format=",.0f"))
-            .properties(height=190),
-            width="stretch",
-        )
-        st.markdown(
-            f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10); "
-            f"missing a failing one is expensive (200 to 500). One missed failure costs as much "
-            f"as 20 to 70 unnecessary checks, so checking {s['false_alarms']:,} healthy trucks "
-            f"to catch {caught} failing ones still saves money."
-        )
-
-    with capacity_col.container(border=True, key="card-capacity"):
-        st.subheader("Savings by workshop capacity")
-        what_if = pd.DataFrame(
-            [
-                {
-                    "Capacity": capacity_label(r),
-                    "Saved": scania_summary(m, preds, r)["saving"],
-                    "Caught": f"{scania_summary(m, preds, r)['recall']:.0%} caught",
-                    "Selected": r == rule,
-                }
-                for r in options
-            ]
-        )
-        base = alt.Chart(what_if).encode(
-            x=alt.X(
-                "Capacity:N",
-                sort=None,
-                title="Share of trucks the workshop checks",
-                axis=alt.Axis(labelAngle=0, labelOverlap=False),
-            ),
-            y=alt.Y("Saved:Q", title="Cost saved"),
-        )
-        st.altair_chart(
-            base.mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4, size=42).encode(
-                color=alt.condition(alt.datum.Selected, alt.value(GREEN), alt.value("#bbf7d0")),
-                tooltip=["Capacity", alt.Tooltip("Saved:Q", format=",.0f"), "Caught"],
-            )
-            + base.mark_text(dy=-9, fontWeight="bold", color=INK).encode(text="Caught:N"),
-            width="stretch",
-        )
-        st.caption(
-            "In plain words: each bar is the money saved if the workshop checks that share of "
-            "the fleet, with the share of failing trucks it catches on top. The dark green bar "
-            "is the setting chosen in the left panel; "
-            f"{capacity_label(recommended)} is recommended."
-        )
+    st.markdown(
+        f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10); "
+        f"missing a failing one is expensive (200 to 500). One missed failure costs as much "
+        f"as 20 to 70 unnecessary checks, so checking {s['false_alarms']:,} healthy trucks "
+        f"to catch {caught} failing ones still saves money."
+    )
     with st.expander("How to read this page and method details"):
         st.markdown(
             "- **The task**: for each test truck, predict how soon Component X will need "
@@ -428,6 +361,75 @@ def scania_view() -> None:
                 ),
             },
         )
+
+    with st.expander("Explore cost and workshop capacity"):
+        cost_col, capacity_col = st.columns([1, 1], gap="large")
+        with cost_col.container(border=True, key="card-cost"):
+            st.subheader("Cost impact")
+            costs = pd.DataFrame(
+                {
+                    "Scenario": ["Never inspecting", "With the model", "Saved"],
+                    "Cost": [s["always_class_0_cost"], s["test_cost"], s["saving"]],
+                }
+            )
+            bars = alt.Chart(costs).encode(
+                y=alt.Y("Scenario:N", sort=None, title=None, axis=alt.Axis(labelFontSize=13)),
+                x=alt.X("Cost:Q", title="Official Scania cost (test trucks)"),
+            )
+            st.altair_chart(
+                bars.mark_bar(cornerRadius=4, size=30).encode(
+                    color=alt.Color(
+                        "Scenario:N",
+                        scale=alt.Scale(
+                            domain=["Never inspecting", "With the model", "Saved"],
+                            range=["#94a3b8", INK, GREEN],
+                        ),
+                        legend=None,
+                    ),
+                    tooltip=["Scenario", alt.Tooltip("Cost:Q", format=",.0f")],
+                )
+                + bars.mark_text(align="left", dx=6, fontWeight="bold", color=INK)
+                .encode(text=alt.Text("Cost:Q", format=",.0f"))
+                .properties(height=190),
+                width="stretch",
+            )
+
+        with capacity_col.container(border=True, key="card-capacity"):
+            st.subheader("Savings by workshop capacity")
+            what_if = pd.DataFrame(
+                [
+                    {
+                        "Capacity": capacity_label(r),
+                        "Saved": scania_summary(m, preds, r)["saving"],
+                        "Caught": f"{scania_summary(m, preds, r)['recall']:.0%} caught",
+                        "Selected": r == rule,
+                    }
+                    for r in options
+                ]
+            )
+            base = alt.Chart(what_if).encode(
+                x=alt.X(
+                    "Capacity:N",
+                    sort=None,
+                    title="Share of trucks the workshop checks",
+                    axis=alt.Axis(labelAngle=0, labelOverlap=False),
+                ),
+                y=alt.Y("Saved:Q", title="Cost saved"),
+            )
+            st.altair_chart(
+                base.mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4, size=42).encode(
+                    color=alt.condition(alt.datum.Selected, alt.value(GREEN), alt.value("#bbf7d0")),
+                    tooltip=["Capacity", alt.Tooltip("Saved:Q", format=",.0f"), "Caught"],
+                )
+                + base.mark_text(dy=-9, fontWeight="bold", color=INK).encode(text="Caught:N"),
+                width="stretch",
+            )
+            st.caption(
+                "In plain words: each bar is the money saved if the workshop checks that share of "
+                "the fleet, with the share of failing trucks it catches on top. The dark green bar "
+                "is the setting chosen in the left panel; "
+                f"{capacity_label(recommended)} is recommended."
+            )
 
     with st.container(border=True, key="card-shap"):
         st.subheader("Why this vehicle? Top risk drivers")

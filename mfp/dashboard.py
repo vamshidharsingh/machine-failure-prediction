@@ -499,3 +499,79 @@ def lowest_cost_rows(costs) -> list:
     """Positions of the cheapest entries (all of them on a tie)."""
     costs = pd.Series(costs, dtype=float).reset_index(drop=True)
     return costs.index[costs == costs.min()].tolist()
+
+
+def scania_headline(s: dict) -> str:
+    """One plain line for the top of the Scania page, e.g. 'Catches 4 in 10 failing trucks...'."""
+    in_ten = round(s["recall"] * 10) if s["recall"] is not None else 0
+    caught = f"{in_ten} in 10" if in_ten else "fewer than 1 in 10"
+    share = s["saving"] / s["always_class_0_cost"] if s["always_class_0_cost"] else 0.0
+    cost = f"saves {share:.0%} on cost" if share >= 0 else f"costs {-share:.0%} more"
+    return f"Catches {caught} failing trucks, {cost}."
+
+
+def at_risk_matrix(cm) -> pd.DataFrame:
+    """The 5-class confusion matrix folded into at risk (classes 1-4) vs healthy (class 0)."""
+    cm = np.asarray(cm)
+    cells = [
+        ("At risk", "Flagged", cm[1:, 1:].sum(), "Caught"),
+        ("At risk", "Not flagged", cm[1:, 0].sum(), "Missed"),
+        ("Healthy", "Flagged", cm[0, 1:].sum(), "False alarm"),
+        ("Healthy", "Not flagged", cm[0, 0], "Correctly left alone"),
+    ]
+    return pd.DataFrame(
+        [{"Truck": t, "Decision": d, "Vehicles": int(n), "Outcome": o} for t, d, n, o in cells]
+    )
+
+
+_PLAIN_NAMES = [
+    (r"Time step", "Truck age (time step)"),
+    (r"Number of readouts so far", "Number of readouts so far"),
+    (r"Specification (\d+) is (.+)", r"Spec \1 = \2"),
+    (r"Counter (\d+): value", r"Counter \1"),
+    (r"Counter (\d+): rate of change \(last \d+ readouts\)", r"Counter \1: recent rate of change"),
+    (r"Histogram (\d+): total count", r"Sensor \1: total readings"),
+    (
+        r"Histogram (\d+), bin (\d+): change in share of total \(last \d+ readouts\)",
+        r"Sensor \1, range \2: recent change in share",
+    ),
+    (r"Histogram (\d+), bin (\d+): share of total", r"Sensor \1, range \2: share of readings"),
+]
+
+
+def plain_feature_name(name: str) -> str:
+    """Shorter display name for a feature.
+
+    Scania's sensor IDs stay, because the real sensor names are not published.
+    """
+    import re
+
+    for pattern, repl in _PLAIN_NAMES:
+        if re.fullmatch(pattern, name):
+            return re.sub(pattern, repl, name)
+    return name
+
+
+def shap_bars(shap_top, id_name: str, item) -> pd.DataFrame:
+    """One item's top SHAP contributions, ready for a bar chart (largest effect first)."""
+    if shap_top is None:
+        return pd.DataFrame(columns=["Feature", "Value", "Contribution", "Effect"])
+    rows = shap_top[shap_top[id_name] == item]
+    out = pd.DataFrame(
+        {
+            "Feature": [plain_feature_name(n) for n in rows["readable_name"]],
+            "Value": [_fmt_value(v) for v in rows["feature_value"]],
+            "Contribution": rows["shap_value"].astype(float).to_numpy(),
+        }
+    )
+    out["Effect"] = np.where(out["Contribution"] > 0, "Raises risk", "Lowers risk")
+    return out.sort_values("Contribution", key=abs, ascending=False).reset_index(drop=True)
+
+
+def nasa_headline(row: dict, engines: int) -> str:
+    """One plain line for the top of a NASA page from the cost-based policy's results."""
+    early, missed = int(row["Early alarms"]), int(row["Missed"])
+    return (
+        f"Warns in time for {int(row['Good catches'])} of {engines} engines, with {early} early "
+        f"alarm{'s' if early != 1 else ''} and {missed} missed."
+    )

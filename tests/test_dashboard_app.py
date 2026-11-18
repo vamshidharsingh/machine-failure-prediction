@@ -22,6 +22,7 @@ from mfp.dashboard import (
     lowest_cost_rows,
     nasa_takeaway,
     policy_comparison,
+    scania_headline,
     scania_takeaway,
     scania_vehicle_table,
     sweep_for_min_lead,
@@ -330,12 +331,14 @@ def test_dashboard_runs_from_reports_only(reports_only_app):
     assert capacity.value == recommended_capacity(metrics)
     assert [o.split(" ")[0] for o in capacity.options] == ["2%", "5%", "10%", "20%", "unlimited"]
     assert sum("(recommended)" in o for o in capacity.options) == 1
-    boxes = [b.value for b in list(at.success) + list(at.info)]
-    assert boxes[0] == scania_takeaway(scania_summary(metrics, preds, capacity.value))
+    summary = scania_summary(metrics, preds, capacity.value)
+    assert at.header[0].value == scania_headline(summary)
+    assert any(c.value == scania_takeaway(summary) for c in at.caption)
     capacity.set_value("capacity_2").run()
     assert not at.exception, at.exception
-    boxes = [b.value for b in list(at.success) + list(at.info)]
-    assert boxes[0] == scania_takeaway(scania_summary(metrics, preds, "capacity_2"))
+    summary = scania_summary(metrics, preds, "capacity_2")
+    assert at.header[0].value == scania_headline(summary)
+    assert any(c.value == scania_takeaway(summary) for c in at.caption)
     assert any("2% capacity" in s.value for s in at.subheader)
     # The SHAP panel offers every test vehicle and opens on the riskiest
     # vehicle that is truly at risk and was flagged at the selected capacity.
@@ -352,11 +355,11 @@ def test_dashboard_runs_from_reports_only(reports_only_app):
     assert [t.label for t in at.tabs] == [
         "FD001 results",
         "Lifecycle alarm",
-        "Engine timeline",
         "NASA test engines and SHAP",
         "Model comparison",
     ]
-    assert at.info[0].value.startswith("On the 6 lifecycle test engines")
+    assert at.header[0].value.startswith("Warns in time for ")
+    assert any(c.value.startswith("On the 6 lifecycle test engines") for c in at.caption)
     warning = next(s for s in at.selectbox if s.label == "Required warning time (cycles)")
     assert warning.options == ["10", "20", "30"] and warning.value == 10
     warning.set_value(30).run()

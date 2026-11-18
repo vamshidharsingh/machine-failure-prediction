@@ -501,13 +501,32 @@ def lowest_cost_rows(costs) -> list:
     return costs.index[costs == costs.min()].tolist()
 
 
-def scania_headline(s: dict) -> str:
-    """One plain line for the top of the Scania page, e.g. 'Catches 4 in 10 failing trucks...'."""
-    in_ten = round(s["recall"] * 10) if s["recall"] is not None else 0
-    caught = f"{in_ten} in 10" if in_ten else "fewer than 1 in 10"
+def scania_headline(s: dict, n_trucks: int, limited: bool = True) -> str:
+    """One plain, value-first line for the top of the Scania page."""
     share = s["saving"] / s["always_class_0_cost"] if s["always_class_0_cost"] else 0.0
-    cost = f"saves {share:.0%} on cost" if share >= 0 else f"costs {-share:.0%} more"
-    return f"Catches {caught} failing trucks, {cost}."
+    flagged = s["alarms"] / n_trucks if n_trucks else 0.0
+    if share <= 0:
+        return f"Costs {-share:.0%} more than never inspecting at this workshop capacity."
+    scope = (
+        f"only the riskiest {flagged:.0%} of trucks"
+        if limited
+        else f"the {flagged:.0%} of trucks the model flags"
+    )
+    return f"Cuts maintenance cost by {share:.0%} by inspecting {scope}."
+
+
+def scania_subline(s: dict, best: dict) -> str:
+    """Supporting line under the headline: trade-off against flagging every suspect truck."""
+    caught = round(s["recall"] * s["true_at_risk"]) if s["recall"] is not None else 0
+    found = f"Flags {caught} of the {s['true_at_risk']} trucks that later failed."
+    if s["alarms"] >= best["alarms"] or best["saving"] <= 0:
+        return found
+    kept = s["saving"] / best["saving"]
+    fewer = 1 - s["false_alarms"] / best["false_alarms"] if best["false_alarms"] else 0.0
+    return (
+        f"Keeps {kept:.0%} of the saving from flagging every suspect truck, with {fewer:.0%} "
+        f"fewer false alarms. {found}"
+    )
 
 
 def at_risk_matrix(cm) -> pd.DataFrame:

@@ -8,15 +8,41 @@ from mfp.dashboard import (
     nasa_headline,
     plain_feature_name,
     scania_headline,
+    scania_subline,
     shap_bars,
 )
 
 
-def test_scania_headline_rounds_recall_and_saving():
-    s = {"recall": 0.394, "saving": 11633.0, "always_class_0_cost": 56100.0}
-    assert scania_headline(s) == "Catches 4 in 10 failing trucks, saves 21% on cost."
-    s = {"recall": 0.02, "saving": -561.0, "always_class_0_cost": 56100.0}
-    assert scania_headline(s) == "Catches fewer than 1 in 10 failing trucks, costs 1% more."
+def test_scania_headline_leads_with_value():
+    s = {"saving": 11633.0, "always_class_0_cost": 56100.0, "alarms": 1009}
+    assert scania_headline(s, 5045) == (
+        "Cuts maintenance cost by 21% by inspecting only the riskiest 20% of trucks."
+    )
+    assert scania_headline({**s, "alarms": 3894}, 5045, limited=False) == (
+        "Cuts maintenance cost by 21% by inspecting the 77% of trucks the model flags."
+    )
+    s = {"saving": -561.0, "always_class_0_cost": 56100.0, "alarms": 10}
+    assert scania_headline(s, 5045) == (
+        "Costs 1% more than never inspecting at this workshop capacity."
+    )
+
+
+def test_scania_subline_compares_with_flagging_everything():
+    best = {"saving": 12564.0, "alarms": 3894, "false_alarms": 3762}
+    s = {
+        "saving": 11633.0,
+        "alarms": 1009,
+        "false_alarms": 953,
+        "recall": 0.394,
+        "true_at_risk": 142,
+    }
+    assert scania_subline(s, best) == (
+        "Keeps 93% of the saving from flagging every suspect truck, with 75% fewer false "
+        "alarms. Flags 56 of the 142 trucks that later failed."
+    )
+    assert scania_subline({**best, "recall": 0.93, "true_at_risk": 142}, best) == (
+        "Flags 132 of the 142 trucks that later failed."
+    )
 
 
 def test_at_risk_matrix_folds_classes_1_to_4():

@@ -332,12 +332,13 @@ def test_dashboard_runs_from_reports_only(reports_only_app):
     assert [o.split(" ")[0] for o in capacity.options] == ["2%", "5%", "10%", "20%", "unlimited"]
     assert sum("(recommended)" in o for o in capacity.options) == 1
     summary = scania_summary(metrics, preds, capacity.value)
-    assert at.header[0].value == scania_headline(summary)
+    limited = capacity.value != "unconstrained"
+    assert at.header[0].value == scania_headline(summary, len(preds), limited=limited)
     assert any(c.value == scania_takeaway(summary) for c in at.caption)
     capacity.set_value("capacity_2").run()
     assert not at.exception, at.exception
     summary = scania_summary(metrics, preds, "capacity_2")
-    assert at.header[0].value == scania_headline(summary)
+    assert at.header[0].value == scania_headline(summary, len(preds))
     assert any(c.value == scania_takeaway(summary) for c in at.caption)
     assert any("2% capacity" in s.value for s in at.subheader)
     # The SHAP panel offers every test vehicle and opens on the riskiest

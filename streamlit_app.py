@@ -7,6 +7,7 @@ logic lives in mfp/dashboard.py, where it is tested.
 """
 
 from pathlib import Path
+from urllib.parse import quote
 
 import altair as alt
 import pandas as pd
@@ -14,6 +15,7 @@ import streamlit as st
 
 from mfp.dashboard import (
     SCANIA,
+    UNLIMITED,
     at_risk_matrix,
     available_datasets,
     best_cells,
@@ -37,6 +39,7 @@ from mfp.dashboard import (
     policy_comparison,
     recommended_capacity,
     scania_headline,
+    scania_subline,
     scania_summary,
     scania_takeaway,
     scania_vehicle_table,
@@ -70,13 +73,13 @@ h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em; font-size: 2.4rem 
   border-radius: 16px; padding: 1.3rem 1.8rem 1rem; box-shadow: {CARD};
 }}
 .st-key-headline h2 {{
-  font-size: 2.1rem; font-weight: 800; color: {INK}; line-height: 1.2; padding: 0.1rem 0 0.3rem;
+  font-size: 1.75rem; font-weight: 800; color: {INK}; line-height: 1.25; padding: 0.1rem 0 0.3rem;
 }}
 [class*="st-key-card"] {{
   background: #ffffff; border: 1px solid {LINE} !important; border-radius: 16px;
   padding: 1.2rem 1.4rem; box-shadow: {CARD};
 }}
-[class*="st-key-card"] h3 {{color: {INK}; font-weight: 700; font-size: 1.4rem;}}
+[class*="st-key-card"] h3 {{color: {INK}; font-weight: 700; font-size: 1.2rem;}}
 [data-testid="stMetric"] {{
   background: #ffffff; border: 1px solid {LINE}; border-left: 5px solid #94a3b8;
   border-radius: 14px; padding: 1rem 1.2rem; box-shadow: {CARD};
@@ -92,6 +95,42 @@ h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em; font-size: 2.4rem 
 .st-key-metric-risk [data-testid="stMetricValue"] {{color: {RED};}}
 [data-testid="stMetricDelta"] * {{white-space: normal; overflow: visible; text-overflow: clip;}}
 [data-testid^="stMetricDeltaIcon"] {{display: none;}}
+.kpis {{display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;}}
+.kpi {{
+  background: #ffffff; border: 1px solid {LINE}; border-radius: 16px; padding: 1.1rem 1.25rem;
+  box-shadow: {CARD}; font-family: 'Inter', sans-serif;
+}}
+.kpi-top {{display: flex; align-items: center; gap: 0.6rem;}}
+.kpi-icon {{
+  width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+  color: var(--c); background: color-mix(in srgb, var(--c) 12%, white);
+}}
+.kpi-label {{
+  font-size: 0.76rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: {MUTED};
+}}
+.kpi-value {{font-size: 2.3rem; font-weight: 800; color: var(--v); margin: 0.5rem 0 0.35rem;}}
+.kpi-bar {{height: 6px; background: #f1f5f9; border-radius: 999px; overflow: hidden;}}
+.kpi-bar span {{display: block; height: 100%; background: var(--c); border-radius: 999px;}}
+.kpi-note {{font-size: 0.85rem; color: #475569; margin-top: 0.5rem;}}
+.action {{
+  font-family: 'Inter', sans-serif; border: 1px solid {LINE}; border-radius: 14px;
+  padding: 1rem 1.2rem; background: #f8fafc;
+}}
+.action-label {{
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: {MUTED};
+}}
+.action-value {{font-size: 1.45rem; font-weight: 800; color: {INK}; margin: 0.3rem 0;}}
+.action-note {{font-size: 0.85rem; color: #475569;}}
+.st-key-headline-sub p {{font-size: 1.05rem; color: #334155;}}
+.brand {{display: flex; align-items: center; gap: 0.7rem; font-family: 'Inter', sans-serif;}}
+.brand-icon {{
+  width: 40px; height: 40px; border-radius: 12px; background: {INK}; color: #ffffff;
+  display: grid; place-items: center;
+}}
+.brand-name {{font-weight: 800; color: {INK}; font-size: 1rem; line-height: 1.2;}}
+.brand-sub {{font-size: 0.8rem; color: {MUTED};}}
 [data-baseweb="tab-highlight"], [data-baseweb="tab-border"] {{display: none;}}
 [data-baseweb="tab-list"] {{gap: 0.5rem;}}
 [data-testid="stTab"] {{
@@ -180,10 +219,79 @@ def _global_shap_chart(shap_global, unit: str) -> None:
     st.altair_chart(chart, width="stretch")
 
 
-def _headline(text: str, detail: str) -> None:
+# Line icons (Feather style), drawn inline so the page needs no icon files.
+ICONS = {
+    "saving": '<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>'
+    '<polyline points="17 18 23 18 23 12"/>',
+    "target": '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/>'
+    '<circle cx="12" cy="12" r="2"/>',
+    "bell": '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>'
+    '<path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+    "tool": '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 '
+    '7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    "clock": '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    "truck": '<rect x="1" y="3" width="15" height="13"/>'
+    '<polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>'
+    '<circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
+}
+
+
+def _icon_css() -> str:
+    """Each icon as a CSS mask, so it takes the colour of its surroundings."""
+    rules = [".ico {display: inline-block; background-color: currentColor;}"]
+    for name, shapes in ICONS.items():
+        svg = (
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" '
+            'stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+            f"{shapes}</svg>"
+        )
+        url = f'url("data:image/svg+xml;utf8,{quote(svg)}")'
+        rules.append(
+            f".ico-{name} {{-webkit-mask: {url} center / contain no-repeat; "
+            f"mask: {url} center / contain no-repeat;}}"
+        )
+    return "".join(rules)
+
+
+st.html(f"<style>{_icon_css()}</style>")
+
+
+def _icon(name: str, size: int = 18) -> str:
+    return f'<i class="ico ico-{name}" style="width:{size}px;height:{size}px"></i>'
+
+
+def _kpi_cards(cards: list) -> None:
+    """Three product-style number cards: icon, big value, thin progress bar and a note."""
+    html = []
+    for c in cards:
+        bar = ""
+        if c.get("bar") is not None:
+            width = max(0.0, min(1.0, float(c["bar"]))) * 100
+            bar = f'<div class="kpi-bar"><span style="width:{width:.1f}%"></span></div>'
+        html.append(
+            f'<div class="kpi" title="{c.get("help", "")}" '
+            f'style="--c:{c["colour"]}; --v:{c.get("value_colour", INK)}">'
+            f'<div class="kpi-top"><span class="kpi-icon">{_icon(c["icon"])}</span>'
+            f'<span class="kpi-label">{c["label"]}</span></div>'
+            f'<div class="kpi-value">{c["value"]}</div>{bar}'
+            f'<div class="kpi-note">{c["note"]}</div></div>'
+        )
+    st.html(f'<div class="kpis">{"".join(html)}</div>')
+
+
+def _headline(text: str, sub: str, action_label: str, action_value: str, note: str) -> None:
+    """Value-first headline with the recommended action beside it."""
     with st.container(key="headline"):
-        st.header(text, anchor=False)
-        st.caption(detail)
+        left, right = st.columns([3, 1.25], gap="large", vertical_alignment="center")
+        with left:
+            st.header(text, anchor=False)
+            with st.container(key="headline-sub"):
+                st.markdown(sub)
+        right.html(
+            f'<div class="action"><div class="action-label">{action_label}</div>'
+            f'<div class="action-value">{action_value}</div>'
+            f'<div class="action-note">{note}</div></div>'
+        )
 
 
 def scania_view() -> None:
@@ -208,31 +316,54 @@ def scania_view() -> None:
     s = scania_summary(m, preds, rule)
     caught = round(s["recall"] * s["true_at_risk"]) if s["recall"] is not None else 0
 
-    _headline(scania_headline(s), scania_takeaway(s))
-
-    c1, c2, c3 = st.columns(3)
-    with c1.container(key="metric-saved"):
-        st.metric(
-            "Cost saved vs never inspecting",
-            f"{s['saving']:,.0f}",
-            delta=(
-                f"{s['saving'] / s['always_class_0_cost']:.0%} of {s['always_class_0_cost']:,.0f}"
-            ),
-            help="Official Scania cost of always predicting class 0, minus the model's cost.",
-        )
-    c2.container(key="metric-risk").metric(
-        "Failing trucks caught",
-        _pct(s["recall"]),
-        delta=f"{caught} of {s['true_at_risk']} trucks",
-        delta_color="off",
-        help="Share of trucks really in classes 1-4 that were flagged (recall).",
+    best = scania_summary(m, preds, UNLIMITED)
+    limited = rule != UNLIMITED
+    flagged_note = (
+        f"Out of {d['test_vehicles']:,} trucks: the riskiest {capacity_label(rule)}."
+        if limited
+        else f"Out of {d['test_vehicles']:,} trucks: every truck the model flags."
     )
-    c3.metric(
-        "False alarms",
-        f"{s['false_alarms']:,}",
-        delta=f"{_pct(s['healthy_flagged_share'])} of healthy trucks",
-        delta_color="off",
-        help="Healthy (class 0) trucks flagged for a check.",
+    _headline(
+        scania_headline(s, d["test_vehicles"], limited=limited),
+        scania_subline(s, best),
+        "Recommended this cycle",
+        f"Inspect {s['alarms']:,} trucks",
+        flagged_note,
+    )
+
+    share = s["saving"] / s["always_class_0_cost"] if s["always_class_0_cost"] else 0.0
+    _kpi_cards(
+        [
+            {
+                "icon": "saving",
+                "label": "Cost saved",
+                "value": f"{s['saving']:,.0f}",
+                "bar": share,
+                "note": f"{share:.0%} less than never inspecting ({s['always_class_0_cost']:,.0f})",
+                "colour": GREEN,
+                "value_colour": GREEN,
+                "help": "Official Scania cost of always predicting class 0, minus the model cost.",
+            },
+            {
+                "icon": "target",
+                "label": "Failing trucks caught",
+                "value": f"{s['recall']:.0%}" if s["recall"] is not None else "n/a",
+                "bar": s["recall"],
+                "note": f"{caught} of the {s['true_at_risk']} trucks that later failed",
+                "colour": RED,
+                "value_colour": RED,
+                "help": "Share of trucks really in classes 1-4 that were flagged (recall).",
+            },
+            {
+                "icon": "bell",
+                "label": "False alarms",
+                "value": f"{s['false_alarms']:,}",
+                "bar": s["healthy_flagged_share"],
+                "note": f"{_pct(s['healthy_flagged_share'])} of healthy trucks: cheap checks",
+                "colour": "#475569",
+                "help": "Healthy (class 0) trucks flagged for a check.",
+            },
+        ]
     )
     st.markdown(
         f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10); "
@@ -254,6 +385,7 @@ def scania_view() -> None:
             "- **At risk** means classes 1-4. **False alarms**: healthy trucks flagged.\n"
             "- **SHAP** (at the bottom) shows which readouts pushed one truck's risk up or down."
         )
+        st.caption(scania_takeaway(s))
         reason = m.get("capacity", {}).get("reason")
         st.caption(
             f"Model: {s['model'].lower()}, {s['decision']} decisions, calibrated on training "
@@ -264,7 +396,7 @@ def scania_view() -> None:
 
     left, right = st.columns([1, 1], gap="large")
     with left.container(border=True, key="card-matrix"):
-        st.subheader(f"At risk vs healthy ({capacity_label(rule)} capacity)")
+        st.subheader(f":material/grid_view: At risk vs healthy ({capacity_label(rule)} capacity)")
         cells = at_risk_matrix(s["confusion_matrix"])
         cells["Label"] = cells["Outcome"] + ": " + cells["Vehicles"].map("{:,}".format)
         outcomes = ["Caught", "Missed", "False alarm", "Correctly left alone"]
@@ -332,7 +464,7 @@ def scania_view() -> None:
 
     table = scania_vehicle_table(preds, data["shap_top"], rule)
     with right.container(border=True, key="card-vehicles"):
-        st.subheader("Workshop action list")
+        st.subheader(":material/build: Workshop action list")
         st.caption(
             "One row per truck, riskiest first. Risk is the model's estimate that the truck "
             "fails within 48 time steps. Trucks marked Inspect are the ones sent to the "
@@ -365,7 +497,7 @@ def scania_view() -> None:
     with st.expander("Explore cost and workshop capacity"):
         cost_col, capacity_col = st.columns([1, 1], gap="large")
         with cost_col.container(border=True, key="card-cost"):
-            st.subheader("Cost impact")
+            st.subheader(":material/payments: Cost impact")
             costs = pd.DataFrame(
                 {
                     "Scenario": ["Never inspecting", "With the model", "Saved"],
@@ -395,7 +527,7 @@ def scania_view() -> None:
             )
 
         with capacity_col.container(border=True, key="card-capacity"):
-            st.subheader("Savings by workshop capacity")
+            st.subheader(":material/tune: Savings by workshop capacity")
             what_if = pd.DataFrame(
                 [
                     {
@@ -432,7 +564,7 @@ def scania_view() -> None:
             )
 
     with st.container(border=True, key="card-shap"):
-        st.subheader("Why this vehicle? Top risk drivers")
+        st.subheader(":material/insights: Why this vehicle? Top risk drivers")
         shap_info = m.get("shap") or {}
         explained = table[table["Explained"]]
         if explained.empty:
@@ -582,10 +714,18 @@ def nasa_view(subset: str) -> None:
     threshold, confirm, priced = choose_policy(sweep, ratio)
     live = policy_comparison(timelines, threshold, confirm, min_lead, max_lead, ratio)
 
-    _headline(nasa_headline(live.iloc[0], ds["lifecycle_test_engines"]), nasa_takeaway(metrics))
+    lead = live.iloc[0]["Median lead time"]
+    _headline(
+        nasa_headline(live.iloc[0], ds["lifecycle_test_engines"]),
+        f"Alarm rule: service the engine when its failure risk stays above {threshold:.2f} for "
+        f"{confirm} cycle(s) in a row.",
+        "Median warning before failure",
+        "n/a" if lead is None or pd.isna(lead) else f"{lead:.0f} cycles",
+        f"Across the {ds['lifecycle_test_engines']} lifecycle test engines.",
+    )
 
     with st.container(border=True, key="card-timeline"):
-        st.subheader("Engine risk timeline")
+        st.subheader(":material/show_chart: Engine risk timeline")
         table = lifecycle_table(timelines, threshold, confirm, min_lead, max_lead)
         labels = {int(r.unit): f"Engine {int(r.unit)}: {r.outcome}" for r in table.itertuples()}
         unit = st.selectbox("Lifecycle test engine", list(labels), format_func=labels.get)
@@ -610,35 +750,48 @@ def nasa_view(subset: str) -> None:
     lr = metrics.get("baseline_logistic_regression", {})
     lt_main = metrics["lifecycle_test"]
     gap = lt_main["chosen"]["cost"] - lt_main["fixed_0.5"]["cost"]
-    c1, c2, c3 = st.columns(3)
-    c1.metric(
-        "Maintenance cost (lifecycle)",
-        f"{lt_main['chosen']['cost']:.0f}",
-        delta=f"{gap:+.0f} vs fixed 0.5" if gap else "same as fixed 0.5",
-        delta_color="inverse" if gap else "off",
-        help=f"Saved result at {settings['cost_ratio_main']:g}:1 on the lifecycle test engines.",
-    )
-    c2.metric(
-        "Alarm accuracy (PR-AUC)",
-        f"{metrics['test_last_cycle']['pr_auc']:.3f}",
-        delta=(
-            f"{metrics['test_last_cycle']['pr_auc'] - lr['test_last_cycle']['pr_auc']:+.3f}"
-            " vs logistic"
-        )
-        if lr
-        else None,
-        help=(
-            "How well risk scores separate failing from healthy NASA test engines; 1.0 is perfect."
-        ),
-    )
-    c3.metric(
-        "Remaining-life error (RMSE, cycles)",
-        f"{metrics['rul']['rmse_model']:.1f}",
-        delta=f"{metrics['rul']['rmse_model'] - metrics['rul']['rmse_naive_mean']:.1f} vs naive",
-        delta_color="inverse",
+    pr_auc = metrics["test_last_cycle"]["pr_auc"]
+    rul = metrics["rul"]
+    _kpi_cards(
+        [
+            {
+                "icon": "tool",
+                "label": "Maintenance cost (lifecycle)",
+                "value": f"{lt_main['chosen']['cost']:.0f}",
+                "note": f"{gap:+.0f} vs a fixed 0.5 threshold"
+                if gap
+                else "Same as a fixed 0.5 threshold",
+                "colour": "#475569",
+                "help": f"Saved result at {settings['cost_ratio_main']:g}:1 on the lifecycle "
+                "test engines.",
+            },
+            {
+                "icon": "target",
+                "label": "Alarm accuracy (PR-AUC)",
+                "value": f"{pr_auc:.3f}",
+                "bar": pr_auc,
+                "note": (
+                    f"{pr_auc - lr['test_last_cycle']['pr_auc']:+.3f} vs logistic regression; "
+                    "1.0 is perfect"
+                    if lr
+                    else "1.0 is perfect"
+                ),
+                "colour": GREEN,
+                "help": "How well risk scores separate failing from healthy NASA test engines.",
+            },
+            {
+                "icon": "clock",
+                "label": "Remaining-life error",
+                "value": f"{rul['rmse_model']:.1f} cycles",
+                "note": f"{rul['rmse_model'] - rul['rmse_naive_mean']:.1f} cycles vs a naive guess",
+                "colour": "#475569",
+                "help": "Root mean squared error of the predicted remaining life.",
+            },
+        ]
     )
 
     with st.expander("How to read this page and method details"):
+        st.caption(nasa_takeaway(metrics))
         st.markdown(
             "- Each **lifecycle test engine** runs to failure. The alarm rings once, when the "
             "failure probability has stayed at or above a threshold for 1, 2 or 3 cycles in a "
@@ -837,6 +990,11 @@ def comparison_view() -> None:
     )
 
 
+st.sidebar.html(
+    f'<div class="brand"><span class="brand-icon">{_icon("truck", 22)}</span><div>'
+    '<div class="brand-name">Predictive Maintenance</div>'
+    '<div class="brand-sub">Fleet risk dashboard</div></div></div>'
+)
 st.sidebar.header("Controls")
 dataset = st.sidebar.radio("Dataset", datasets, index=0)
 view_tab, compare_tab = st.tabs([f"{dataset} results", "Model comparison"])

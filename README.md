@@ -1,5 +1,7 @@
 # Predictive Maintenance for Trucks and Engines
 
+**Live dashboard:** https://machine-failure-prediction-qtiboudvxvhpybkv8hgttk.streamlit.app
+
 Predicts which vehicles are close to a component failure and decides which ones
 to call in for a workshop check, by expected cost rather than accuracy. The main
 case is Scania Component X, real operational data from a fleet of trucks, scored

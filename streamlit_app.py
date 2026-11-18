@@ -53,9 +53,18 @@ INK, MUTED, LINE = "#0f172a", "#64748b", "#e5e7eb"
 HIGHLIGHT = "background-color: rgba(22, 163, 74, 0.14); font-weight: 600"
 
 CARD = "0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(15, 23, 42, 0.06)"
+FONT = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
 CSS = f"""
+@import url('{FONT}');
+.stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp label,
+[data-testid="stMetricValue"] div {{font-family: 'Inter', sans-serif;}}
+.chips {{display: flex; flex-wrap: wrap; gap: 0.5rem; margin: -0.4rem 0 0.6rem;}}
+.chips span {{
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: #334155;
+  background: #f1f5f9; border: 1px solid {LINE}; border-radius: 999px; padding: 0.25rem 0.75rem;
+}}
 [data-testid="stMainBlockContainer"] {{max-width: 1250px; padding-top: 3rem;}}
-h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em;}}
+h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em; font-size: 2.4rem !important;}}
 .st-key-headline {{
   background: #ffffff; border: 1px solid {LINE}; border-left: 6px solid {INK};
   border-radius: 16px; padding: 1.3rem 1.8rem 1rem; box-shadow: {CARD};
@@ -96,10 +105,11 @@ h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em;}}
 st.set_page_config(page_title="Predictive Maintenance", layout="wide")
 st.html(f"<style>{CSS}</style>")
 st.title("Predictive Maintenance for Trucks and Engines")
-st.caption(
-    "Scania Component X (real truck data, the main case) and NASA's simulated C-MAPSS "
-    "turbofan engines (FD001 to FD004). Every model, threshold and correction was chosen on "
-    "validation data; test data was scored once."
+st.html(
+    '<div class="chips"><span>Scania Component X: real fleet data</span>'
+    "<span>NASA C-MAPSS: engine benchmark</span>"
+    "<span>Models chosen on validation data</span>"
+    "<span>Test data scored once</span></div>"
 )
 
 datasets = available_datasets(REPORTS)
@@ -224,12 +234,79 @@ def scania_view() -> None:
         delta_color="off",
         help="Healthy (class 0) trucks flagged for a check.",
     )
-    st.markdown(
-        f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10); missing a "
-        f"failing one is expensive (200 to 500). One missed failure costs as much as 20 to 70 "
-        f"unnecessary checks, so checking {s['false_alarms']:,} healthy trucks to catch "
-        f"{caught} failing ones still saves money."
-    )
+    cost_col, capacity_col = st.columns([1, 1], gap="large")
+    with cost_col.container(border=True, key="card-cost"):
+        st.subheader("Cost impact")
+        costs = pd.DataFrame(
+            {
+                "Scenario": ["Never inspecting", "With the model", "Saved"],
+                "Cost": [s["always_class_0_cost"], s["test_cost"], s["saving"]],
+            }
+        )
+        bars = alt.Chart(costs).encode(
+            y=alt.Y("Scenario:N", sort=None, title=None, axis=alt.Axis(labelFontSize=13)),
+            x=alt.X("Cost:Q", title="Official Scania cost (test trucks)"),
+        )
+        st.altair_chart(
+            bars.mark_bar(cornerRadius=4, size=30).encode(
+                color=alt.Color(
+                    "Scenario:N",
+                    scale=alt.Scale(
+                        domain=["Never inspecting", "With the model", "Saved"],
+                        range=["#94a3b8", INK, GREEN],
+                    ),
+                    legend=None,
+                ),
+                tooltip=["Scenario", alt.Tooltip("Cost:Q", format=",.0f")],
+            )
+            + bars.mark_text(align="left", dx=6, fontWeight="bold", color=INK)
+            .encode(text=alt.Text("Cost:Q", format=",.0f"))
+            .properties(height=190),
+            width="stretch",
+        )
+        st.markdown(
+            f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10); "
+            f"missing a failing one is expensive (200 to 500). One missed failure costs as much "
+            f"as 20 to 70 unnecessary checks, so checking {s['false_alarms']:,} healthy trucks "
+            f"to catch {caught} failing ones still saves money."
+        )
+
+    with capacity_col.container(border=True, key="card-capacity"):
+        st.subheader("Savings by workshop capacity")
+        what_if = pd.DataFrame(
+            [
+                {
+                    "Capacity": capacity_label(r),
+                    "Saved": scania_summary(m, preds, r)["saving"],
+                    "Caught": f"{scania_summary(m, preds, r)['recall']:.0%} caught",
+                    "Selected": r == rule,
+                }
+                for r in options
+            ]
+        )
+        base = alt.Chart(what_if).encode(
+            x=alt.X(
+                "Capacity:N",
+                sort=None,
+                title="Share of trucks the workshop checks",
+                axis=alt.Axis(labelAngle=0, labelOverlap=False),
+            ),
+            y=alt.Y("Saved:Q", title="Cost saved"),
+        )
+        st.altair_chart(
+            base.mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4, size=42).encode(
+                color=alt.condition(alt.datum.Selected, alt.value(GREEN), alt.value("#bbf7d0")),
+                tooltip=["Capacity", alt.Tooltip("Saved:Q", format=",.0f"), "Caught"],
+            )
+            + base.mark_text(dy=-9, fontWeight="bold", color=INK).encode(text="Caught:N"),
+            width="stretch",
+        )
+        st.caption(
+            "In plain words: each bar is the money saved if the workshop checks that share of "
+            "the fleet, with the share of failing trucks it catches on top. The dark green bar "
+            "is the setting chosen in the left panel; "
+            f"{capacity_label(recommended)} is recommended."
+        )
     with st.expander("How to read this page and method details"):
         st.markdown(
             "- **The task**: for each test truck, predict how soon Component X will need "
@@ -322,13 +399,35 @@ def scania_view() -> None:
 
     table = scania_vehicle_table(preds, data["shap_top"], rule)
     with right.container(border=True, key="card-vehicles"):
-        st.subheader("Trucks ranked by risk")
+        st.subheader("Workshop action list")
         st.caption(
-            "One row per truck, riskiest first. At-risk probability is the model's estimate "
-            "(0 to 1) that the truck fails within 48 time steps. Predicted class 1-4 means it "
-            "is sent for a check; true class 0 means it was actually healthy."
+            "One row per truck, riskiest first. Risk is the model's estimate that the truck "
+            "fails within 48 time steps. Trucks marked Inspect are the ones sent to the "
+            "workshop; the last column shows what really happened."
         )
-        st.dataframe(table.drop(columns="Explained"), hide_index=True, width="stretch", height=322)
+        actions = pd.DataFrame(
+            {
+                "Vehicle": table["Vehicle"],
+                "Risk": table["At-risk probability"] * 100,
+                "Action": ["Inspect" if c > 0 else "Monitor" for c in table["Predicted class"]],
+                "What happened": [
+                    "Failed within 48 steps" if c > 0 else "Stayed healthy"
+                    for c in table["True class"]
+                ],
+            }
+        )
+        st.dataframe(
+            actions,
+            hide_index=True,
+            width="stretch",
+            height=322,
+            column_config={
+                "Vehicle": st.column_config.NumberColumn(format="%d"),
+                "Risk": st.column_config.ProgressColumn(
+                    format="%.0f%%", min_value=0, max_value=100
+                ),
+            },
+        )
 
     with st.container(border=True, key="card-shap"):
         st.subheader("Why this vehicle? Top risk drivers")

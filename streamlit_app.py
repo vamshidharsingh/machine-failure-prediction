@@ -52,19 +52,45 @@ RED, GREEN, BLUE = "#dc2626", "#16a34a", "#2563eb"
 INK, MUTED, LINE = "#0f172a", "#64748b", "#e5e7eb"
 HIGHLIGHT = "background-color: rgba(22, 163, 74, 0.14); font-weight: 600"
 
+CARD = "0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(15, 23, 42, 0.06)"
 CSS = f"""
-[data-testid="stMainBlockContainer"] {{max-width: 1250px; padding-top: 3.5rem;}}
+[data-testid="stMainBlockContainer"] {{max-width: 1250px; padding-top: 3rem;}}
+h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em;}}
+.st-key-headline {{
+  background: #ffffff; border: 1px solid {LINE}; border-left: 6px solid {INK};
+  border-radius: 16px; padding: 1.3rem 1.8rem 1rem; box-shadow: {CARD};
+}}
 .st-key-headline h2 {{
-  font-size: 2.2rem; font-weight: 800; color: {INK}; line-height: 1.2; padding: 0.2rem 0;
+  font-size: 2.1rem; font-weight: 800; color: {INK}; line-height: 1.2; padding: 0.1rem 0 0.3rem;
 }}
+[class*="st-key-card"] {{
+  background: #ffffff; border: 1px solid {LINE} !important; border-radius: 16px;
+  padding: 1.2rem 1.4rem; box-shadow: {CARD};
+}}
+[class*="st-key-card"] h3 {{color: {INK}; font-weight: 700; font-size: 1.4rem;}}
 [data-testid="stMetric"] {{
-  background: #ffffff; border: 1px solid {LINE}; border-radius: 12px; padding: 0.9rem 1.1rem;
+  background: #ffffff; border: 1px solid {LINE}; border-left: 5px solid #94a3b8;
+  border-radius: 14px; padding: 1rem 1.2rem; box-shadow: {CARD};
 }}
-[data-testid="stMetricValue"] {{font-weight: 700; color: {INK};}}
+.st-key-metric-saved [data-testid="stMetric"] {{border-left-color: {GREEN};}}
+.st-key-metric-risk [data-testid="stMetric"] {{border-left-color: {RED};}}
+[data-testid="stMetricLabel"] p {{
+  text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.78rem; font-weight: 600;
+  color: {MUTED};
+}}
+[data-testid="stMetricValue"] {{font-weight: 800; color: {INK};}}
 .st-key-metric-saved [data-testid="stMetricValue"] {{color: {GREEN};}}
+.st-key-metric-risk [data-testid="stMetricValue"] {{color: {RED};}}
 [data-testid="stMetricDelta"] * {{white-space: normal; overflow: visible; text-overflow: clip;}}
-[data-testid="stTab"] p {{font-size: 1.05rem; font-weight: 600;}}
 [data-testid^="stMetricDeltaIcon"] {{display: none;}}
+[data-baseweb="tab-highlight"], [data-baseweb="tab-border"] {{display: none;}}
+[data-baseweb="tab-list"] {{gap: 0.5rem;}}
+[data-testid="stTab"] {{
+  background: #ffffff; border: 1px solid {LINE}; border-radius: 999px; padding: 0.35rem 1.1rem;
+}}
+[data-testid="stTab"][aria-selected="true"] {{background: {INK}; border-color: {INK};}}
+[data-testid="stTab"][aria-selected="true"] p {{color: #ffffff;}}
+[data-testid="stTab"] p {{font-size: 0.98rem; font-weight: 600;}}
 """
 
 st.set_page_config(page_title="Predictive Maintenance", layout="wide")
@@ -184,7 +210,7 @@ def scania_view() -> None:
             ),
             help="Official Scania cost of always predicting class 0, minus the model's cost.",
         )
-    c2.metric(
+    c2.container(key="metric-risk").metric(
         "Failing trucks caught",
         _pct(s["recall"]),
         delta=f"{caught} of {s['true_at_risk']} trucks",
@@ -204,7 +230,7 @@ def scania_view() -> None:
         f"unnecessary checks, so checking {s['false_alarms']:,} healthy trucks to catch "
         f"{caught} failing ones still saves money."
     )
-    with st.expander("How to read this page"):
+    with st.expander("How to read this page and method details"):
         st.markdown(
             "- **The task**: for each test truck, predict how soon Component X will need "
             "repair: class 0 is more than 48 time steps away, then 48-24 (1), 24-12 (2), "
@@ -218,16 +244,16 @@ def scania_view() -> None:
             "- **At risk** means classes 1-4. **False alarms**: healthy trucks flagged.\n"
             "- **SHAP** (at the bottom) shows which readouts pushed one truck's risk up or down."
         )
-
-    reason = m.get("capacity", {}).get("reason")
-    st.caption(
-        f"Model: {s['model'].lower()}, {s['decision']} decisions, calibrated on training data. "
-        f"{d['test_vehicles']:,} test trucks, {s['true_at_risk']} of them in classes 1-4. "
-        + (f"Recommended capacity {capacity_label(recommended)}: {reason}." if reason else "")
-    )
+        reason = m.get("capacity", {}).get("reason")
+        st.caption(
+            f"Model: {s['model'].lower()}, {s['decision']} decisions, calibrated on training "
+            f"data. {d['test_vehicles']:,} test trucks, {s['true_at_risk']} of them in classes "
+            "1-4. "
+            + (f"Recommended capacity {capacity_label(recommended)}: {reason}." if reason else "")
+        )
 
     left, right = st.columns([1, 1], gap="large")
-    with left.container(border=True):
+    with left.container(border=True, key="card-matrix"):
         st.subheader(f"At risk vs healthy ({capacity_label(rule)} capacity)")
         cells = at_risk_matrix(s["confusion_matrix"])
         cells["Label"] = cells["Outcome"] + ": " + cells["Vehicles"].map("{:,}".format)
@@ -261,6 +287,11 @@ def scania_view() -> None:
             (heat + text).properties(height=230).configure_axis(labelFontSize=13),
             width="stretch",
         )
+        st.caption(
+            "In plain words: green is failing trucks caught in time, red is failing trucks "
+            "missed, pink is healthy trucks checked for nothing (cheap), grey is healthy "
+            "trucks correctly left alone."
+        )
         with st.expander("Full 5 x 5 matrix (by time-to-failure class)"):
             cm = confusion_long(s["confusion_matrix"])
             base5 = alt.Chart(cm).encode(
@@ -290,13 +321,17 @@ def scania_view() -> None:
             )
 
     table = scania_vehicle_table(preds, data["shap_top"], rule)
-    with right.container(border=True):
-        st.subheader("Test vehicles")
-        st.caption("Riskiest first. Predicted class 1-4 means the truck is flagged for a check.")
+    with right.container(border=True, key="card-vehicles"):
+        st.subheader("Trucks ranked by risk")
+        st.caption(
+            "One row per truck, riskiest first. At-risk probability is the model's estimate "
+            "(0 to 1) that the truck fails within 48 time steps. Predicted class 1-4 means it "
+            "is sent for a check; true class 0 means it was actually healthy."
+        )
         st.dataframe(table.drop(columns="Explained"), hide_index=True, width="stretch", height=322)
 
-    with st.container(border=True):
-        st.subheader("Why this vehicle? (SHAP)")
+    with st.container(border=True, key="card-shap"):
+        st.subheader("Why this vehicle? Top risk drivers")
         shap_info = m.get("shap") or {}
         explained = table[table["Explained"]]
         if explained.empty:
@@ -327,6 +362,10 @@ def scania_view() -> None:
             help="Opens on the riskiest vehicle that is truly at risk and was flagged.",
             index=options.index(default_vehicle(explained)),
             format_func=labels.get,
+        )
+        st.markdown(
+            "**In plain words:** each bar is one reason behind this truck's risk. Red bars "
+            "push the risk up, blue bars pull it down, and a longer bar is a stronger reason."
         )
         _shap_chart(shap_bars(data["shap_top"], "vehicle_id", vid))
         st.markdown(
@@ -444,7 +483,7 @@ def nasa_view(subset: str) -> None:
 
     _headline(nasa_headline(live.iloc[0], ds["lifecycle_test_engines"]), nasa_takeaway(metrics))
 
-    with st.container(border=True):
+    with st.container(border=True, key="card-timeline"):
         st.subheader("Engine risk timeline")
         table = lifecycle_table(timelines, threshold, confirm, min_lead, max_lead)
         labels = {int(r.unit): f"Engine {int(r.unit)}: {r.outcome}" for r in table.itertuples()}
@@ -453,6 +492,11 @@ def nasa_view(subset: str) -> None:
         alarm = engine_alarm(tl, threshold, confirm, min_lead, max_lead)
         st.write(alarm["sentence"])
         _timeline_chart(tl, alarm, threshold, min_lead, max_lead)
+        st.markdown(
+            "**In plain words:** the red line shows how worried the model is about this "
+            "engine at each cycle. When it stays above the dashed line long enough, the "
+            "alarm rings (triangle). Ringing inside the green band means a good catch."
+        )
         st.caption(
             f"Red line: failure risk each cycle. Dashed line: alarm threshold {threshold:.2f}. "
             f"Triangle: where the alarm rings (after {confirm} consecutive cycle(s) at or above "
@@ -467,14 +511,14 @@ def nasa_view(subset: str) -> None:
     gap = lt_main["chosen"]["cost"] - lt_main["fixed_0.5"]["cost"]
     c1, c2, c3 = st.columns(3)
     c1.metric(
-        "Lifecycle cost (cost-based)",
+        "Maintenance cost (lifecycle)",
         f"{lt_main['chosen']['cost']:.0f}",
         delta=f"{gap:+.0f} vs fixed 0.5" if gap else "same as fixed 0.5",
         delta_color="inverse" if gap else "off",
         help=f"Saved result at {settings['cost_ratio_main']:g}:1 on the lifecycle test engines.",
     )
     c2.metric(
-        "NASA test PR-AUC",
+        "Alarm accuracy (PR-AUC)",
         f"{metrics['test_last_cycle']['pr_auc']:.3f}",
         delta=(
             f"{metrics['test_last_cycle']['pr_auc'] - lr['test_last_cycle']['pr_auc']:+.3f}"
@@ -482,7 +526,9 @@ def nasa_view(subset: str) -> None:
         )
         if lr
         else None,
-        help="Last recorded cycle of each NASA test engine.",
+        help=(
+            "How well risk scores separate failing from healthy NASA test engines; 1.0 is perfect."
+        ),
     )
     c3.metric(
         "Remaining-life error (RMSE, cycles)",
@@ -491,14 +537,7 @@ def nasa_view(subset: str) -> None:
         delta_color="inverse",
     )
 
-    st.write(
-        f"At **{ratio}:1** with at least **{min_lead}** cycles of warning (good catch = "
-        f"{min_lead} to {max_lead} cycles before failure), the lowest validation cost comes "
-        f"from ringing when the failure probability is at least **{threshold:.2f}** for "
-        f"**{confirm}** consecutive cycle(s). These costs and windows are assumptions, not real "
-        "maintenance figures."
-    )
-    with st.expander("How to read this page"):
+    with st.expander("How to read this page and method details"):
         st.markdown(
             "- Each **lifecycle test engine** runs to failure. The alarm rings once, when the "
             "failure probability has stayed at or above a threshold for 1, 2 or 3 cycles in a "
@@ -514,12 +553,19 @@ def nasa_view(subset: str) -> None:
             "- **NASA test engines** stop before failure, so they give the standard benchmark: "
             "remaining-life error and, per engine, the SHAP explanation."
         )
-    st.caption(
-        f"{subset}: {regimes} operating regime{'s' if regimes != 1 else ''}. Engines: "
-        f"{ds['fit_engines']} fit, {ds['validation_engines']} validation, "
-        f"{ds['lifecycle_test_engines']} lifecycle test, {ds['test_engines']} NASA test. "
-        "Gradient boosting is the headline model; logistic regression is the baseline."
-    )
+        st.write(
+            f"At **{ratio}:1** with at least **{min_lead}** cycles of warning (good catch = "
+            f"{min_lead} to {max_lead} cycles before failure), the lowest validation cost comes "
+            f"from ringing when the failure probability is at least **{threshold:.2f}** for "
+            f"**{confirm}** consecutive cycle(s). These costs and windows are assumptions, not "
+            "real maintenance figures."
+        )
+        st.caption(
+            f"{subset}: {regimes} operating regime{'s' if regimes != 1 else ''}. Engines: "
+            f"{ds['fit_engines']} fit, {ds['validation_engines']} validation, "
+            f"{ds['lifecycle_test_engines']} lifecycle test, {ds['test_engines']} NASA test. "
+            "Gradient boosting is the headline model; logistic regression is the baseline."
+        )
 
     alarm_tab, test_tab = st.tabs(["Lifecycle alarm", "NASA test engines and SHAP"])
 
@@ -660,6 +706,10 @@ def comparison_view() -> None:
     if df is None:
         st.info("No comparison yet. Run the pipelines, or `python -m mfp.report`.")
         return
+    st.markdown(
+        "**In plain words:** each row is one model on one dataset. Green marks the best "
+        "value in each column, so you can see which model wins on which measure."
+    )
     mask = best_cells(df)
     styles = mask.map(lambda hit: HIGHLIGHT if hit else "")
     st.dataframe(

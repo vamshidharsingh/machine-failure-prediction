@@ -143,14 +143,61 @@ h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em; font-size: 2.4rem 
 [data-testid="stTab"] p {{font-size: 0.98rem; font-weight: 600;}}
 """
 
+
+def _truck_svg(stroke: str, opacity: float, x: float = 0, y: float = 0, scale: float = 1) -> str:
+    """Side view of a tractor-trailer as line art (64 x 32 units before scaling)."""
+    return (
+        f'<g transform="translate({x} {y}) scale({scale})" fill="none" stroke="{stroke}" '
+        f'stroke-opacity="{opacity}" stroke-width="1.6" stroke-linejoin="round">'
+        '<rect x="2" y="6" width="38" height="17" rx="1.5"/><path d="M42 11h11l7 7v5H42z"/>'
+        '<path d="M45 13h7l4 5h-11z"/><line x1="2" y1="23" x2="60" y2="23"/>'
+        '<circle cx="10" cy="26" r="3"/><circle cx="18" cy="26" r="3"/>'
+        '<circle cx="34" cy="26" r="3"/><circle cx="52" cy="26" r="3"/></g>'
+    )
+
+
+def _svg_url(width: int, height: int, body: str) -> str:
+    svg = (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}">{body}</svg>'
+    )
+    return f'url("data:image/svg+xml;utf8,{quote(svg)}")'
+
+
+# Truck theme: faint line-art trucks across the white page, and a small road strip under the
+# title where a truck drives past. Motion stops for visitors who ask for reduced motion.
+PATTERN = _svg_url(
+    280, 180, _truck_svg(INK, 0.05, 24, 30, 1.5) + _truck_svg(INK, 0.04, 160, 118, 1.1)
+)
+TRUCK = _svg_url(64, 32, _truck_svg(INK, 0.85))
+TRUCK_FAINT = _svg_url(64, 32, _truck_svg(MUTED, 0.6))
+THEME_CSS = (
+    f".stApp {{background-color: #ffffff; background-image: {PATTERN}; "
+    "background-size: 280px 180px; background-attachment: fixed;}"
+    f".road {{position: relative; height: 50px; margin: 0.1rem 0 1rem; overflow: hidden; "
+    f"border-radius: 12px; background: #f8fafc; border: 1px solid {LINE};}}"
+    '.road::after {content: ""; position: absolute; left: 0; right: 0; bottom: 10px; '
+    "height: 2px; background: repeating-linear-gradient(90deg, #cbd5e1 0 18px, transparent "
+    "18px 34px); animation: lane 1.1s linear infinite;}"
+    ".road-truck {position: absolute; bottom: 12px; left: -90px; width: 64px; height: 32px; "
+    f"background: {TRUCK} no-repeat center / contain; animation: drive 18s linear infinite;}}"
+    f".road-truck.second {{background-image: {TRUCK_FAINT}; transform: scale(0.8); "
+    "animation-delay: -9s;}"
+    "@keyframes drive {from {left: -90px;} to {left: 100%;}}"
+    "@keyframes lane {from {background-position: 0 0;} to {background-position: -34px 0;}}"
+    "@media (prefers-reduced-motion: reduce) {.road::after, .road-truck {animation: none;} "
+    ".road-truck {left: 42%;} .road-truck.second {display: none;}}"
+)
+
 st.set_page_config(page_title="Predictive Maintenance", layout="wide")
-st.html(f"<style>{CSS}</style>")
+st.html(f"<style>{CSS}{THEME_CSS}</style>")
 st.title("Predictive Maintenance for Trucks and Engines")
 st.html(
     '<div class="chips"><span>Scania Component X: real fleet data</span>'
     "<span>NASA C-MAPSS: engine benchmark</span>"
     "<span>Models chosen on validation data</span>"
     "<span>Test data scored once</span></div>"
+    '<div class="road"><div class="road-truck"></div><div class="road-truck second"></div></div>'
 )
 
 datasets = available_datasets(REPORTS)

@@ -38,6 +38,7 @@ from mfp.dashboard import (
     plain_feature_name,
     policy_comparison,
     recommended_capacity,
+    risk_label,
     scania_headline,
     scania_subline,
     scania_summary,
@@ -45,6 +46,7 @@ from mfp.dashboard import (
     scania_vehicle_table,
     shap_bars,
     sweep_for_min_lead,
+    vehicle_label,
     warning_time_options,
 )
 
@@ -209,9 +211,9 @@ def _global_shap_chart(shap_global, unit: str) -> None:
     )
     chart = (
         alt.Chart(top)
-        .mark_bar(color=MUTED, cornerRadius=3)
+        .mark_bar(color=INK, cornerRadius=3)
         .encode(
-            x=alt.X("mean_abs_shap:Q", title=f"Mean |SHAP| ({unit})"),
+            x=alt.X("mean_abs_shap:Q", title="Average influence on risk (higher = matters more)"),
             y=alt.Y("Feature:N", sort="-x", title=None, axis=alt.Axis(labelLimit=320)),
             tooltip=["Feature", alt.Tooltip("mean_abs_shap:Q", format=".4f")],
         )
@@ -337,9 +339,10 @@ def scania_view() -> None:
             {
                 "icon": "saving",
                 "label": "Cost saved",
-                "value": f"{s['saving']:,.0f}",
+                "value": f"{s['saving']:,.0f} points",
                 "bar": share,
-                "note": f"{share:.0%} less than never inspecting ({s['always_class_0_cost']:,.0f})",
+                "note": f"{share:.0%} less than never inspecting "
+                f"({s['always_class_0_cost']:,.0f} points)",
                 "colour": GREEN,
                 "value_colour": GREEN,
                 "help": "Official Scania cost of always predicting class 0, minus the model cost.",
@@ -365,9 +368,10 @@ def scania_view() -> None:
             },
         ]
     )
+    st.caption("Points come from Scania's official scoring, not dollars.")
     st.markdown(
-        f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10); "
-        f"missing a failing one is expensive (200 to 500). One missed failure costs as much "
+        f"**Why so many false alarms?** Checking a healthy truck is cheap (7 to 10 points); "
+        f"missing a failing one is expensive (200 to 500 points). One missed failure costs as much "
         f"as 20 to 70 unnecessary checks, so checking {s['false_alarms']:,} healthy trucks "
         f"to catch {caught} failing ones still saves money."
     )
@@ -376,9 +380,9 @@ def scania_view() -> None:
             "- **The task**: for each test truck, predict how soon Component X will need "
             "repair: class 0 is more than 48 time steps away, then 48-24 (1), 24-12 (2), "
             "12-6 (3) and 6-0 (4).\n"
-            "- **Cost** uses Scania's official matrix: an unneeded check costs 7 to 10, a late "
-            'or missed failure 200 to 500. Lower is better. **Never inspecting** means "always '
-            'predict class 0": the baseline to beat.\n'
+            "- **Cost** uses Scania's official matrix, in points (not dollars): an unneeded "
+            "check costs 7 to 10 points, a late or missed failure 200 to 500 points. Lower is "
+            'better. **Never inspecting** means "always predict class 0": the baseline to beat.\n'
             "- **Workshop capacity** (left panel): only the riskiest k% of trucks are flagged. "
             "The recommended capacity was chosen on training data, before the test set was "
             "scored.\n"
@@ -387,6 +391,8 @@ def scania_view() -> None:
         )
         st.caption(scania_takeaway(s))
         reason = m.get("capacity", {}).get("reason")
+        if reason and reason.endswith(")"):
+            reason = reason[:-1] + " points)"
         st.caption(
             f"Model: {s['model'].lower()}, {s['decision']} decisions, calibrated on training "
             f"data. {d['test_vehicles']:,} test trucks, {s['true_at_risk']} of them in classes "
@@ -457,6 +463,10 @@ def scania_view() -> None:
             )
             st.altair_chart((heat5 + text5).properties(height=240), width="stretch")
             st.caption(
+                "Classes: 0 = more than 48 steps before failure, 1 = 24 to 48 steps, "
+                "2 = 12 to 24 steps, 3 = 6 to 12 steps, 4 = within 6 steps."
+            )
+            st.caption(
                 "Rows: true class. Columns: predicted class. The diagonal is correct; above it "
                 "the truck was called in too early (cheap), below it too late (expensive). Hover "
                 "a cell to see its cost."
@@ -468,16 +478,23 @@ def scania_view() -> None:
         st.caption(
             "One row per truck, riskiest first. Risk is the model's estimate that the truck "
             "fails within 48 time steps. Trucks marked Inspect are the ones sent to the "
-            "workshop; the last column shows what really happened."
+            "workshop; the last column shows what really happened in the next 48 steps."
+        )
+        st.caption(
+            "*High risk doesn't mean certain failure. Some top trucks stayed healthy, and "
+            "that's fine: a check costs only 7 to 10 points, while a missed failure costs 200 "
+            "to 500 points. Several trucks share the same score because the calibration step "
+            "groups similar raw scores into the same risk level; within a level, trucks are "
+            "ordered by the raw model score.*"
         )
         actions = pd.DataFrame(
             {
                 "Vehicle": table["Vehicle"],
-                "Risk": table["At-risk probability"] * 100,
+                "Risk": [risk_label(r) for r in table["At-risk probability"]],
+                "Risk level": table["At-risk probability"] * 100,
                 "Action": ["Inspect" if c > 0 else "Monitor" for c in table["Predicted class"]],
-                "What happened": [
-                    "Failed within 48 steps" if c > 0 else "Stayed healthy"
-                    for c in table["True class"]
+                "Next 48 steps": [
+                    "Failed" if c > 0 else "Stayed healthy" for c in table["True class"]
                 ],
             }
         )
@@ -487,10 +504,13 @@ def scania_view() -> None:
             width="stretch",
             height=322,
             column_config={
-                "Vehicle": st.column_config.NumberColumn(format="%d"),
-                "Risk": st.column_config.ProgressColumn(
-                    format="%.0f%%", min_value=0, max_value=100
+                "Vehicle": st.column_config.NumberColumn(format="%d", width="small"),
+                "Risk": st.column_config.TextColumn(width="small"),
+                "Risk level": st.column_config.ProgressColumn(
+                    format=" ", min_value=0, max_value=100, width="small"
                 ),
+                "Action": st.column_config.TextColumn(width="small"),
+                "Next 48 steps": st.column_config.TextColumn(width="medium"),
             },
         )
 
@@ -506,7 +526,7 @@ def scania_view() -> None:
             )
             bars = alt.Chart(costs).encode(
                 y=alt.Y("Scenario:N", sort=None, title=None, axis=alt.Axis(labelFontSize=13)),
-                x=alt.X("Cost:Q", title="Official Scania cost (test trucks)"),
+                x=alt.X("Cost:Q", title="Official Scania cost (points, test trucks)"),
             )
             st.altair_chart(
                 bars.mark_bar(cornerRadius=4, size=30).encode(
@@ -546,7 +566,7 @@ def scania_view() -> None:
                     title="Share of trucks the workshop checks",
                     axis=alt.Axis(labelAngle=0, labelOverlap=False),
                 ),
-                y=alt.Y("Saved:Q", title="Cost saved"),
+                y=alt.Y("Saved:Q", title="Cost saved (points)"),
             )
             st.altair_chart(
                 base.mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4, size=42).encode(
@@ -557,7 +577,8 @@ def scania_view() -> None:
                 width="stretch",
             )
             st.caption(
-                "In plain words: each bar is the money saved if the workshop checks that share of "
+                "In plain words: each bar is the cost saved (in points) if the workshop checks "
+                "that share of "
                 "the fleet, with the share of failing trucks it catches on top. The dark green bar "
                 "is the setting chosen in the left panel; "
                 f"{capacity_label(recommended)} is recommended."
@@ -579,7 +600,7 @@ def scania_view() -> None:
             else "Contributions to the at-risk probability."
         )
         labels = {
-            int(v): f"Vehicle {int(v)}: at-risk {p:.3f}, true class {int(t)}, predicted {int(c)}"
+            int(v): vehicle_label(v, p, t, c)
             for v, t, c, p in zip(
                 explained["Vehicle"],
                 explained["True class"],
@@ -614,13 +635,17 @@ def scania_view() -> None:
             "anonymous sensor ID and the histogram range it refers to."
         )
         with st.expander("Features that matter most"):
-            every, flagged = st.tabs(
-                ["All test vehicles", f"Flagged at {capacity_label(recommended)} capacity"]
+            _global_shap_chart(data["shap_global"], unit)
+            st.caption(
+                "Each bar shows how strongly a feature affects risk on average across all test "
+                "trucks, whether it raises or lowers it. For the direction for one truck, see "
+                "the red and blue chart above."
             )
-            with every:
-                _global_shap_chart(data["shap_global"], unit)
-            with flagged:
-                _global_shap_chart(data.get("shap_global_flagged"), unit)
+            st.caption(
+                'Scania does not publish its sensor names: "Sensor 167, range 5" is Scania\'s '
+                "anonymous sensor ID and the histogram range it refers to; truck specs are "
+                "anonymised in the same way."
+            )
 
 
 def _highlight_rows(df: pd.DataFrame, rows: list) -> pd.DataFrame:
@@ -965,9 +990,10 @@ def comparison_view() -> None:
         "value in each column, so you can see which model wins on which measure."
     )
     mask = best_cells(df)
-    styles = mask.map(lambda hit: HIGHLIGHT if hit else "")
+    points = {"Official cost (Scania)": "Official cost (Scania points)"}
+    styles = mask.map(lambda hit: HIGHLIGHT if hit else "").rename(columns=points)
     st.dataframe(
-        comparison_display(df).style.apply(lambda _: styles, axis=None),
+        comparison_display(df).rename(columns=points).style.apply(lambda _: styles, axis=None),
         hide_index=True,
         width="stretch",
     )

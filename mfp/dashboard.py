@@ -414,7 +414,8 @@ def scania_takeaway(s: dict) -> str:
         else f"at {s['capacity']} workshop capacity"
     )
     lead = (
-        f"{s['model']} {where} saves {s['saving']:,.0f} ({pct:.0%}) on the official test cost "
+        f"{s['model']} {where} saves {s['saving']:,.0f} points ({pct:.0%}) on the official test "
+        "cost "
         "against always predicting class 0"
     )
     if s["saving_95"]:
@@ -424,7 +425,7 @@ def scania_takeaway(s: dict) -> str:
             if lo > 0
             else "includes zero, so the saving may be luck"
         )
-        lead += f"; the 95% interval ({lo:,.0f} to {hi:,.0f}) is {verdict}"
+        lead += f"; the 95% interval ({lo:,.0f} to {hi:,.0f} points) is {verdict}"
     if s["alarms"] > 2 * s["true_at_risk"]:
         tail = (
             f"It gets there by flagging many vehicles: {s['alarms']:,} alarms for "
@@ -546,8 +547,7 @@ def at_risk_matrix(cm) -> pd.DataFrame:
 _PLAIN_NAMES = [
     (r"Time step", "Truck age (time step)"),
     (r"Number of readouts so far", "Number of readouts so far"),
-    (r"Specification (\d+) is (.+)", r"Spec \1 = \2"),
-    (r"Counter (\d+): value", r"Counter \1"),
+    (r"Specification (\d+) is (.+)", r"Truck spec \1 = \2 (anonymised)"),
     (r"Counter (\d+): rate of change \(last \d+ readouts\)", r"Counter \1: recent rate of change"),
     (r"Histogram (\d+): total count", r"Sensor \1: total readings"),
     (
@@ -593,4 +593,28 @@ def nasa_headline(row: dict, engines: int) -> str:
     return (
         f"Warns in time for {int(row['Good catches'])} of {engines} engines, with {early} early "
         f"alarm{'s' if early != 1 else ''} and {missed} missed."
+    )
+
+
+# What each Scania class means, in words.
+CLASS_WORDS = {
+    0: "stayed healthy",
+    1: "failed 24 to 48 steps later",
+    2: "failed 12 to 24 steps later",
+    3: "failed 6 to 12 steps later",
+    4: "failed within 6 steps",
+}
+
+
+def risk_label(p: float) -> str:
+    """Risk as a percentage; the calibration's top step is shown as 99%+, not certainty."""
+    return "99%+" if p >= 0.99 else f"{p:.0%}"
+
+
+def vehicle_label(vehicle, risk: float, true_class, predicted_class) -> str:
+    """Dropdown text for one truck, in words rather than class numbers."""
+    flagged = "flagged" if int(predicted_class) > 0 else "not flagged"
+    return (
+        f"Vehicle {int(vehicle)} · risk {risk_label(risk)} · "
+        f"{CLASS_WORDS[int(true_class)]} · {flagged}"
     )

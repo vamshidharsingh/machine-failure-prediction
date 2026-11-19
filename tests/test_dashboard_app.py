@@ -214,11 +214,15 @@ def test_takeaways_state_the_result_plainly():
         "true_at_risk": 142,
     }
     text = scania_takeaway(s)
-    assert text.startswith("Gradient boosting with unlimited workshop capacity saves 13,506 (24%)")
+    assert text.startswith(
+        "Gradient boosting with unlimited workshop capacity saves 13,506 points (24%)"
+    )
     assert scania_takeaway({**s, "capacity": "20%"}).startswith(
         "Gradient boosting at 20% workshop capacity saves"
     )
-    assert "(6,169 to 21,329) is above zero" in text and "2,454 alarms for 142 vehicles" in text
+    assert (
+        "(6,169 to 21,329 points) is above zero" in text and "2,454 alarms for 142 vehicles" in text
+    )
     assert "includes zero" in scania_takeaway({**s, "saving_95": [-100.0, 900.0]})
     # Accurate alarms are not described as "flagging many vehicles".
     assert scania_takeaway({**s, "alarms": 150}).endswith(
@@ -312,7 +316,8 @@ def test_dashboard_runs_from_reports_only(reports_only_app):
     assert not at.exception, at.exception
     radio = at.radio[0]
     assert radio.options == [SCANIA, "FD001"] and radio.value == SCANIA
-    assert [t.label for t in at.tabs][:2] == ["Scania results", "All test vehicles"]
+    assert at.tabs[0].label == "Scania results"
+    assert not any(t.label.startswith("Flagged at") for t in at.tabs)
     assert at.tabs[-1].label == "Model comparison"
     assert any("Why this vehicle" in s.value for s in at.subheader)
 

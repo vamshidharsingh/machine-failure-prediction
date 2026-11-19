@@ -7,9 +7,11 @@ from mfp.dashboard import (
     at_risk_matrix,
     nasa_headline,
     plain_feature_name,
+    risk_label,
     scania_headline,
     scania_subline,
     shap_bars,
+    vehicle_label,
 )
 
 
@@ -67,11 +69,11 @@ def test_plain_feature_names():
     assert plain_feature_name(
         "Histogram 158, bin 2: change in share of total (last 5 readouts)"
     ) == ("Sensor 158, range 2: recent change in share")
-    assert plain_feature_name("Counter 666: value") == "Counter 666"
+    assert plain_feature_name("Counter 666: value") == "Counter 666: value"
     assert plain_feature_name("Counter 309: rate of change (last 5 readouts)") == (
         "Counter 309: recent rate of change"
     )
-    assert plain_feature_name("Specification 7 is Cat6") == "Spec 7 = Cat6"
+    assert plain_feature_name("Specification 7 is Cat6") == ("Truck spec 7 = Cat6 (anonymised)")
     assert plain_feature_name("Sensor 11: average (last 10 cycles)") == (
         "Sensor 11: average (last 10 cycles)"
     )
@@ -90,7 +92,7 @@ def test_shap_bars_sorts_by_size_and_labels_direction():
     )
     out = shap_bars(top, "vehicle_id", 1)
     assert out["Feature"].tolist() == [
-        "Counter 1",
+        "Counter 1: value",
         "Sensor 2: total readings",
         "Truck age (time step)",
     ]
@@ -103,4 +105,19 @@ def test_nasa_headline():
     assert (
         nasa_headline(row, 20)
         == "Warns in time for 19 of 20 engines, with 1 early alarm and 0 missed."
+    )
+
+
+def test_risk_label_never_claims_certainty():
+    assert risk_label(1.0) == "99%+"
+    assert risk_label(0.99158) == "99%+"
+    assert risk_label(0.3125) == "31%"
+
+
+def test_vehicle_label_uses_words_not_class_numbers():
+    assert vehicle_label(11484, 0.3125, 4, 4) == (
+        "Vehicle 11484 · risk 31% · failed within 6 steps · flagged"
+    )
+    assert (
+        vehicle_label(2815, 1.0, 0, 0) == "Vehicle 2815 · risk 99%+ · stayed healthy · not flagged"
     )

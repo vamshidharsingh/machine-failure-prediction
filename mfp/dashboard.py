@@ -544,17 +544,34 @@ def at_risk_matrix(cm) -> pd.DataFrame:
     )
 
 
+# Bins per Scania histogram (mfp/scania/data.py HISTOGRAMS), copied so the
+# dashboard does not import the training code. Bins are numbered from 0 (lowest).
+_HIST_BANDS = {"167": 10, "272": 10, "291": 11, "158": 10, "459": 20, "397": 36}
+
+
+def _band(sensor: str, band: str) -> str:
+    n = _HIST_BANDS.get(sensor)
+    return f"band {band} of {n}" if n else f"band {band}"
+
+
 _PLAIN_NAMES = [
-    (r"Time step", "Truck age (time step)"),
-    (r"Number of readouts so far", "Number of readouts so far"),
-    (r"Specification (\d+) is (.+)", r"Truck spec \1 = \2 (anonymised)"),
-    (r"Counter (\d+): rate of change \(last \d+ readouts\)", r"Counter \1: recent rate of change"),
-    (r"Histogram (\d+): total count", r"Sensor \1: total readings"),
+    (r"Time step", lambda m: "Time in the study"),
+    (r"Number of readouts so far", lambda m: "Number of readouts so far"),
+    (r"Specification (\d+) is (.+)", lambda m: f"Truck spec {m[1]} = {m[2]} (anonymised)"),
+    (r"Counter (\d+): value", lambda m: f"Counter {m[1]}: running total"),
+    (
+        r"Counter (\d+): rate of change \(last \d+ readouts\)",
+        lambda m: f"Counter {m[1]}: recent rate of change",
+    ),
+    (r"Histogram (\d+): total count", lambda m: f"Sensor {m[1]}: total readings (all bands)"),
     (
         r"Histogram (\d+), bin (\d+): change in share of total \(last \d+ readouts\)",
-        r"Sensor \1, range \2: recent change in share",
+        lambda m: f"Sensor {m[1]}: recent change in {_band(m[1], m[2])}",
     ),
-    (r"Histogram (\d+), bin (\d+): share of total", r"Sensor \1, range \2: share of readings"),
+    (
+        r"Histogram (\d+), bin (\d+): share of total",
+        lambda m: f"Sensor {m[1]}: % of readings in {_band(m[1], m[2])}",
+    ),
 ]
 
 
@@ -565,9 +582,10 @@ def plain_feature_name(name: str) -> str:
     """
     import re
 
-    for pattern, repl in _PLAIN_NAMES:
-        if re.fullmatch(pattern, name):
-            return re.sub(pattern, repl, name)
+    for pattern, label in _PLAIN_NAMES:
+        match = re.fullmatch(pattern, name)
+        if match:
+            return label(match)
     return name
 
 

@@ -61,15 +61,20 @@ def test_at_risk_matrix_folds_classes_1_to_4():
 
 
 def test_plain_feature_names():
-    assert plain_feature_name("Time step") == "Truck age (time step)"
-    assert plain_feature_name("Histogram 459, bin 13: share of total") == (
-        "Sensor 459, range 13: share of readings"
+    assert plain_feature_name("Time step") == "Time in the study"
+    assert plain_feature_name("Histogram 167, bin 5: share of total") == (
+        "Sensor 167: % of readings in band 5 of 10"
     )
-    assert plain_feature_name("Histogram 459: total count") == "Sensor 459: total readings"
+    assert plain_feature_name("Histogram 459, bin 13: share of total") == (
+        "Sensor 459: % of readings in band 13 of 20"
+    )
+    assert plain_feature_name("Histogram 459: total count") == (
+        "Sensor 459: total readings (all bands)"
+    )
     assert plain_feature_name(
         "Histogram 158, bin 2: change in share of total (last 5 readouts)"
-    ) == ("Sensor 158, range 2: recent change in share")
-    assert plain_feature_name("Counter 666: value") == "Counter 666: value"
+    ) == ("Sensor 158: recent change in band 2 of 10")
+    assert plain_feature_name("Counter 666: value") == "Counter 666: running total"
     assert plain_feature_name("Counter 309: rate of change (last 5 readouts)") == (
         "Counter 309: recent rate of change"
     )
@@ -92,9 +97,9 @@ def test_shap_bars_sorts_by_size_and_labels_direction():
     )
     out = shap_bars(top, "vehicle_id", 1)
     assert out["Feature"].tolist() == [
-        "Counter 1: value",
-        "Sensor 2: total readings",
-        "Truck age (time step)",
+        "Counter 1: running total",
+        "Sensor 2: total readings (all bands)",
+        "Time in the study",
     ]
     assert out["Effect"].tolist() == ["Raises risk", "Lowers risk", "Raises risk"]
     assert shap_bars(None, "vehicle_id", 1).empty
@@ -121,3 +126,10 @@ def test_vehicle_label_uses_words_not_class_numbers():
     assert (
         vehicle_label(2815, 1.0, 0, 0) == "Vehicle 2815 · risk 99%+ · stayed healthy · not flagged"
     )
+
+
+def test_band_counts_match_scania_histograms():
+    from mfp.dashboard import _HIST_BANDS
+    from mfp.scania.data import HISTOGRAMS
+
+    assert _HIST_BANDS == HISTOGRAMS

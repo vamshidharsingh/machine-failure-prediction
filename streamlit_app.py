@@ -115,6 +115,28 @@ h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em; font-size: 2.4rem 
 .kpi-bar {{height: 6px; background: #f1f5f9; border-radius: 999px; overflow: hidden;}}
 .kpi-bar span {{display: block; height: 100%; background: var(--c); border-radius: 999px;}}
 .kpi-note {{font-size: 0.85rem; color: #475569; margin-top: 0.5rem;}}
+.matrix {{
+  display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: 6px;
+  align-items: stretch; font-family: 'Inter', sans-serif; container-type: inline-size;
+}}
+.matrix-head {{
+  font-size: 0.82rem; color: {MUTED}; text-align: center; align-self: end; padding-bottom: 2px;
+}}
+.matrix-side {{
+  font-size: 0.82rem; color: {MUTED}; align-self: center; padding-right: 6px; text-align: right;
+}}
+.matrix-cell {{
+  border-radius: 10px; min-height: 92px; padding: 0.6rem 0.25rem; display: flex;
+  flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  background: var(--bg); color: var(--fg);
+}}
+.matrix-name {{font-size: 0.84rem; font-weight: 600; line-height: 1.2;}}
+.matrix-count {{font-size: 1.3rem; font-weight: 800; margin-top: 0.2rem;}}
+@container (max-width: 300px) {{
+  .matrix-name {{font-size: 0.7rem;}}
+  .matrix-count {{font-size: 1.05rem;}}
+  .matrix-head, .matrix-side {{font-size: 0.72rem;}}
+}}
 .action {{
   font-family: 'Inter', sans-serif; border: 1px solid {LINE}; border-radius: 14px;
   padding: 1rem 1.2rem; background: #f8fafc;
@@ -250,7 +272,7 @@ def _shap_chart(bars: pd.DataFrame) -> None:
     st.altair_chart((chart + zero).properties(height=34 * len(bars) + 40), width="stretch")
 
 
-def _global_shap_chart(shap_global, unit: str) -> None:
+def _global_shap_chart(shap_global, x_title: str, y_title: str | None = None) -> None:
     if shap_global is None:
         return
     top = shap_global.head(10).assign(
@@ -260,12 +282,32 @@ def _global_shap_chart(shap_global, unit: str) -> None:
         alt.Chart(top)
         .mark_bar(color=INK, cornerRadius=3)
         .encode(
-            x=alt.X("mean_abs_shap:Q", title="Average influence on risk (higher = matters more)"),
-            y=alt.Y("Feature:N", sort="-x", title=None, axis=alt.Axis(labelLimit=320)),
+            x=alt.X(
+                "mean_abs_shap:Q",
+                title=x_title,
+                # Right-aligned so a long title stays inside the chart on narrow screens.
+                axis=alt.Axis(titleAnchor="end", titleAlign="right"),
+            ),
+            y=alt.Y(
+                "Feature:N",
+                sort="-x",
+                title=y_title,
+                # Title reads left to right above the bar names instead of sideways.
+                axis=alt.Axis(
+                    labelLimit=320,
+                    titleAngle=0,
+                    titleAnchor="end",
+                    titleAlign="right",
+                    titleBaseline="bottom",
+                    titleX=-8,
+                    titleY=-8,
+                    titleFontWeight=600,
+                ),
+            ),
             tooltip=["Feature", alt.Tooltip("mean_abs_shap:Q", format=".4f")],
         )
     )
-    st.altair_chart(chart, width="stretch")
+    st.altair_chart(chart.properties(height=32 * len(top)), width="stretch")
 
 
 # Line icons (Feather style), drawn inline so the page needs no icon files.
@@ -451,37 +493,29 @@ def scania_view() -> None:
     with left.container(border=True, key="card-matrix"):
         st.subheader(f":material/grid_view: At risk vs healthy ({capacity_label(rule)} capacity)")
         cells = at_risk_matrix(s["confusion_matrix"])
-        cells["Label"] = cells["Outcome"] + ": " + cells["Vehicles"].map("{:,}".format)
-        outcomes = ["Caught", "Missed", "False alarm", "Correctly left alone"]
-        base = alt.Chart(cells).encode(
-            x=alt.X(
-                "Decision:N",
-                sort=["Flagged", "Not flagged"],
-                title=None,
-                axis=alt.Axis(labelAngle=0, orient="top"),
-            ),
-            y=alt.Y("Truck:N", sort=["At risk", "Healthy"], title=None),
-        )
-        heat = base.mark_rect(cornerRadius=6, stroke="white", strokeWidth=4).encode(
-            color=alt.Color(
-                "Outcome:N",
-                scale=alt.Scale(domain=outcomes, range=[GREEN, RED, "#fecaca", "#f1f5f9"]),
-                legend=None,
-            ),
-            tooltip=["Truck", "Decision", "Outcome", alt.Tooltip("Vehicles:Q", format=",")],
-        )
-        text = base.mark_text(fontSize=15, fontWeight="bold").encode(
-            text="Label:N",
-            color=alt.condition(
-                alt.FieldOneOfPredicate("Outcome", ["Caught", "Missed"]),
-                alt.value("white"),
-                alt.value(INK),
-            ),
-        )
-        st.altair_chart(
-            (heat + text).properties(height=230).configure_axis(labelFontSize=13),
-            width="stretch",
-        )
+        # Plain HTML grid: text wraps inside each box, so it fits at any screen width.
+        colours = {
+            "Caught": (GREEN, "#ffffff"),
+            "Missed": (RED, "#ffffff"),
+            "False alarm": ("#fecaca", INK),
+            "Correctly left alone": ("#f1f5f9", INK),
+        }
+        grid = [
+            '<div></div><div class="matrix-head">Flagged</div>'
+            '<div class="matrix-head">Not flagged</div>'
+        ]
+        for truck in ["At risk", "Healthy"]:
+            grid.append(f'<div class="matrix-side">{truck}</div>')
+            for decision in ["Flagged", "Not flagged"]:
+                row = cells[(cells["Truck"] == truck) & (cells["Decision"] == decision)].iloc[0]
+                bg, fg = colours[row["Outcome"]]
+                grid.append(
+                    f'<div class="matrix-cell" style="--bg:{bg}; --fg:{fg}" '
+                    f'title="{truck}, {decision.lower()}: {row["Vehicles"]:,} trucks">'
+                    f'<div class="matrix-name">{row["Outcome"]}</div>'
+                    f'<div class="matrix-count">{row["Vehicles"]:,}</div></div>'
+                )
+        st.html(f'<div class="matrix">{"".join(grid)}</div>')
         st.caption(
             "In plain words: green is failing trucks caught in time, red is failing trucks "
             "missed, pink is healthy trucks checked for nothing (cheap), grey is healthy "
@@ -639,7 +673,6 @@ def scania_view() -> None:
             st.info("No SHAP explanations saved. Run `python -m mfp.scania.pipeline`.")
             return
         log_odds = "log-odds" in shap_info.get("output", "")
-        unit = "risk score, log-odds" if log_odds else "probability"
         st.caption(
             "Contributions to the **risk score (log-odds)**: the log of the odds that the truck "
             "fails within 48 time steps; +0.7 roughly doubles the odds, -0.7 halves them."
@@ -670,28 +703,34 @@ def scania_view() -> None:
         )
         _shap_chart(shap_bars(data["shap_top"], "vehicle_id", vid))
         st.markdown(
-            "**Why is truck age (time step) often the top driver?** Training labels need a "
-            "known outcome. For trucks never repaired, the last readouts before the study ended "
-            "have no known class and are left out, so late readouts in training come mostly "
-            "from trucks that failed. The model learns that older means riskier. Part of this "
-            "signal comes from how the data was collected rather than from wear, so read it "
-            "with care."
+            "**Why is time in the study (time step) often the top driver?** Training labels "
+            "need a known outcome. For trucks never repaired, the last readouts before the "
+            "study ended have no known class and are left out, so late readouts in training "
+            "come mostly from trucks that failed. The model learns that older means riskier. "
+            "Part of this signal comes from how the data was collected rather than from wear, "
+            "so read it with care."
         )
         st.caption(
-            'Scania does not publish its sensor names: "Sensor 459, range 13" is Scania\'s '
-            "anonymous sensor ID and the histogram range it refers to."
+            'Scania does not publish its sensor names. In "Sensor 459: % of readings in band '
+            "13 of 20\", 459 is Scania's anonymous sensor ID and band 13 is one of its 20 "
+            "measurement bands, numbered from 0 (lowest)."
         )
         with st.expander("Features that matter most"):
-            _global_shap_chart(data["shap_global"], unit)
+            _global_shap_chart(
+                data["shap_global"],
+                x_title="Impact on breakdown risk (higher = matters more)",
+                y_title="What the model looks at",
+            )
             st.caption(
                 "Each bar shows how strongly a feature affects risk on average across all test "
                 "trucks, whether it raises or lowers it. For the direction for one truck, see "
                 "the red and blue chart above."
             )
             st.caption(
-                'Scania does not publish its sensor names: "Sensor 167, range 5" is Scania\'s '
-                "anonymous sensor ID and the histogram range it refers to; truck specs are "
-                "anonymised in the same way."
+                'Scania does not publish its sensor names. In "Sensor 167: % of readings in '
+                "band 5 of 10\", 167 is Scania's anonymous sensor ID and band 5 is one of its 10 "
+                "measurement bands, numbered from 0 (lowest). Truck specs are anonymised in the "
+                "same way."
             )
 
 
@@ -1023,7 +1062,9 @@ def nasa_view(subset: str) -> None:
             )
             _shap_chart(shap_bars(data["shap_top"], "unit", test_unit))
             with st.expander("Features that matter most across NASA test engines"):
-                _global_shap_chart(data["shap_global"], "risk score, log-odds")
+                _global_shap_chart(
+                    data["shap_global"], "Average influence on risk (higher = matters more)"
+                )
 
 
 def comparison_view() -> None:

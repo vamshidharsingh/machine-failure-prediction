@@ -63,10 +63,27 @@ CSS = f"""
 @import url('{FONT}');
 .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp label,
 [data-testid="stMetricValue"] div {{font-family: 'Inter', sans-serif;}}
-.chips {{display: flex; flex-wrap: wrap; gap: 0.5rem; margin: -0.4rem 0 0.6rem;}}
+.banner {{
+  font-family: 'Inter', sans-serif; border-radius: 20px; padding: 2.2rem 2.4rem 1.7rem;
+  background: linear-gradient(120deg, #0b1f3a 0%, #13365e 50%, #0e7490 100%);
+  box-shadow: 0 10px 30px rgba(11, 31, 58, 0.25); margin-bottom: 0.9rem;
+}}
+.banner h1 {{
+  color: #ffffff !important; font-size: 2.6rem !important; font-weight: 800; margin: 0;
+  padding: 0; letter-spacing: -0.02em; line-height: 1.15;
+}}
+.banner-sub {{color: #cffafe; font-size: 1.08rem; margin: 0.45rem 0 1.1rem;}}
+.chips {{display: flex; flex-wrap: wrap; gap: 0.5rem;}}
 .chips span {{
-  font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: #334155;
-  background: #f1f5f9; border: 1px solid {LINE}; border-radius: 999px; padding: 0.25rem 0.75rem;
+  font-size: 0.8rem; font-weight: 600; color: #e0f2fe; background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; padding: 0.25rem 0.75rem;
+}}
+@media (max-width: 640px) {{
+  .banner {{padding: 1.5rem 1.3rem 1.2rem;}}
+  .banner h1 {{font-size: 1.9rem !important;}}
+}}
+.st-key-footer {{
+  border-top: 1px solid {LINE}; margin-top: 2.5rem; padding-top: 1rem;
 }}
 [data-testid="stMainBlockContainer"] {{max-width: 1250px; padding-top: 3rem;}}
 h1 {{color: {INK}; font-weight: 800; letter-spacing: -0.02em; font-size: 2.4rem !important;}}
@@ -211,14 +228,16 @@ THEME_CSS = (
     ".road-truck {left: 42%;} .road-truck.second {display: none;}}"
 )
 
-st.set_page_config(page_title="Predictive Maintenance", layout="wide")
+st.set_page_config(page_title="Predictive Maintenance", page_icon="⚙️", layout="wide")
 st.html(f"<style>{CSS}{THEME_CSS}</style>")
-st.title("Predictive Maintenance for Trucks and Engines")
 st.html(
+    '<div class="banner"><h1>Machine Failure Prediction</h1>'
+    '<div class="banner-sub">Failure-risk scoring for truck fleets and jet engines using '
+    "machine learning</div>"
     '<div class="chips"><span>Scania Component X: real fleet data</span>'
     "<span>NASA C-MAPSS: engine benchmark</span>"
     "<span>Models chosen on validation data</span>"
-    "<span>Test data scored once</span></div>"
+    "<span>Test data scored once</span></div></div>"
     '<div class="road"><div class="road-truck"></div><div class="road-truck second"></div></div>'
 )
 
@@ -1119,3 +1138,16 @@ with view_tab:
         nasa_view(dataset)
 with compare_tab:
     comparison_view()
+
+with st.container(key="footer"):
+    note, github, linkedin = st.columns([4, 1, 1], vertical_alignment="center")
+    note.caption("Machine Failure Prediction · Scania Component X and NASA C-MAPSS data")
+    github.link_button(
+        "GitHub", "https://github.com/vamshidharsingh", icon=":material/code:", width="stretch"
+    )
+    linkedin.link_button(
+        "LinkedIn",
+        "https://www.linkedin.com/in/vamshidhars1/",
+        icon=":material/person:",
+        width="stretch",
+    )
